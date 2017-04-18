@@ -15,30 +15,19 @@ import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
 import java.io.Serializable;
 
-public class RenderCreation extends FragmentActivity implements AndroidFragmentApplication.Callbacks{
+public class RenderCreation extends AndroidApplication{
 
     public static View renderView;
     public static ModelUVG uvgModel;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        GameFragment fragment = new GameFragment();
-    }
-
-
-    public static class GameFragment extends AndroidFragmentApplication
-    {
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {  return initializeForView(new ModelUVG());   }
-    }
-
-
-    @Override
-    public void exit() {
-
+        Intent intent = new Intent(RenderCreation.this, MainActivity.class);
+        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        uvgModel = new ModelUVG();
+        renderView = initializeForView(uvgModel, config);
+        startActivity(intent);
+        finish();
     }
 }

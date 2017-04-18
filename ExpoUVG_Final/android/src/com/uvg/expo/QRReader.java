@@ -1,18 +1,20 @@
 package com.uvg.expo;
 
+import android.*;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
-import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,7 +36,6 @@ public class QRReader extends AppCompatActivity {
     Button button2;
     SharedPreferences preferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,23 +43,20 @@ public class QRReader extends AppCompatActivity {
         overridePendingTransition(R.anim.enter,R.anim.exit);
         preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarqr);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.qr_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        //button2 = (Button) findViewById(R.id.button2);
-       /* button2.setOnClickListener(new View.OnClickListener() {
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });*/
+        });
 
         cameraPreview = (SurfaceView)findViewById(R.id.cameraPreview);
-        //txtResult = (TextView)findViewById(R.id.txtResultado);
+        txtResult = (TextView)findViewById(R.id.txtResultado);
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE)
@@ -128,12 +126,5 @@ public class QRReader extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }

@@ -16,8 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import static android.content.Context.MODE_PRIVATE;
-
 public class AndroidLauncher extends AppCompatActivity{
 
 	GLSurfaceView surface;
@@ -34,7 +32,7 @@ public class AndroidLauncher extends AppCompatActivity{
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ui);
+		setContentView(R.layout.map_ui);
 
 		prefs = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
 		prefs.edit().putString("Lugar", "Empty").apply();
