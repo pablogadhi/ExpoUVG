@@ -33,32 +33,21 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="49dp"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_margin="36dp"/>
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/appBarLayout" />
 
     <TextView
         android:id="@+id/txtResultado"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="54dp"
-        android:layout_marginStart="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
         android:gravity="center_horizontal"
         android:text=""
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_toLeftOf="@+id/button2"
-        android:layout_toStartOf="@+id/button2"/>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Regresar(temporal)"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>
 

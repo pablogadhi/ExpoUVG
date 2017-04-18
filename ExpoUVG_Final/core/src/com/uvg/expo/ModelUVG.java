@@ -62,7 +62,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 		environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
 
-
 		camera = new PerspectiveCamera(75, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		//Cambiar la camara position.set a  (0f,10f,0f) para que este sobre pero no se mira bien por falta de texturas
 		camera.position.set(0f,1000f,0f);

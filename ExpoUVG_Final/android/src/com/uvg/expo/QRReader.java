@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -37,6 +38,16 @@ public class QRReader extends AppCompatActivity {
     SharedPreferences preferences;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrreader);
@@ -45,15 +56,15 @@ public class QRReader extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.qr_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        //button2 = (Button) findViewById(R.id.button2);
+        /*button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });
+        });*/
 
         cameraPreview = (SurfaceView)findViewById(R.id.cameraPreview);
         txtResult = (TextView)findViewById(R.id.txtResultado);
@@ -113,7 +124,6 @@ public class QRReader extends AppCompatActivity {
                                 vibrator.vibrate(100);
                                 vibrate = false;
                                 preferences.edit().putString("Lugar", qrcodes.valueAt(0).displayValue).apply();;
-                                txtResult.setText(preferences.getString("Lugar","Empty"));
                                 finish();
 
                             }
