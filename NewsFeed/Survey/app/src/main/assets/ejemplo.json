@@ -1,0 +1,53 @@
+{
+  "survey_properties": {
+    "intro_message": "<strong>Hola Etson y clase</strong><br><br><br>  Este es el modulo de surveys",
+    "end_message": "Gracias por su atencion",
+    "skip_intro": false
+  },
+  "questions": [
+    {
+      "question_type": "Checkboxes",
+      "question_title": "Que les guste de nuestro modulo",
+      "description": "(Elija todas las que quiera)",
+      "required": false,
+      "random_choices": false,
+      "choices": [
+        "TODO",
+        "TODO",
+        "TODO",
+        "TODO"
+      ]
+    },
+    {
+      "question_type": "Checkboxes",
+      "question_title": "Porque le gusto?",
+      "description": "Elija las que quiera",
+      "required": false,
+      "random_choices": true,
+      "choices": [
+        "Es simplemente <font color='#AA0000'><strong>perfecto</strong></font>",
+        "Esta lindo el <font color='#00AA00'>verde UVG</font>",
+        "Ni idea solo <font color='#0000AA'><strong>paso</strong></font>"
+      ]
+    },
+    {
+      "question_type": "String",
+      "question_title": "Sugerencias?",
+      "description": "",
+      "required": false
+    },
+    {
+      "question_title": "Diga del 1 al 10 cuanto le gusto",
+      "description": "",
+      "required": false,
+      "question_type": "Number"
+    },
+    {
+      "question_type": "StringMultiline",
+      "question_title": "Espacio para ensayo sobre como le gusto el modulo",
+      "description": "",
+      "required": false,
+      "number_of_lines": 4
+    }
+  ]
+}
