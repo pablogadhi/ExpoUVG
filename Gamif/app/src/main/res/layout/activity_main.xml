@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_main"
+    tools:context="com.example.ychav.expouvg.MainActivity">
+
+
+    <ScrollView
+
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:fillViewport="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:scrollbars = "vertical"
+        android:scrollbarStyle="insideInset"
+        tools:ignore="UselessParent"
+        android:id="@+id/scroll"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/background_light">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:stretchColumns="1">
+
+            <TableRow>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/tableRow1">
+
+                <ImageView
+                    android:id="@+id/reto1Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto1Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto1Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button1"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow1">
+
+                <ImageView
+                    android:id="@+id/reto2Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tableRow1"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto2Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto2Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+
+                <ImageView
+                    android:id="@+id/reto3Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto3Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto3Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button3"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow3">
+
+                <ImageView
+                    android:id="@+id/reto4Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto4Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto4Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button4"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow4">
+
+                <ImageView
+                    android:id="@+id/reto5Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto5Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto5Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button5"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow5">
+
+                <ImageView
+                    android:id="@+id/reto6Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto6Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto6Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button6"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+            <TableRow>
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow6">
+
+                <ImageView
+                    android:id="@+id/reto7Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto7Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto7Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button7"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+
+            <TableRow>
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow7">
+
+                <ImageView
+                    android:id="@+id/reto8Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto8Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto8Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button8"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+
+            <TableRow>
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow8">
+
+                <ImageView
+                    android:id="@+id/reto9Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto9Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto9Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button9"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+
+            <TableRow>
+                android:id="@+id/tableRow10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow9">
+
+                <ImageView
+                    android:id="@+id/reto10Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto10Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto10Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button10"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+
+            <TableRow>
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow10">
+
+                <ImageView
+                    android:id="@+id/reto11Img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/reto11Img2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+
+                <ImageView
+                    android:id="@+id/reto11Img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="10dip"
+                    android:src="@drawable/star_verde"
+                    tools:ignore="ContentDescription"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/button11"
+                    android:text="@string/ver_reto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="152dip"
+                    android:layout_marginTop="10dip"
+                    style="@android:style/Widget.DeviceDefault.Button"
+                    android:minHeight="55dp"
+                    android:backgroundTint="#010166"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/background_light"
+                    android:minWidth="88dp" />
+
+            </TableRow>
+
+            <TableRow>
+            android:id="@+id/tableRow12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableRow11">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:textSize="70sp" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
