@@ -14,12 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URL;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class ServicesFragment extends Fragment {
@@ -53,33 +59,46 @@ public class ServicesFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.app_bar_search){
             JSONObject jsonObject = new JSONObject();
-            try{
-                jsonObject.put("username", "pablo");
-                jsonObject.put("ponts", 0);
-            }catch (JSONException exception){
-                Log.d("Error", "No hubo respuesta");
-            }
-            URL SearchUrl = network.buildUrl("rod");
-            new QueryTask().execute(SearchUrl);
+
+            AsyncHttpClient client = new AsyncHttpClient();
+            RequestParams params = new RequestParams();
+            params.put("userId", "58f7d855cd7b6c00045c2603");
+            client.post("https://expo-uvg.herokuapp.com/api/points/add", params, new TextHttpResponseHandler() {
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    results.setText(responseString);
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    results.setText(responseString);
+                }
+            });
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     public class QueryTask extends AsyncTask<URL, Void, String> {
-
+        private String entrada;
         @Override
         protected String doInBackground(URL... params) {
 
             String resultado = "";
             try {
-                resultado = network.getResponseFromHttpUrl(params[0]);
+                resultado = network.postOnHttpUrl(params[0], entrada);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
             return resultado;
         }
+
+        protected void setEntrada(String entrada){
+            this.entrada = entrada;
+        }
+
 
         @Override
         protected void onPostExecute(String s) {

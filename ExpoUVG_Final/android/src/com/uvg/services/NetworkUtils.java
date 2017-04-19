@@ -1,8 +1,15 @@
 package com.uvg.services;
 
 import android.net.Uri;
+import android.util.Log;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +36,7 @@ import java.util.Scanner;
  */
 public class NetworkUtils {
 
-    final static String BASE_URL =
+    public static String BASE_URL =
             "https://expo-uvg.herokuapp.com/api/users";
 
     final static String PARAM_QUERY = "username";
@@ -81,5 +88,37 @@ public class NetworkUtils {
         } finally {
             urlConnection.disconnect();
         }
+    }
+
+    public static String postOnHttpUrl(URL url, String params) throws IOException{
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setChunkedStreamingMode(0);
+
+            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+            DataOutputStream dataOutputStream = new DataOutputStream(out);
+            dataOutputStream.write(params.getBytes());
+            dataOutputStream.flush();
+            dataOutputStream.close();
+
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            Scanner scanner = new Scanner(in);
+            scanner.useDelimiter("\\A");
+
+            boolean hasInput = scanner.hasNext();
+            if (hasInput) {
+                return scanner.next();
+            } else {
+                return null;
+            }
+        }catch (Exception e){
+            Log.d("Error", e.toString());
+            e.printStackTrace();
+        } finally {
+            urlConnection.disconnect();
+        }
+        return "";
     }
 }
