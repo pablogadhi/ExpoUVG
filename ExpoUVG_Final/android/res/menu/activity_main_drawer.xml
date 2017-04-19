@@ -11,13 +11,13 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="WebService" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/leaderboard"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="LeaderBoard" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_usuario"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Usuario" />
 
     </group>
 

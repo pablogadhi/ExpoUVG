@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!-- Version Principal y Mapa -->
     <string name="app_name">ExpoUVG</string>
     <string name="result_text_default">Por favor enfoque el código QR</string>
     <string name="shared_prefs">preferencias</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+
+    <!-- Gamification -->
+    <string name="ver_reto">Ver Reto</string>
+    <string name="Reto1">Leyó (1,5,10) noticias</string>
+    <string name="Reto2">Visitó la cueva</string>
+    <string name="Reto3">Contestó (1, 2, 3) encuestas</string>
+    <string name="Reto4">Estuvo en (2, 3, 4) lugares diferentes</string>
+    <string name="Reto5">Realizar (1, 2, 3) publicaciones con # en alguna red social</string>
+    <string name="Reto6">Recomendó a (1,2,3) amigos el evento </string>
+    <string name="Reto7">Calificó (1, 2, 3) stands</string>
+    <string name="Reto8">Buscó (2,3,4) lugares en el mapa</string>
+    <string name="Reto9">Conoció a Douglas</string>
+    <string name="Reto10">Realizó (2,3,4) actividades de busqueda de objetos diferentes</string>
+    <string name="Reto11">Busque el libro Don Quijote de la Mancha en la biblioteca </string>
+    <string name="title_activity_expo__menu">Expo_Menu</string>
+    <string name="title_activity_main_menu">MainMenu</string>
 
 </resources>
