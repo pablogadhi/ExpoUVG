@@ -42,6 +42,10 @@ public class MapFragment extends Fragment {
         ViewGroup group = (ViewGroup) surface.getParent();
         int index = group.indexOfChild(surface);
         group.removeView(surface);
+        if(render.getParent()!=null){
+            ViewGroup parent = (ViewGroup) render.getParent();
+            parent.removeView(render);
+        }
         group.addView(render, index);
 
         searchView = (SearchView) getView().findViewById(R.id.searchview);
@@ -69,7 +73,6 @@ public class MapFragment extends Fragment {
         super.onResume();
         setMostrar(prefs.getString("Lugar","Empty"));
         debbug.setText(mostrar);
-        cambiarPosicion();
     }
 
     public void setMostrar(String qranswer){

@@ -1,10 +1,10 @@
 package com.uvg.expo.gamification;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,7 @@ import com.uvg.expo.R;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Usuario extends android.support.v4.app.Fragment implements View.OnClickListener{
+public class Usuario extends Fragment implements View.OnClickListener{
 
     //Instanciar objetos
 
@@ -94,7 +94,7 @@ public class Usuario extends android.support.v4.app.Fragment implements View.OnC
         switch (itemID) {
             // cambiar a la activity del usuario
             case R.id.btnRetos:
-                Intent intRetos = new Intent(Usuario.this, GamificationMain.class);
+                Intent intRetos = new Intent(Usuario.this, RetosFragment.class);
                 startActivity(intRetos);
                 break;
             // cambiar a la activity del usuario

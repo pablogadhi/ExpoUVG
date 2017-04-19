@@ -1,8 +1,8 @@
 package com.uvg.expo.gamification;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,7 @@ import com.uvg.expo.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class GamificationMain extends Fragment implements View.OnClickListener {
+public class RetosFragment extends Fragment implements View.OnClickListener {
 
     JSONObject object, prueba1, prueba2, prueba3;
     Handler customHandler = new Handler();
@@ -24,11 +24,13 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
     View view;
     private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11;
 
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstantState){
+        return inflater.inflate(R.layout.activity_retos, container, false);
+    }
 
-
-
-        view = inflater.inflate(R.layout.activity_main, container);
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
 
         //crear los objetos
         object = new JSONObject();
@@ -103,7 +105,6 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
         r11i2 = (ImageView) getView().findViewById(R.id.reto11Img2);
         r11i3 = (ImageView) getView().findViewById(R.id.reto11Img3);
 
-
         prueba = 1;
 
         prueba1 = new JSONObject();
@@ -111,8 +112,8 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
         prueba3 = new JSONObject();
 
         startTask();
-        return view;
 
+        super.onActivityCreated(savedInstanceState);
     }
 
     public void startTask(){
@@ -256,17 +257,17 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
         switch (itemID) {
             // cambiar a la activity del usuario
             case R.id.btnRetos:
-                Intent intRetos = new Intent(GamificationMain.this, GamificationMain.class);
+                Intent intRetos = new Intent(RetosFragment.this, RetosFragment.class);
                 startActivity(intRetos);
                 break;
             // cambiar a la activity del usuario
             case R.id.btnCard:
-                Intent intUser = new Intent(GamificationMain.this, Usuario.class);
+                Intent intUser = new Intent(RetosFragment.this, Usuario.class);
                 startActivity(intUser);
             break;
             // cambiar a la activity del usuario
             case R.id.btnLeaderBoard:
-                Intent intLeader = new Intent(GamificationMain.this, LeaderboardFragment.class);
+                Intent intLeader = new Intent(RetosFragment.this, LeaderboardFragment.class);
                 startActivity(intLeader);
                 break;
         }
@@ -289,7 +290,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Intent intQr = new Intent(thisd, GamificationMain.class);
+                        //Intent intQr = new Intent(thisd, RetosFragment.class);
                         //startActivity(intQr);
                     }
                 });
@@ -340,7 +341,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto4.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // Intent intQr = new Intent(getActivity(), GamificationMain.class);
+                       // Intent intQr = new Intent(getActivity(), RetosFragment.class);
                         //startActivity(intQr);
                     }
                 });
@@ -358,7 +359,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto5.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // Intent intQr = new Intent(GamificationMain.this, GamificationMain.class);
+                       // Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
                         //startActivity(intQr);
                     }
                 });
@@ -376,7 +377,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto6.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // Intent intQr = new Intent(GamificationMain.this, GamificationMain.class);
+                       // Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
                         //startActivity(intQr);
                     }
                 });
@@ -393,7 +394,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto7.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      //  Intent intQr = new Intent(GamificationMain.this, GamificationMain.class);
+                      //  Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
                        // startActivity(intQr);
                     }
                 });
@@ -410,7 +411,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto8.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      //  Intent intQr = new Intent(GamificationMain.this, GamificationMain.class);
+                      //  Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
                        // startActivity(intQr);
                     }
                 });
@@ -443,7 +444,7 @@ public class GamificationMain extends Fragment implements View.OnClickListener {
                 Reto10.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Intent intQr = new Intent(GamificationMain.this, GamificationMain.class);
+                        //Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
                         //startActivity(intQr);
                     }
                 });

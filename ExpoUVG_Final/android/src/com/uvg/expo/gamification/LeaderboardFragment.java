@@ -33,7 +33,7 @@ public class LeaderboardFragment extends Fragment{
         switch (itemID) {
             // cambiar a la activity del usuario
             case R.id.btnRetos:
-                //Intent intRetos = new Intent(LeaderboardFragment.this, GamificationMain.class);
+                //Intent intRetos = new Intent(LeaderboardFragment.this, RetosFragment.class);
                 //startActivity(intRetos);
                 break;
             // cambiar a la activity del usuario

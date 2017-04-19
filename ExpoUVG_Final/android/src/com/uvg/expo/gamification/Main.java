@@ -16,7 +16,7 @@ public class Main extends AppCompatActivity {
     /**
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        GamificationMain main = new GamificationMain();
+        RetosFragment main = new RetosFragment();
         transaction.add(R.id.activity_main, main);
         transaction.commit();
 */

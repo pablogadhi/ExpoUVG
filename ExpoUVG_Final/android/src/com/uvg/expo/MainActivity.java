@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.uvg.expo.gamification.LeaderboardFragment;
+import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
 import com.uvg.services.ServicesFragment;
 
@@ -104,10 +105,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_usuario) {
             Usuario usuario = new Usuario();
             loadfragment = usuario;
+        } else if (id == R.id.nav_retos){
+            RetosFragment retosFragment = new RetosFragment();
+            loadfragment = retosFragment;
         }
 
 
-        transaction.add(R.id.fragmentContainer, loadfragment, "current");
+        transaction.replace(R.id.fragmentContainer, loadfragment);
         transaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -76,7 +76,7 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
     protected void onResume() {
         if(seBloqueoPantalla && cambioAplicacion) {
             //Redirecciona a la actividad Login!.
-            Intent myIntent = new Intent(this, GamificationMain.class);
+            Intent myIntent = new Intent(this, RetosFragment.class);
             startActivity(myIntent);
             //reiniciamos valores.
             seBloqueoPantalla = false;
