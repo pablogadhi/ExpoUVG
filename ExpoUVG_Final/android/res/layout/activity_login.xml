@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/black"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
 
     <com.google.android.gms.common.SignInButton
@@ -123,13 +123,13 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Ingresar sin iniciar sesión"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:layout_marginBottom="13dp"
-        android:textColor="@color/cardview_light_background"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:text="Ingresar sin iniciar sesión"
+        android:textColor="@color/cardview_light_background" />
 
 </RelativeLayout>

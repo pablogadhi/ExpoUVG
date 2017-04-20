@@ -4,36 +4,36 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_feed"
-            android:icon="@drawable/ic_news"
+            android:icon="@drawable/newspaper"
             android:title="News"/>
         <item
             android:id="@+id/uvgmap"
-            android:icon="@android:drawable/ic_menu_mapmode"
+            android:icon="@drawable/ic_map"
             android:title="Mapa" />
         <item
-            android:id="@+id/service_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="WebService" />
-        <item
             android:id="@+id/leaderboard"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/bulletin_board"
             android:title="LeaderBoard" />
         <item
             android:id="@+id/nav_usuario"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_account"
             android:title="Usuario" />
+        <item
+            android:id="@+id/service_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="WebServiceTest" />
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Extras">
         <menu>
             <item
                 android:id="@+id/nav_retos"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/gamepad_variant"
                 android:title="Retos" />
             <item
                 android:id="@+id/nav_survey"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/checkbox_multiple_marked"
                 android:title="Survey" />
         </menu>
     </item>

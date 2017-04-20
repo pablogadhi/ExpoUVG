@@ -1,4 +1,4 @@
-package com.uvg.expo;
+package com.uvg.expo.map;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.uvg.expo.ModelUVG;
+import com.uvg.expo.R;
 
 
 public class MapFragment extends Fragment {

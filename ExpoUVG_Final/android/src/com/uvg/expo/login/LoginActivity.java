@@ -54,7 +54,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uvg.expo.R;
-import com.uvg.expo.RenderCreation;
+import com.uvg.expo.map.RenderCreation;
 
 import org.json.JSONException;
 import org.json.JSONObject;

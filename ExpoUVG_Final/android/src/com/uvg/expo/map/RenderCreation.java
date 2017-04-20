@@ -1,4 +1,4 @@
-package com.uvg.expo;
+package com.uvg.expo.map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+import com.uvg.expo.MainActivity;
+import com.uvg.expo.ModelUVG;
 
 import java.io.Serializable;
 

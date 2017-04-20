@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
+import com.uvg.expo.map.MapFragment;
 import com.uvg.expo.news.NewsFeedFragment;
 import com.uvg.expo.news.SurveyFragment;
 import com.uvg.services.ServicesFragment;

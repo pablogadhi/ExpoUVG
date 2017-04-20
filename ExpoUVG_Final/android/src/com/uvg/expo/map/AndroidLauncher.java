@@ -1,4 +1,4 @@
-package com.uvg.expo;
+package com.uvg.expo.map;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.uvg.expo.ModelUVG;
+import com.uvg.expo.R;
 
 public class AndroidLauncher extends AppCompatActivity{
 
