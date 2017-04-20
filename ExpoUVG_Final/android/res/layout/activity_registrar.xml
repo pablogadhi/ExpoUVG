@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_registrar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black"
+    tools:context="com.example.henry.uvglogin.Registrar">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Email:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            android:id="@+id/textView4"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            tools:layout_editor_absoluteY="14dp"
+            android:id="@+id/email"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="32dp"
+            app:layout_constraintLeft_toRightOf="@+id/textView4"
+            android:layout_marginLeft="32dp" />
+
+        <TextView
+            android:text="Contraseña:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            android:id="@+id/textView7"
+            android:textColor="@color/cardview_light_background"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/pass"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            android:layout_marginStart="24dp"
+            app:layout_constraintLeft_toRightOf="@+id/textView7"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:text="Nombre Completo:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            android:id="@+id/textView8"
+            android:textColor="@color/cardview_light_background"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/nomcom"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/pass"
+            app:layout_constraintLeft_toRightOf="@+id/textView8"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:text="Genero:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            android:id="@+id/textView9"
+            android:textColor="@color/cardview_light_background"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/genero"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/nomcom"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toRightOf="@+id/textView9"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:text="Registrarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="104dp"
+            android:id="@+id/btn_reg"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/genero" />
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

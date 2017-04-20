@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.fragmentContainer, new NewsFeedFragment());
+        transaction.commit();
+
     }
 
     @Override
@@ -82,16 +88,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager manager = getSupportFragmentManager();
-        List<Fragment> fragmentList = manager.getFragments();
         FragmentTransaction transaction = manager.beginTransaction();
-
-        /*
-        try{
-            Fragment currentFragment = manager.findFragmentByTag("current");
-            transaction.remove(currentFragment);
-        }catch (Exception e){
-            Log.d("Not Found", "Fragment not Found!");
-        }*/
 
         Fragment loadfragment = new Fragment();
 
