@@ -322,7 +322,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //envia al usuario a la siguiente pestaña
     public void goMainScreen(){
-        Intent intent = new Intent(this, Perfil.class);
+        Intent intent = new Intent(this, RenderCreation.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
