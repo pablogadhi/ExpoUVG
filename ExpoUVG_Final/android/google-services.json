@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:924354749341:android:ab1e4063f6745b0a",
         "android_client_info": {
-          "package_name": "com.uvg.expo"
+          "package_name": "com.example.henry.uvglogin"
         }
       },
       "oauth_client": [
@@ -18,8 +18,52 @@
           "client_id": "924354749341-e3d1sgoa0p3ok4k4f14t6kejgo6gk9tu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.uvg.expo",
+            "package_name": "com.example.henry.uvglogin",
             "certificate_hash": "fb71cb44878e2c37a01b4092c0397b7b751769a7"
+          }
+        },
+        {
+          "client_id": "924354749341-3rnn0genvrkovfh7ngg6arot17898fss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARTt_rSwdUR6_W94kPBA23B8EMa6Ucy1s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924354749341-3rnn0genvrkovfh7ngg6arot17898fss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924354749341:android:13603fb5cea21d85",
+        "android_client_info": {
+          "package_name": "com.uvg.expo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924354749341-a5h62v0qfbhfdg0ibqoifoit9af81u0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uvg.expo",
+            "certificate_hash": "cd92a4741154f77fbbd2026633e00277eb7028b9"
           }
         },
         {
