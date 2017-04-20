@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
+import com.uvg.expo.news.NewsFeedFragment;
+import com.uvg.expo.news.SurveyFragment;
 import com.uvg.services.ServicesFragment;
 
 import java.util.List;
@@ -108,6 +110,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_retos){
             RetosFragment retosFragment = new RetosFragment();
             loadfragment = retosFragment;
+        } else if (id == R.id.nav_survey){
+            SurveyFragment surveyFragment = new SurveyFragment();
+            loadfragment = surveyFragment;
+        } else if (id == R.id.nav_feed){
+            NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
+            loadfragment = newsFeedFragment;
         }
 
 

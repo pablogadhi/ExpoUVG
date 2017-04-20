@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_feed"
+            android:icon="@drawable/ic_news"
+            android:title="News"/>
+        <item
             android:id="@+id/uvgmap"
             android:icon="@android:drawable/ic_menu_mapmode"
             android:title="Mapa" />
@@ -28,9 +32,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Retos" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_survey"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Survey" />
         </menu>
     </item>
 
