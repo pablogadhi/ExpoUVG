@@ -332,7 +332,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 	}
 
 	public void mapear(String trayCompleta){
-
 		trayAF = false;
 		trayFG = false;
 		trayAK = false;
@@ -505,15 +504,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
 	@Override
 	public boolean longPress(float x, float y) {
-		if (dentro) {
-			modelInstance1.transform.translate(0f, 350f, 0f);
-			dentro=false;
-		} else{
-			modelInstance1.transform.translate(0f, -350f,0f);
-			dentro=true;
-		}
-
-		return true;
+		return false;
 	}
 
 	@Override
@@ -554,20 +545,19 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
 	@Override
 	public boolean zoom(float initialDistance, float distance) {
-		/*
-		Vector3 v = modelInstance1.transform.getTranslation(new Vector3());
-		if (v.y > 50f && v.y < 100000f){
+		Vector3 pos = modelInstance1.transform.getTranslation(new Vector3());
+		if (pos.y>350f && pos.y<1050f) {
 			modelInstance1.transform.translate(0f, (initialDistance-distance)/5f,0f);
 			modelInstance2.transform.translate(0f, (initialDistance-distance)/5f,0f);
 			modelInstance3.transform.translate(0f, (initialDistance-distance)/5f,0f);
 			modelInstance4.transform.translate(0f, (initialDistance-distance)/5f,0f);
 		}
-		*/
 		return true;
 	}
 
 	@Override
 	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+		/*
 
 		if (!isIrActual){
 			float deltaX = pointer1.x-pointer2.x;
@@ -582,7 +572,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 			modelInstance6.transform.rotate(Vector3.Y, -angulo/90);
 			modelInstance7.transform.rotate(Vector3.Y, -angulo/90);
 		}
-		/**
 		 //if (pointer1.x-initialPointer1.x==pointer2.x-initialPointer2.x){
 		 modelInstance1.transform.rotate(Vector3.Z,pointer1.x-initialPointer1.x);
 		 modelInstance2.transform.rotate(Vector3.Z,pointer1.x-initialPointer1.x);
@@ -590,7 +579,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 		 modelInstance4.transform.rotate(Vector3.Z,pointer1.x-initialPointer1.x);
 		 //}*/
 
-		return true;
+		return false;
 	}
 
 	@Override

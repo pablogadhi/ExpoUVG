@@ -94,6 +94,62 @@ public class MapFragment extends Fragment {
                 modelUVG.setAdonde(busqueda);
                 busqueda = busqueda.toUpperCase();
 
+                //comienzan cambios
+
+                if (!modelUVG.getEstoy().equals("")){
+                    defaultLoc = modelUVG.getEstoy();
+                }
+
+                try {
+                    if (busqueda.length() != 1 && !busqueda.equals("II")){
+
+                        busqueda = busqueda + "          ";
+
+                        if (busqueda.substring(0,8).equals("EDIFICIO")){
+                            busqueda = busqueda.substring(9,10);
+                        }
+
+                        else if (busqueda.substring(1,2).equals(" ")){
+                            busqueda = busqueda.substring(0,1);
+                        }
+
+                        else {
+
+                            switch (busqueda.substring(0,12)){
+                                case "CUEVA       ":
+                                    busqueda = "J";
+                                    break;
+                                case "NUBE        ":
+                                    busqueda = "J";
+                                    break;
+                                case "CAFETERIA   ":
+                                    busqueda = "H";
+                                    break;
+                                case "BIBLIOTECA  ":
+                                    busqueda = "B";
+                                    break;
+                                case "LABORATORIOS":
+                                    busqueda = "C";
+                                    break;
+                                case "LABS        ":
+                                    busqueda = "C";
+                                    break;
+                                case "SECRETARIA  ":
+                                    busqueda = "F";
+                                    break;
+                            }
+
+                        }
+
+                    }
+                } catch (Exception e){
+                    Log.d("BRO", e.toString());
+                }
+
+                Log.d("BRO", busqueda);
+
+                // Terminan cambios
+
                 Path path = new Path();
 
                 if (!defaultLoc.equals(busqueda)){
