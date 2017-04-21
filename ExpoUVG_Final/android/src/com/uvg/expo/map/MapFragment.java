@@ -226,6 +226,7 @@ public class MapFragment extends Fragment {
         if(preferences.getBoolean("Cambio", false) == true){
             changeUiVisivility(false);
             ((DrawerHandler) getActivity()).cambiarEstadoDrawer(false);
+            preferences.edit().putBoolean("Cambio", false).apply();
         }
         cambiarPosicion();
     }

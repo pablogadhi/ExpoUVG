@@ -637,44 +637,44 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public void irActual(String posicion){
         dir = 0f;
         if (posicion.equals("A") || posicion.equals("a")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(150f, 625f,250f);
             camera.lookAt(0f, 625f,-250f);
             camera.rotate(new Vector3(0f,1f,0f),-80f);
             dir = -80f;
         } else if (posicion.equals("B")||posicion.equals("b")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(-115f,625f,-95f);
             camera.lookAt(0f, 625f,-95f);
             camera.rotate(new Vector3(0f,1f,0f),-85f);
             dir = -85f;
         } else if (posicion.equals("C")||posicion.equals("c")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(0f,0f,0f);
         } else if (posicion.equals("D")||posicion.equals("d")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(0f,0f,0f);
         } else if (posicion.equals("E")||posicion.equals("e")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(-310f,625f,-35f);   //Listo
             camera.lookAt(0f, 700f,-25f);
             camera.rotate(new Vector3(0f,1f,0f),30f);
             dir = 30f;
         } else if (posicion.equals("F")||posicion.equals("f")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(-75f, 625f, 170f);
             camera.lookAt(0f, 700f,-50f);
             camera.rotate(new Vector3(0f,1f,0f),-230f);
             dir = -230f;
         } else if (posicion.equals("G")||posicion.equals("g")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(75f,625f,200f);
             camera.lookAt(0f, 700f,-50f);
             camera.rotate(new Vector3(0f,1f,0f),-220f);
@@ -682,8 +682,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
 
         } else if (posicion.equals("H")||posicion.equals("h")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(170f,625f,220f);
             camera.lookAt(0f, 700f,-75f);
             camera.rotate(new Vector3(0f,1f,0f),-230f);
@@ -691,36 +691,36 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
 
         } else if (posicion.equals("I")||posicion.equals("i")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(275f,625f,220f);
             camera.lookAt(0f, 700f,-80f);
             camera.rotate(new Vector3(0f,1f,0f),-250f);
             dir = -250f;
         } else if (posicion.equals("J")||posicion.equals("j")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(350f,625f,350f);
             camera.lookAt(0f, 700f,-200f);
             camera.rotate(new Vector3(0f,1f,0f),-200f);
             dir = -200f;
         } else if (posicion.equals("K")||posicion.equals("k")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(150f,625f,130f);
             camera.lookAt(0f, 700f,-240f);
             camera.rotate(new Vector3(0f,1f,0f),40f);
             dir = 30f;
         } else if (posicion.equals("II-1")||posicion.equals("ii-1")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(-300f,650f,120f);
             camera.lookAt(0f, 700f, -120f);
             camera.rotate(new Vector3(0f,1f,0f),0f);
             dir = 0f;
         } else if (posicion.equals("II-2")||posicion.equals("ii-2")){
-            isIrActual=true;
             reset();
+            isIrActual=true;
             move(-170f, 650f, 120f);
             camera.lookAt(0f, 700f, -250f);
             camera.rotate(new Vector3(0f,1f,0f),0f);
@@ -799,6 +799,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     }
 
     public void reset(){
+        isIrActual = false;
         Quaternion q = modelInstance1.transform.getRotation(new Quaternion());
         float angulo = q.getAngleAround(Vector3.Y);
         rotate(Vector3.Y, -angulo);
