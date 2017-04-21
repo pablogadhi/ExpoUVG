@@ -17,9 +17,18 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Text;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.DrawerHandler;
 import com.uvg.expo.ModelUVG;
 import com.uvg.expo.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class MapFragment extends Fragment {
@@ -37,6 +46,7 @@ public class MapFragment extends Fragment {
     private  boolean cargar;
 
     TextView info;
+    TextView clima;
 
 
     @Override
@@ -213,6 +223,32 @@ public class MapFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 return false;
+            }
+        });
+
+        clima = (TextView) getView().findViewById(R.id.climatxt);
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("q", "guatemala");
+        client.post("http://api.openweathermap.org/data/2.5/weather?appid=2d22acd37c57ee6259eb1ed87d1b5a93", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                try {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    Double celcius = Double.parseDouble(new JSONObject(jsonObject.getString("main")).getString("temp"));
+                    clima.setText(celcius.toString());
+
+                }catch (JSONException ex){
+
+                }
+
+
             }
         });
 

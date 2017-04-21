@@ -44,6 +44,9 @@ public class Usuario extends Fragment implements View.OnClickListener{
         puntos = (TextView) getView().findViewById(R.id.textpuntos);
         nombre = (TextView) getView().findViewById(R.id.txtNombre);
         super.onActivityCreated(savedInstanceState);
+
+        bar.setMax(2400);
+        bar.setProgress(1000);
     }
 
     @Override
