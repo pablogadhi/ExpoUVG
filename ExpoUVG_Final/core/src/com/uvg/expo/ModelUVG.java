@@ -37,6 +37,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance modelInstance5;
     private ModelInstance modelInstance6;
     private ModelInstance modelInstance7;
+    private ModelInstance modelInstance8;
     private Environment environment;
 
     private GestureDetector gestureDetector;
@@ -163,6 +164,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         assetManager.load("data/MegaEdificio.g3db",Model.class); //5
         assetManager.load("data/Parqueo.g3db",Model.class);  //6
         assetManager.load("data/Extras.g3db",Model.class); //7
+        assetManager.load("data/EdificioC.g3db",Model.class);
 
 
 
@@ -468,6 +470,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance7 = new ModelInstance(model);
         instances.add(modelInstance7);
 
+        model = assetManager.get("data/EdificioC.g3db");
+        modelInstance8 = new ModelInstance(model);
+        instances.add(modelInstance8);
+
         loading = false;
     }
 
@@ -553,6 +559,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             modelInstance5.transform.translate(deltaX, 0f, deltaY);
             modelInstance6.transform.translate(deltaX, 0f, deltaY);
             modelInstance7.transform.translate(deltaX, 0f, deltaY);
+            modelInstance8.transform.translate(deltaX, 0f, deltaY);
         }
         return true;
     }
@@ -573,6 +580,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             modelInstance5.transform.translate(0f, (initialDistance-distance)/5f,0f);
             modelInstance6.transform.translate(0f, (initialDistance-distance)/5f,0f);
             modelInstance7.transform.translate(0f, (initialDistance-distance)/5f,0f);
+            modelInstance8.transform.translate(0f, (initialDistance-distance)/5f,0f);
         }
         Vector3 pos = modelInstance1.transform.getTranslation(new Vector3());
         if (pos.y>350f && pos.y<1050f) {
@@ -785,6 +793,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance5.transform.translate(v);
         modelInstance6.transform.translate(v);
         modelInstance7.transform.translate(v);
+        modelInstance8.transform.translate(v);
 
     }
 
@@ -813,6 +822,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance5.transform.rotate(v,angulo);
         modelInstance6.transform.rotate(v,angulo);
         modelInstance7.transform.rotate(v,angulo);
+        modelInstance8.transform.rotate(v,angulo);
     }
 
     public void allFalse(){
