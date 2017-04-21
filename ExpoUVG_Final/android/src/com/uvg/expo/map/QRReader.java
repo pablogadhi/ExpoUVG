@@ -121,6 +121,7 @@ public class QRReader extends AppCompatActivity {
                                 vibrator.vibrate(100);
                                 vibrate = false;
                                 preferences.edit().putString("Lugar", qrcodes.valueAt(0).displayValue).apply();;
+                                preferences.edit().putBoolean("Cambio", true).apply();
                                 finish();
 
                             }

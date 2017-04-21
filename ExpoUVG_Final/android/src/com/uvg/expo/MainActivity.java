@@ -18,6 +18,7 @@ import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
 import com.uvg.expo.map.MapFragment;
+import com.uvg.expo.map.RenderCreation;
 import com.uvg.expo.news.NewsFeedFragment;
 import com.uvg.expo.news.SurveyFragment;
 import com.uvg.services.ServicesFragment;
@@ -32,6 +33,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,23 +46,25 @@ import utils.NotificationUtils;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DrawerHandler {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private boolean regresar;
+    private Fragment loadfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -102,6 +106,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }else if(regresar == true){
+            //cambiarEstadoDrawer(true);
         } else {
             super.onBackPressed();
         }
@@ -126,6 +132,10 @@ public class MainActivity extends AppCompatActivity
             //return true;
         }
 
+        if (id == android.R.id.home){
+            //cambiarEstadoDrawer(true);
+        }
+
         return false;
     }
 
@@ -137,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        Fragment loadfragment = new Fragment();
+        loadfragment = new Fragment();
 
         if (id == R.id.uvgmap) {
             MapFragment mapFragment = new MapFragment();
@@ -201,4 +211,33 @@ public class MainActivity extends AppCompatActivity
         super.onPause();
     }
 
+
+
+    @Override
+    public void cambiarEstadoDrawer(boolean estado) {
+        if(estado){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            toggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_UNLOCKED);
+            toggle.setDrawerIndicatorEnabled(true);
+            toggle.syncState();
+            regresar = false;
+            ((MapFragment) loadfragment).changeUiVisivility(true);
+            RenderCreation.uvgModel.reset();
+        }else{
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            toggle.onDrawerStateChanged(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            toggle.setDrawerIndicatorEnabled(false);
+            toggle.syncState();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            regresar = true;
+            toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cambiarEstadoDrawer(true);
+                }
+            });
+
+        }
+    }
 }
