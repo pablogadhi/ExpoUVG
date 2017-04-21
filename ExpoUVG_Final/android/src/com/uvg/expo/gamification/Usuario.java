@@ -1,5 +1,6 @@
 package com.uvg.expo.gamification;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +14,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -24,6 +34,8 @@ public class Usuario extends Fragment implements View.OnClickListener{
     TextView puntos; // un get del webservices para saber los puntos y colocarlos aca
     ProgressBar bar;    // Con base al get realizado previamente para determinar el valor
     TextView nombre;  /// con base al get realizado obtener el nombre del usuario
+    int cant;
+
 
     Button btnfoto;
     private ImageView imvFoto;
@@ -47,6 +59,38 @@ public class Usuario extends Fragment implements View.OnClickListener{
 
         bar.setMax(2400);
         bar.setProgress(1000);
+
+        // call al webservice
+        JSONObject jsonObject = new JSONObject();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("userId", "58f7d855cd7b6c00045c2603");
+        client.get("https://expo-uvg.herokuapp.com/api/points/get/all", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                // Handle resulting parsed JSON response here
+                JSONObject myR = new JSONObject();
+                myR = response;
+                try {
+                    String ptsR = myR.getString("points");
+                    puntos.setText(ptsR);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                puntos.setText(res.toString());
+            }
+        });
+
+        cant = 500;
+        bar.setMax(2400);
+        bar.setProgress(cant);
     }
 
     @Override
