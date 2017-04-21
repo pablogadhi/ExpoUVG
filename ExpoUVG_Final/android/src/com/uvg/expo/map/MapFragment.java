@@ -1,15 +1,11 @@
 package com.uvg.expo.map;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.ContentFrameLayout;
 import android.util.Log;
@@ -20,7 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.uvg.expo.DrawerHandler;
 import com.uvg.expo.ModelUVG;
@@ -196,6 +191,10 @@ public class MapFragment extends Fragment {
                     String prueba = path.findPath(defaultLoc,busqueda);
                     Log.d("BRO", prueba);
 
+                }
+
+                else {
+                    modelUVG.allFalse();
                 }
 
                 debbug.setText(busqueda);

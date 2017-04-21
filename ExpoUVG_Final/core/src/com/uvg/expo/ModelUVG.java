@@ -3,8 +3,6 @@ package com.uvg.expo;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.ModelLoader;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
@@ -16,17 +14,13 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
-import com.badlogic.gdx.graphics.g3d.loader.G3dModelLoader;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Quaternion;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
-import com.badlogic.gdx.utils.UBJsonReader;
 
 public class ModelUVG extends ApplicationAdapter implements GestureDetector.GestureListener{
 
@@ -819,6 +813,19 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance5.transform.rotate(v,angulo);
         modelInstance6.transform.rotate(v,angulo);
         modelInstance7.transform.rotate(v,angulo);
+    }
+
+    public void allFalse(){
+        trayAF = false;
+        trayFG = false;
+        trayAK = false;
+        trayKH = false;
+        trayHI = false;
+        trayIJ = false;
+        trayFC = false;
+        trayEB = false;
+        trayFE = false;
+        trayAI = false;
     }
 
 }
