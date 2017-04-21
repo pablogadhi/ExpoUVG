@@ -1,8 +1,11 @@
 package com.uvg.expo.gamification;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -280,7 +283,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             // muestra el reto
-/**
+
            case R.id.button1:
 
                 AlertDialog.Builder  Reto1 = new AlertDialog.Builder(getActivity());
@@ -300,7 +303,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
 // muestra el reto
             case R.id.button2:
-                AlertDialog.Builder  Reto2 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto2 = new AlertDialog.Builder(getActivity());
                 Reto2.setView(R.layout.reto);
                 Reto2.setMessage(R.string.Reto2);
                 Reto2.setTitle("Expo UVG");
@@ -317,7 +320,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
             // muestra el reto
             case R.id.button3:
-                AlertDialog.Builder  Reto3 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto3 = new AlertDialog.Builder(getActivity());
                 Reto3.setView(R.layout.reto);
                 Reto3.setMessage(R.string.Reto3);
                 Reto3.setTitle("Expo UVG");
@@ -333,7 +336,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
             // muestra el reto
             case R.id.button4:
-                AlertDialog.Builder  Reto4 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto4 = new AlertDialog.Builder(getActivity());
                 Reto4.setView(R.layout.reto);
                 Reto4.setMessage(R.string.Reto4);
                 Reto4.setTitle("Expo UVG");
@@ -351,7 +354,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
             // muestra el reto
             case R.id.button5:
-                AlertDialog.Builder  Reto5 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto5 = new AlertDialog.Builder(getActivity());
                 Reto5.setView(R.layout.reto);
                 Reto5.setMessage(R.string.Reto5);
                 Reto5.setTitle("Expo UVG");
@@ -369,7 +372,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
             // muestra el reto
             case R.id.button6:
-                AlertDialog.Builder  Reto6 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto6 = new AlertDialog.Builder(getActivity());
                 Reto6.setView(R.layout.reto);
                 Reto6.setMessage(R.string.Reto6);
                 Reto6.setTitle("Expo UVG");
@@ -386,7 +389,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
             // muestra el reto
             case R.id.button7:
-                AlertDialog.Builder  Reto7 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto7 = new AlertDialog.Builder(getActivity());
                 Reto7.setView(R.layout.reto);
                 Reto7.setMessage(R.string.Reto7);
                 Reto7.setTitle("Expo UVG");
@@ -403,7 +406,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
             // muestra el reto
             case R.id.button8:
-                AlertDialog.Builder  Reto8 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto8 = new AlertDialog.Builder(getActivity());
                 Reto8.setView(R.layout.reto);
                 Reto8.setMessage(R.string.Reto8);
                 Reto8.setTitle("Expo UVG");
@@ -419,7 +422,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.button9:
-                AlertDialog.Builder  Reto9 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto9 = new AlertDialog.Builder(getActivity());
                 Reto9.setView(R.layout.reto);
                 Reto9.setMessage(R.string.Reto9);
                 Reto9.setTitle("Expo UVG");
@@ -436,7 +439,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
             // muestra el reto
             case R.id.button10:
-                AlertDialog.Builder  Reto10 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto10 = new AlertDialog.Builder(getActivity());
                 Reto10.setView(R.layout.reto);
                 Reto10.setMessage(R.string.Reto10);
                 Reto10.setTitle("Expo UVG");
@@ -453,7 +456,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.button11:
-                AlertDialog.Builder  Reto11 = new AlertDialog.Builder(this);
+                AlertDialog.Builder  Reto11 = new AlertDialog.Builder(getActivity());
                 Reto11.setView(R.layout.reto);
                 Reto11.setMessage(R.string.Reto11);
                 Reto11.setTitle("Expo UVG");
@@ -468,7 +471,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                 Reto11.show();
 
                 break;
-            */
         }
 
 
