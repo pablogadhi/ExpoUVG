@@ -122,6 +122,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    //cuando el usuario vuelva a ingresar, ya no sera necesario que se registre,
+                    //la aplicacion determina automaticamente si esta conectado
+                    //goMainScreen();
+                }
             }
         };
         //se genera una instacia der la base de datos
