@@ -127,13 +127,12 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //return true;
-        }
-
-        if (id == android.R.id.home){
-            //cambiarEstadoDrawer(true);
+        if(id == R.id.nav_usuario){
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            Usuario usuario = new Usuario();
+            transaction.replace(R.id.fragmentContainer, usuario);
+            transaction.commit();
         }
 
         return false;
@@ -155,12 +154,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.leaderboard) {
             LeaderboardFragment leaderboardFragment = new LeaderboardFragment();
             loadfragment = leaderboardFragment;
-        } else if (id == R.id.service_manage) {
-            ServicesFragment servicesFragment = new ServicesFragment();
-            loadfragment = servicesFragment;
-        } else if (id == R.id.nav_usuario) {
-            Usuario usuario = new Usuario();
-            loadfragment = usuario;
         } else if (id == R.id.nav_retos){
             RetosFragment retosFragment = new RetosFragment();
             loadfragment = retosFragment;

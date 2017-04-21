@@ -57,7 +57,7 @@ public class ServicesFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.app_bar_search){
+        if(item.getItemId() == 14){
             JSONObject jsonObject = new JSONObject();
 
             AsyncHttpClient client = new AsyncHttpClient();

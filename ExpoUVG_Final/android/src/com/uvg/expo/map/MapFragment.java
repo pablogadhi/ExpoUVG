@@ -36,7 +36,6 @@ public class MapFragment extends Fragment {
     private String defaultLoc = "F";
     private  boolean cargar;
 
-    TextView debbug;//Para debuggear unicamente
     TextView info;
 
 
@@ -86,9 +85,12 @@ public class MapFragment extends Fragment {
         info = (TextView) getView().findViewById(R.id.txtInfo);
 
         info.setVisibility(View.INVISIBLE);
+        cardView.setVisibility(View.INVISIBLE);
+        searchView.setVisibility(View.INVISIBLE);
+        qrfab.setVisibility(View.INVISIBLE);
+        modelUVG.setViewTrue();
 
         //Textview para debuggear
-        debbug = (TextView) getView().findViewById(R.id.debugg);
 
         bar = (ProgressBar) getView().findViewById(R.id.prgLoad);
 
@@ -106,7 +108,12 @@ public class MapFragment extends Fragment {
                                     // update TextView here!
                                     if (!modelUVG.getLoading()){
                                         bar.setVisibility(View.INVISIBLE);
+                                        cardView.setVisibility(View.VISIBLE);
+                                        searchView.setVisibility(View.VISIBLE);
+                                        qrfab.setVisibility(View.VISIBLE);
                                         cargar = false;
+                                        modelUVG.setViewFalse();
+
                                     }
                                 }
                             });
@@ -197,7 +204,6 @@ public class MapFragment extends Fragment {
                     modelUVG.allFalse();
                 }
 
-                debbug.setText(busqueda);
                 //Para ocultar el teclado al realizar la busqueda:
                 InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 manager.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);

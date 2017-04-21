@@ -14,18 +14,10 @@
             android:id="@+id/leaderboard"
             android:icon="@drawable/bulletin_board"
             android:title="LeaderBoard" />
-        <item
-            android:id="@+id/nav_usuario"
-            android:icon="@drawable/ic_account"
-            android:title="Usuario" />
-        <item
-            android:id="@+id/service_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="WebServiceTest" />
 
     </group>
 
-    <item android:title="Extras">
+    <item android:title="Actividades">
         <menu>
             <item
                 android:id="@+id/nav_retos"
