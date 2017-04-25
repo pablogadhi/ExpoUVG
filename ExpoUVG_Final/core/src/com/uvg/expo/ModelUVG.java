@@ -28,7 +28,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private PerspectiveCamera camera;
     private ModelBatch modelBatch;
     private Model model;
-    private Model second;
     private Array<ModelInstance> instances = new Array<ModelInstance>();
     private ModelInstance modelInstance1;
     private ModelInstance modelInstance2;
@@ -38,7 +37,11 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance modelInstance6;
     private ModelInstance modelInstance7;
     private ModelInstance modelInstance8;
+    private ModelInstance modelInstance9;
+    private  Array<ModelInstance> skyboxArray = new Array<ModelInstance>();
     private Environment environment;
+
+    private Model skybox;
 
     private GestureDetector gestureDetector;
 
@@ -135,11 +138,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
-
-
         camera = new PerspectiveCamera(100,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //Cambiar la camara position.set a  (0f,10f,0f) para que este sobre pero no se mira bien por falta de texturas
-        camera.position.set(0f,700f,0f);
+        camera.position.set(0f,300f,0f);
         camera.lookAt(0f,0f,0f);
         camera.near = 1.0f;
         camera.far = 100000.0f;;
@@ -165,6 +166,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         assetManager.load("data/Parqueo.g3db",Model.class);  //6
         assetManager.load("data/Extras.g3db",Model.class); //7
         assetManager.load("data/EdificioC.g3db",Model.class);
+        assetManager.load("data/Skybox.g3db",Model.class);
 
 
 
@@ -474,6 +476,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance8 = new ModelInstance(model);
         instances.add(modelInstance8);
 
+        skybox = assetManager.get("data/Skybox.g3db");
+        modelInstance9 = new ModelInstance(skybox);
+        skyboxArray.add(modelInstance9);
+
         loading = false;
     }
 
@@ -493,6 +499,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         modelBatch.begin(camera);
         modelBatch.render(instances, environment);
+        modelBatch.render(skyboxArray);
+
 /*
 		trayAF = true;
 		trayFG = true;
@@ -560,6 +568,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             modelInstance6.transform.translate(deltaX, 0f, deltaY);
             modelInstance7.transform.translate(deltaX, 0f, deltaY);
             modelInstance8.transform.translate(deltaX, 0f, deltaY);
+            modelInstance9.transform.translate(deltaX, 0f, deltaY);
         }
         return true;
     }
@@ -581,6 +590,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             modelInstance6.transform.translate(0f, (initialDistance-distance)/5f,0f);
             modelInstance7.transform.translate(0f, (initialDistance-distance)/5f,0f);
             modelInstance8.transform.translate(0f, (initialDistance-distance)/5f,0f);
+            modelInstance9.transform.translate(0f, (initialDistance-distance)/5f,0f);
         }
         Vector3 pos = modelInstance1.transform.getTranslation(new Vector3());
         if (pos.y>350f && pos.y<1050f) {
@@ -641,15 +651,15 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         if (posicion.equals("A") || posicion.equals("a")){
             reset();
             isIrActual=true;
-            move(150f, 625f,250f);
-            camera.lookAt(0f, 625f,-250f);
+            move(150f, 225f,250f);
+            camera.lookAt(0f, 225f,-250f);
             camera.rotate(new Vector3(0f,1f,0f),-80f);
             dir = -80f;
         } else if (posicion.equals("B")||posicion.equals("b")){
             reset();
             isIrActual=true;
-            move(-115f,625f,-95f);
-            camera.lookAt(0f, 625f,-95f);
+            move(-115f,225f,-95f);
+            camera.lookAt(0f, 225f,-95f);
             camera.rotate(new Vector3(0f,1f,0f),-85f);
             dir = -85f;
         } else if (posicion.equals("C")||posicion.equals("c")){
@@ -663,68 +673,64 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         } else if (posicion.equals("E")||posicion.equals("e")){
             reset();
             isIrActual=true;
-            move(-310f,625f,-35f);   //Listo
-            camera.lookAt(0f, 700f,-25f);
+            move(-310f,225f,-35f);   //Listo
+            camera.lookAt(0f, 300f,-25f);
             camera.rotate(new Vector3(0f,1f,0f),30f);
             dir = 30f;
         } else if (posicion.equals("F")||posicion.equals("f")){
             reset();
             isIrActual=true;
-            move(-75f, 625f, 170f);
-            camera.lookAt(0f, 700f,-50f);
+            move(-75f, 225f, 170f);
+            camera.lookAt(0f, 300f,-50f);
             camera.rotate(new Vector3(0f,1f,0f),-230f);
             dir = -230f;
         } else if (posicion.equals("G")||posicion.equals("g")){
             reset();
             isIrActual=true;
-            move(75f,625f,200f);
-            camera.lookAt(0f, 700f,-50f);
+            move(75f,225f,200f);
+            camera.lookAt(0f, 300f,-50f);
             camera.rotate(new Vector3(0f,1f,0f),-220f);
             dir = -220f;
-
-
         } else if (posicion.equals("H")||posicion.equals("h")){
             reset();
             isIrActual=true;
-            move(170f,625f,220f);
-            camera.lookAt(0f, 700f,-75f);
+            move(170f,225f,220f);
+            camera.lookAt(0f, 300f,-75f);
             camera.rotate(new Vector3(0f,1f,0f),-230f);
             dir = -230f;
-
-
         } else if (posicion.equals("I")||posicion.equals("i")){
             reset();
             isIrActual=true;
-            move(275f,625f,220f);
-            camera.lookAt(0f, 700f,-80f);
+            move(275f,225f,220f);
+            camera.lookAt(0f, 300f,-80f);
             camera.rotate(new Vector3(0f,1f,0f),-250f);
             dir = -250f;
         } else if (posicion.equals("J")||posicion.equals("j")){
             reset();
             isIrActual=true;
-            move(350f,625f,350f);
-            camera.lookAt(0f, 700f,-200f);
+            move(350f,225f,350f);
+            camera.lookAt(0f, 300f,-200f);
             camera.rotate(new Vector3(0f,1f,0f),-200f);
             dir = -200f;
         } else if (posicion.equals("K")||posicion.equals("k")){
             reset();
             isIrActual=true;
-            move(150f,625f,130f);
-            camera.lookAt(0f, 700f,-240f);
+            move(150f,225f,130f);
+            camera.lookAt(0f, 300f,-240f);
             camera.rotate(new Vector3(0f,1f,0f),40f);
             dir = 30f;
         } else if (posicion.equals("II-1")||posicion.equals("ii-1")){
             reset();
             isIrActual=true;
-            move(-300f,650f,120f);
-            camera.lookAt(0f, 700f, -120f);
+            move(-300f,225f,120f);
+            camera.lookAt(0f, 300f, -120f);
             camera.rotate(new Vector3(0f,1f,0f),0f);
             dir = 0f;
         } else if (posicion.equals("II-2")||posicion.equals("ii-2")){
             reset();
             isIrActual=true;
-            move(-170f, 650f, 120f);
-            camera.lookAt(0f, 700f, -250f);
+            move(-170f, 225f, 120f);
+            camera.lookAt(0f, 300f, -250f);
             camera.rotate(new Vector3(0f,1f,0f),0f);
             dir = -0f;
         } else {
@@ -794,6 +800,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance6.transform.translate(v);
         modelInstance7.transform.translate(v);
         modelInstance8.transform.translate(v);
+        modelInstance9.transform.translate(v);
 
     }
 
@@ -808,7 +815,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         rotate(Vector3.Y, -angulo);
         moveALL(0f,0f,0f);
         camera.lookAt(0,0,0);
-        camera.position.set(0f,700f,0f);
+        camera.position.set(0f,300f,0f);
         camera.rotate(Vector3.Y, -dir);
         dir = 0;
 
@@ -823,6 +830,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance6.transform.rotate(v,angulo);
         modelInstance7.transform.rotate(v,angulo);
         modelInstance8.transform.rotate(v,angulo);
+        modelInstance9.transform.translate(v);
     }
 
     public void allFalse(){

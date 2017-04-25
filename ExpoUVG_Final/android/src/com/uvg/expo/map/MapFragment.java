@@ -3,6 +3,7 @@ package com.uvg.expo.map;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -148,6 +149,8 @@ public class MapFragment extends Fragment {
 
                 if (!modelUVG.getEstoy().equals("")){
                     defaultLoc = modelUVG.getEstoy();
+                }else{
+                    modelUVG.allFalse();
                 }
 
                 try {
@@ -230,8 +233,7 @@ public class MapFragment extends Fragment {
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.put("q", "guatemala");
-        client.post("http://api.openweathermap.org/data/2.5/weather?appid=2d22acd37c57ee6259eb1ed87d1b5a93", params, new TextHttpResponseHandler() {
+        client.get("http://api.openweathermap.org/data/2.5/weather?appid=cc0540be06f088078fe5e86c5f703ea5&q=Guatemala", null, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
 
@@ -242,6 +244,7 @@ public class MapFragment extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(responseString);
                     Double celcius = Double.parseDouble(new JSONObject(jsonObject.getString("main")).getString("temp"));
+                    celcius = celcius-273;
                     clima.setText(celcius.toString());
 
                 }catch (JSONException ex){
