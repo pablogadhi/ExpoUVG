@@ -3,7 +3,6 @@ package com.uvg.expo.map;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -28,6 +27,8 @@ import com.uvg.expo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -94,11 +95,13 @@ public class MapFragment extends Fragment {
         });
 
         info = (TextView) getView().findViewById(R.id.txtInfo);
+        clima = (TextView) getView().findViewById(R.id.climatxt);
 
         info.setVisibility(View.INVISIBLE);
         cardView.setVisibility(View.INVISIBLE);
         searchView.setVisibility(View.INVISIBLE);
         qrfab.setVisibility(View.INVISIBLE);
+        clima.setVisibility(View.INVISIBLE);
         modelUVG.setViewTrue();
 
         //Textview para debuggear
@@ -122,6 +125,7 @@ public class MapFragment extends Fragment {
                                         cardView.setVisibility(View.VISIBLE);
                                         searchView.setVisibility(View.VISIBLE);
                                         qrfab.setVisibility(View.VISIBLE);
+                                        clima.setVisibility(View.VISIBLE);
                                         cargar = false;
                                         modelUVG.setViewFalse();
 
@@ -229,7 +233,7 @@ public class MapFragment extends Fragment {
             }
         });
 
-        clima = (TextView) getView().findViewById(R.id.climatxt);
+        final DecimalFormat format = new DecimalFormat("0.0");
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -245,7 +249,7 @@ public class MapFragment extends Fragment {
                     JSONObject jsonObject = new JSONObject(responseString);
                     Double celcius = Double.parseDouble(new JSONObject(jsonObject.getString("main")).getString("temp"));
                     celcius = celcius-273;
-                    clima.setText(celcius.toString());
+                    clima.setText(format.format(celcius)+"°C");
 
                 }catch (JSONException ex){
 
@@ -264,15 +268,15 @@ public class MapFragment extends Fragment {
         if (modelUVG.getLoading()){
             bar.setVisibility(View.INVISIBLE);
         }
-        super.onResume();
         setMostrar(preferences.getString("Lugar","Empty"));
         modelUVG.setEstoy(mostrar);
         if(preferences.getBoolean("Cambio", false) == true){
             changeUiVisivility(false);
+            cambiarPosicion();
             ((DrawerHandler) getActivity()).cambiarEstadoDrawer(false);
             preferences.edit().putBoolean("Cambio", false).apply();
         }
-        cambiarPosicion();
+        super.onResume();
     }
 
     public void setMostrar(String qranswer){
@@ -361,11 +365,13 @@ public class MapFragment extends Fragment {
             cardView.setVisibility(View.VISIBLE);
             searchView.setVisibility(View.VISIBLE);
             qrfab.setVisibility(View.VISIBLE);
+            clima.setVisibility(View.VISIBLE);
             info.setVisibility(View.INVISIBLE);
         }else {
             cardView.setVisibility(View.INVISIBLE);
             searchView.setVisibility(View.INVISIBLE);
             qrfab.setVisibility(View.INVISIBLE);
+            clima.setVisibility(View.INVISIBLE);
         }
 
     }
