@@ -63,7 +63,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public boolean isIrActual;
     float dir;
 
-    ////
+
     private Array<ModelInstance> instancesTray;
     private boolean renMap;
     private String trayectoria;
@@ -97,9 +97,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance instanceFC2;
     private Model modelGroundCB;
     private ModelInstance instanceCB;
-    private AssetManager assetManager;
-    private boolean loading;
-    private Model modelGroundEB1;
     private ModelInstance instanceEB1;
     private Model modelGroundEB2;
     private ModelInstance instanceEB2;
@@ -109,6 +106,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance instanceAI1;
     private Model modelGroundAI2;
     private ModelInstance instanceAI2;
+
+    private AssetManager assetManager;
+    private boolean loading;
+    private Model modelGroundEB1;
 
     ////
 
@@ -157,6 +158,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
 		instances.add(modelInstance1);
         */
+
         assetManager = new AssetManager();
         assetManager.load("data/EdificioA.g3db",Model.class); //1
         assetManager.load("data/EdificioII.g3db",Model.class); //2
@@ -167,6 +169,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         assetManager.load("data/Extras.g3db",Model.class); //7
         assetManager.load("data/EdificioC.g3db",Model.class);
         assetManager.load("data/Skybox.g3db",Model.class);
+
+        assetManager.load("data/flag",Model.class);
 
 
 
@@ -182,9 +186,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         */
         gestureDetector = new GestureDetector(this);
         Gdx.input.setInputProcessor(gestureDetector);
-
-        //Se crean todos los caminos posibles a utilizar (el camino esta indicado en un comment arriba de cada codigo)
-
 
         //A-F
         ModelBuilder modelBuilderAF = new ModelBuilder();
@@ -306,8 +307,17 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         instanceEB2.transform.translate(180f, 0f , 125f);
         instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
 
+        //locateWayInitPosition();
+
     }
 
+    /**
+     * Se encarga de establecer a los booleans de las trayectorias como verdaderos segun las
+     * el String ingresado.
+     *
+     * @param trayCompleta String con la ruta a a trazar, explicada por medio de cada uno de los
+     *                     edificios por los que se pasa.
+     */
     public void mapear(String trayCompleta){
         trayAF = false;
         trayFG = false;
@@ -363,10 +373,15 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         }
 
         renMap = true;
+        locateWayInitPosition();
         reset();
         //render();
     }
 
+    /**
+     * Dependiendo de los booleans de las trayectorias verdaderos de los caminos se encarga de
+     * que se haga el render de estos caminos.
+     */
     public void mapearTray(){
 
         camera.update();
@@ -495,32 +510,14 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         Gdx.gl.glClearColor(.135f, .206f, .235f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT|GL20.GL_DEPTH_BUFFER_BIT);
 
-
-
         modelBatch.begin(camera);
         modelBatch.render(instances, environment);
         modelBatch.render(skyboxArray);
 
-/*
-		trayAF = true;
-		trayFG = true;
-		trayAK = true;
-		trayKH = true;
-		trayHI = true;
-		trayIJ = true;
-		trayFC = true;
-		trayEB = true;
-		trayFE = true;
-		trayAI = true;
-		mapearTray();
-*/
 
         if (renMap){
             mapearTray();
         }
-
-
-        //irActual("E");
 
         modelBatch.end();
     }
@@ -549,16 +546,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public boolean pan(float x, float y, float deltaX, float deltaY) {
         if (!isIrActual) {
 
-            trayAF = false;
-            trayFG = false;
-            trayAK = false;
-            trayKH = false;
-            trayHI = false;
-            trayIJ = false;
-            trayFC = false;
-            trayEB = false;
-            trayFE = false;
-            trayAI = false;
+            reLocateWay(deltaX, deltaY);
 
             modelInstance1.transform.translate(deltaX, 0f, deltaY);
             modelInstance2.transform.translate(deltaX, 0f, deltaY);
@@ -571,6 +559,157 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             modelInstance9.transform.translate(deltaX, 0f, deltaY);
         }
         return true;
+    }
+
+    /**
+     * Vuelve a las instancias de los caminos a sus posiciones originales.
+     */
+    public void locateWayInitPosition(){
+        //A-F
+        instanceAF = new ModelInstance(modelGroundAF);
+        instanceAF.transform.translate(20f, 0f , -200f);
+        instanceAF.transform.rotate(0f, -45f, 0f, 45f);
+
+        //A-I
+        //AI1
+        instanceAI1 = new ModelInstance(modelGroundAI1);
+        instanceAI1.transform.translate(95f, 0f , -200f);
+        instanceAI1.transform.rotate(0f, 45f, 0f, 45f);
+
+        //AI2
+        instanceAI2 = new ModelInstance(modelGroundAI2);
+        instanceAI2.transform.translate(185f, 0f , -190f);
+        instanceAI2.transform.rotate(0f, -45f, 0f, 45f);
+
+        //F-G
+        instanceFG = new ModelInstance(modelGroundFG);
+        instanceFG.transform.translate(-70f, 0f , -165f);
+        instanceFG.transform.rotate(0f, 90f, 0f, 90f);
+
+        //A-K
+        instanceAK = new ModelInstance(modelGroundAK);
+        instanceAK.transform.translate(-120f, 0f , -270f);
+        instanceAK.transform.rotate(0f, -45f, 0f, 45f);
+
+        //K-H
+        instanceKH = new ModelInstance(modelGroundKH);
+        instanceKH.transform.translate(-160f, 0f , -195f);
+        instanceKH.transform.rotate(0f, 0f, 0f, 90f);
+
+        //H-I
+        instanceHI = new ModelInstance(modelGroundHI);
+        instanceHI.transform.translate(-240f, 0f , -165f);
+        instanceHI.transform.rotate(0f, 90f, 0f, 90f);
+
+        //I-J
+        instanceIJ = new ModelInstance(modelGroundIJ);
+        instanceIJ.transform.translate(-360f, 0f , -250f);
+        instanceIJ.transform.rotate(0f, 35f, 0f, 35f);
+
+        //F-E
+        instanceFE = new ModelInstance(modelGroundFE);
+        instanceFE.transform.translate(150f, 0f , -35f);
+        instanceFE.transform.rotate(0f, 90f, 0f, 90f);
+
+        //F-C
+        //FC1
+        instanceFC1 = new ModelInstance(modelGroundFC1);
+        instanceFC1.transform.translate(80f, 0f , 10f);
+        instanceFC1.transform.rotate(0f, -45f, 0f, 45f);
+
+        //FC2
+        instanceFC2 = new ModelInstance(modelGroundFC2);
+        instanceFC2.transform.translate(95f, 0f , 65f);
+        instanceFC2.transform.rotate(0f, 45f, 0f, 45f);
+
+        //E-B
+        //EB1
+        instanceEB1 = new ModelInstance(modelGroundEB1);
+        instanceEB1.transform.translate(160f, 0f , 20f);
+        instanceEB1.transform.rotate(0f, -45f, 0f, 45f);
+
+        //EB2
+        instanceEB2 = new ModelInstance(modelGroundEB2);
+        instanceEB2.transform.translate(180f, 0f , 125f);
+        instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
+    }
+
+    /**
+     * Cambia las posiciones de las instancias segun los deltas(x,y) de posicion ingresados.
+     *
+     * @param deltaX flaot con el cambio en el eje x en el que se esta moviendo el modelo completo.
+     * @param deltaY flaot con el cambio en el eje x en el que se esta moviendo el modelo completo.
+     */
+    public void reLocateWay(float deltaX, float deltaY){
+
+        //A-F
+        instanceAF.transform.rotate(0f, 45f, 0f, 45f);
+        instanceAF.transform.translate(deltaX, 0f, deltaY);
+        instanceAF.transform.rotate(0f, -45f, 0f, 45f);
+
+        //A-I
+        //AI1
+        instanceAI1.transform.rotate(0f, -45f, 0f, 45f);
+        instanceAI1.transform.translate(deltaX, 0f, deltaY);
+        instanceAI1.transform.rotate(0f, 45f, 0f, 45f);
+
+        //AI2
+        instanceAI2.transform.rotate(0f, 45f, 0f, 45f);
+        instanceAI2.transform.translate(deltaX, 0f, deltaY);
+        instanceAI2.transform.rotate(0f, -45f, 0f, 45f);
+
+        //F-G
+        instanceFG.transform.rotate(0f, -90f, 0f, 90f);
+        instanceFG.transform.translate(deltaX, 0f, deltaY);
+        instanceFG.transform.rotate(0f, 90f, 0f, 90f);
+
+        //A-K
+        instanceAK.transform.rotate(0f, 45f, 0f, 45f);
+        instanceAK.transform.translate(deltaX, 0f, deltaY);
+        instanceAK.transform.rotate(0f, -45f, 0f, 45f);
+
+        //K-H
+        instanceKH.transform.translate(deltaX, 0f, deltaY);
+        //instanceKH.transform.rotate(0f, 0f, 0f, 90f);
+
+        //H-I
+        instanceHI.transform.rotate(0f, -90f, 0f, 90f);
+        instanceHI.transform.translate(deltaX, 0f, deltaY);
+        instanceHI.transform.rotate(0f, 90f, 0f, 90f);
+
+        //I-J
+        instanceIJ.transform.rotate(0f, -35f, 0f, 35f);
+        instanceIJ.transform.translate(deltaX, 0f, deltaY);
+        instanceIJ.transform.rotate(0f, 35f, 0f, 35f);
+
+        //F-E
+        instanceFE.transform.rotate(0f, -90f, 0f, 90f);
+        instanceFE.transform.translate(deltaX, 0f, deltaY);
+        instanceFE.transform.rotate(0f, 90f, 0f, 90f);
+
+        //F-C
+        //FC1
+        instanceFC1.transform.rotate(0f, 45f, 0f, 45f);
+        instanceFC1.transform.translate(deltaX, 0f, deltaY);
+        instanceFC1.transform.rotate(0f, -45f, 0f, 45f);
+
+        //FC2
+        instanceFC2.transform.rotate(0f, -45f, 0f, 45f);
+        instanceFC2.transform.translate(deltaX, 0f, deltaY);
+        instanceFC2.transform.rotate(0f, 45f, 0f, 45f);
+
+        //E-B
+        //EB1
+        instanceEB1.transform.rotate(0f, 45f, 0f, 45f);
+        instanceEB1.transform.translate(deltaX, 0f, deltaY);
+        instanceEB1.transform.rotate(0f, -45f, 0f, 45f);
+
+        //EB2
+        instanceEB2.transform.rotate(0f, -45f, 0f, 45f);
+        instanceEB2.transform.translate(deltaX, 0f, deltaY);
+        instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
+
+
     }
 
     @Override
@@ -833,6 +972,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance9.transform.translate(v);
     }
 
+    /**
+     * Pone todos los booleans de las trayectorias en falso.
+     */
     public void allFalse(){
         trayAF = false;
         trayFG = false;
