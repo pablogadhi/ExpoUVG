@@ -1,0 +1,14 @@
+{
+	"Encuestas":[
+	{
+		"EncuestaId":"1",
+		"Nombre":"Que te parece?",
+		"Tipo":"5"
+	},
+	{
+		"EncuestaId":"2",
+		"Nombre":"Sobre la U!",
+		"Tipo":"5"
+	}
+	]
+}
