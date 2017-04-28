@@ -138,7 +138,22 @@ public class LoginActivity extends AppCompatActivity {
         btnreg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginUser(emails.getText().toString(),pass.getText().toString());
+                if (TextUtils.isEmpty(emails.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(pass.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (pass.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                loginUser(emails.getText().toString(), pass.getText().toString());
             }
         });
         registrarse = (TextView)findViewById(R.id.register);
@@ -275,11 +290,7 @@ public class LoginActivity extends AppCompatActivity {
                         // no podra ingresar y aparecera un error
                         if(!task.isSuccessful())
                         {
-                            if(password.length() < 6)
-                            {
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                             Toast.makeText(LoginActivity.this,"Este usuario no se encuentra registrado",Toast.LENGTH_SHORT).show();
                         }
                         else{
                             //si logra ingresar, el usuario podra segui a la siguiente pestaña
