@@ -162,7 +162,16 @@ public class MapFragment extends Fragment {
                         busqueda = busqueda + "          ";
 
                         if (busqueda.substring(0,8).equals("EDIFICIO")){
-                            busqueda = busqueda.substring(9,10);
+
+                            if (busqueda.substring(9,11).equals("II")){
+
+                                busqueda = busqueda.substring(9,11);
+
+                            } else {
+
+                                busqueda = busqueda.substring(9,10);
+
+                            }
                         }
 
                         else if (busqueda.substring(1,2).equals(" ")){
@@ -170,43 +179,50 @@ public class MapFragment extends Fragment {
                         }
 
                         else {
+                            try {
 
-                            switch (busqueda.substring(0,12)){
-                                case "LA CUEVA    ":
-                                    busqueda = "J";
-                                    break;
-                                case "CUEVA       ":
-                                    busqueda = "J";
-                                    break;
-                                case "NUBE        ":
-                                    busqueda = "J";
-                                    break;
-                                case "CAFETERIA   ":
-                                    busqueda = "H";
-                                    break;
-                                case "CAFE        ":
-                                    busqueda = "H";
-                                    break;
-                                case "BIBLIOTECA  ":
-                                    busqueda = "B";
-                                    break;
-                                case "BIBLIO      ":
-                                    busqueda = "B";
-                                    break;
-                                case "LABORATORIOS":
-                                    busqueda = "C";
-                                    break;
-                                case "LABS        ":
-                                    busqueda = "C";
-                                    break;
-                                case "SECRETARIA  ":
-                                    busqueda = "F";
-                                    break;
-                                case "Secre       ":
-                                    busqueda = "F";
-                                    break;
+                                Integer.parseInt(busqueda.substring(2,3));
+                                busqueda = busqueda.substring(0,1);
+
+                            } catch (Exception e) {
+
+                                switch (busqueda.substring(0, 12)) {
+                                    case "LA CUEVA    ":
+                                        busqueda = "J";
+                                        break;
+                                    case "CUEVA       ":
+                                        busqueda = "J";
+                                        break;
+                                    case "NUBE        ":
+                                        busqueda = "J";
+                                        break;
+                                    case "CAFETERIA   ":
+                                        busqueda = "H";
+                                        break;
+                                    case "CAFE        ":
+                                        busqueda = "H";
+                                        break;
+                                    case "BIBLIOTECA  ":
+                                        busqueda = "B";
+                                        break;
+                                    case "BIBLIO      ":
+                                        busqueda = "B";
+                                        break;
+                                    case "LABORATORIOS":
+                                        busqueda = "C";
+                                        break;
+                                    case "LABS        ":
+                                        busqueda = "C";
+                                        break;
+                                    case "SECRETARIA  ":
+                                        busqueda = "F";
+                                        break;
+                                    case "Secre       ":
+                                        busqueda = "F";
+                                        break;
+                                }
+
                             }
-
                         }
 
                     }
