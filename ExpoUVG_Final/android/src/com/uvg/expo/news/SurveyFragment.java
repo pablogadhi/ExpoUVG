@@ -1,4 +1,3 @@
-//package com.example.rodrigo.survey;
 package com.uvg.expo.news;
 
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.androidadvance.androidsurvey.SurveyActivity;
+import com.uvg.expo.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +32,7 @@ public class SurveyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_main,container,false);
+        return inflater.inflate(R.layout.activity_survey,container,false);
     }
 
     @Override
