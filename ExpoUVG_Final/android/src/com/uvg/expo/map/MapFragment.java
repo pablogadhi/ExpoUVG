@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Text;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -173,6 +172,9 @@ public class MapFragment extends Fragment {
                         else {
 
                             switch (busqueda.substring(0,12)){
+                                case "LA CUEVA    ":
+                                    busqueda = "J";
+                                    break;
                                 case "CUEVA       ":
                                     busqueda = "J";
                                     break;
@@ -182,7 +184,13 @@ public class MapFragment extends Fragment {
                                 case "CAFETERIA   ":
                                     busqueda = "H";
                                     break;
+                                case "CAFE        ":
+                                    busqueda = "H";
+                                    break;
                                 case "BIBLIOTECA  ":
+                                    busqueda = "B";
+                                    break;
+                                case "BIBLIO      ":
                                     busqueda = "B";
                                     break;
                                 case "LABORATORIOS":
@@ -192,6 +200,9 @@ public class MapFragment extends Fragment {
                                     busqueda = "C";
                                     break;
                                 case "SECRETARIA  ":
+                                    busqueda = "F";
+                                    break;
+                                case "Secre       ":
                                     busqueda = "F";
                                     break;
                             }

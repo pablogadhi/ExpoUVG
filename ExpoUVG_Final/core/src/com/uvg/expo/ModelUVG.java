@@ -38,7 +38,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance modelInstance7;
     private ModelInstance modelInstance8;
     private ModelInstance modelInstance9;
+    private ModelInstance modelInstanceF;
     private  Array<ModelInstance> skyboxArray = new Array<ModelInstance>();
+    private  Array<ModelInstance> flagArray = new Array<ModelInstance>();
     private Environment environment;
 
     private Model skybox;
@@ -64,7 +66,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     float dir;
 
 
-    private Array<ModelInstance> instancesTray;
     private boolean renMap;
     private String trayectoria;
 
@@ -95,8 +96,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance instanceFC1;
     private Model modelGroundFC2;
     private ModelInstance instanceFC2;
-    private Model modelGroundCB;
-    private ModelInstance instanceCB;
+    private Model modelGroundEB1;
     private ModelInstance instanceEB1;
     private Model modelGroundEB2;
     private ModelInstance instanceEB2;
@@ -109,14 +109,13 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
     private AssetManager assetManager;
     private boolean loading;
-    private Model modelGroundEB1;
+    private boolean flagRender;
 
     ////
 
     @Override
     public void create() {
 
-        instancesTray = new Array();
 
         trayectoria = "";
 
@@ -167,11 +166,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         assetManager.load("data/MegaEdificio.g3db",Model.class); //5
         assetManager.load("data/Parqueo.g3db",Model.class);  //6
         assetManager.load("data/Extras.g3db",Model.class); //7
-        assetManager.load("data/EdificioC.g3db",Model.class);
-        assetManager.load("data/Skybox.g3db",Model.class);
-
-        assetManager.load("data/flag",Model.class);
-
+        assetManager.load("data/EdificioC.g3db",Model.class);//8
+        assetManager.load("data/Skybox.g3db",Model.class);//9
+        assetManager.load("data/goalflag.g3db",Model.class);//F
 
 
         loading = true;
@@ -184,6 +181,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 		modelInstance7.transform.translate(0f,0f,0f);
 		instances.add(modelInstance7);
         */
+
         gestureDetector = new GestureDetector(this);
         Gdx.input.setInputProcessor(gestureDetector);
 
@@ -260,6 +258,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         instanceIJ.transform.translate(-360f, 0f , -250f);
         instanceIJ.transform.rotate(0f, 35f, 0f, 35f);
 
+
         //F-E
         ModelBuilder modelBuilderEF = new ModelBuilder();
         modelGroundFE = modelBuilderEF.createBox(15f, 1f, 120f,
@@ -307,6 +306,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         instanceEB2.transform.translate(180f, 0f , 125f);
         instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
 
+        modelInstanceF.transform.translate(180,0,125);
+
         //locateWayInitPosition();
 
     }
@@ -319,6 +320,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
      *                     edificios por los que se pasa.
      */
     public void mapear(String trayCompleta){
+
         trayAF = false;
         trayFG = false;
         trayAK = false;
@@ -335,6 +337,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         //Trayectoria
         int len = trayectoria.length();
 
+        String lastTray = "";
+
         for (int i = 0; i + 2 <= len; i++){
             String tray = "";
             if (i +2 == len)
@@ -342,40 +346,62 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             else
                 tray = trayectoria.substring(i,i + 2);
 
-            if (tray.equals("AF") || tray.equals("FA"))
+            if (tray.equals("AF") || tray.equals("FA")) {
                 trayAF = true;
-            else if (tray.equals("FG") || tray.equals("GF"))
+                lastTray = tray;
+            }
+            else if (tray.equals("FG") || tray.equals("GF")) {
                 trayFG = true;
-            else if (tray.equals("II") || tray.equals("II"))
+                lastTray = tray;
+            }
+            else if (tray.equals("II") || tray.equals("II")) {
                 trayAI = true;
-            else if (tray.equals("AK") || tray.equals("KA"))
+            }
+            else if (tray.equals("AK") || tray.equals("KA")) {
                 trayAK = true;
-            else if (tray.equals("KH") || tray.equals("HK"))
+                lastTray = tray;
+            }
+            else if (tray.equals("KH") || tray.equals("HK")) {
                 trayKH = true;
-            else if (tray.equals("KG") || tray.equals("GK"))
+                lastTray = tray;
+            }
+            else if (tray.equals("KG") || tray.equals("GK")) {
                 trayKH = true;
-            else if (tray.equals("HI") || tray.equals("IH"))
+                lastTray = tray;
+            }
+            else if (tray.equals("HI") || tray.equals("IH")) {
                 trayHI = true;
-            else if (tray.equals("IJ") || tray.equals("JI"))
+                lastTray = tray;
+            }
+            else if (tray.equals("IJ") || tray.equals("JI")){
                 trayIJ = true;
-            else if (tray.equals("FC") || tray.equals("CF"))
+                if (lastTray.equals("KJ"))
+                    trayIJ = false;
+                lastTray = tray;
+            }
+            else if (tray.equals("FC") || tray.equals("CF")) {
                 trayFC = true;
+                lastTray = tray;
+            }
             else if (tray.equals("EB") || tray.equals("BE")
-                    ||tray.equals("CE") || tray.equals("EC"))
+                    ||tray.equals("CE") || tray.equals("EC")) {
                 trayEB = true;
-            else if (tray.equals("FE") || tray.equals("EF"))
+                lastTray = tray;
+            }
+            else if (tray.equals("FE") || tray.equals("EF")){
                 trayFE = true;
+            }
             else if (tray.equals("KJ") || tray.equals("JK")){
                 trayKH = true;
                 trayHI = true;
                 trayIJ = true;
+                lastTray = "KJ";
             }
         }
 
         renMap = true;
         locateWayInitPosition();
         reset();
-        //render();
     }
 
     /**
@@ -388,49 +414,36 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         if (trayAF){
             modelBatch.render(instanceAF);
-            instancesTray.add(instanceAF);
         }
         if (trayAI){
             modelBatch.render(instanceAI1);
             modelBatch.render(instanceAI2);
-            instancesTray.add(instanceAI1);
-            instancesTray.add(instanceAI2);
         }
         if (trayFG){
             modelBatch.render(instanceFG);
-            instancesTray.add(instanceFG);
         }
         if (trayAK){
             modelBatch.render(instanceAK);
-            instancesTray.add(instanceAK);
         }
         if (trayKH){
             modelBatch.render(instanceKH);
-            instancesTray.add(instanceKH);
         }
         if (trayHI){
             modelBatch.render(instanceHI);
-            instancesTray.add(instanceHI);
         }
         if (trayIJ){
             modelBatch.render(instanceIJ);
-            instancesTray.add(instanceIJ);
         }
         if (trayFE){
             modelBatch.render(instanceFE);
-            instancesTray.add(instanceFE);
         }
         if (trayFC){
             modelBatch.render(instanceFC1);
             modelBatch.render(instanceFC2);
-            instancesTray.add(instanceFC1);
-            instancesTray.add(instanceFC2);
         }
         if (trayEB){
             modelBatch.render(instanceEB1);
             modelBatch.render(instanceEB2);
-            instancesTray.add(instanceEB1);
-            instancesTray.add(instanceEB2);
         }
 
         modelBatch.end();
@@ -495,6 +508,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstance9 = new ModelInstance(skybox);
         skyboxArray.add(modelInstance9);
 
+        model = assetManager.get("data/goalflag.g3db");
+        modelInstanceF = new ModelInstance(model);
+        flagArray.add(modelInstanceF);
+
         loading = false;
     }
 
@@ -514,6 +531,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelBatch.render(instances, environment);
         modelBatch.render(skyboxArray);
 
+        if (flagRender){
+            modelBatch.render(flagArray);
+        }
 
         if (renMap){
             mapearTray();
@@ -670,7 +690,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         //K-H
         instanceKH.transform.translate(deltaX, 0f, deltaY);
-        //instanceKH.transform.rotate(0f, 0f, 0f, 90f);
 
         //H-I
         instanceHI.transform.rotate(0f, -90f, 0f, 90f);
