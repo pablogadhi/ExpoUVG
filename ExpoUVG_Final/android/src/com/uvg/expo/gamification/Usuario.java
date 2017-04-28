@@ -60,31 +60,20 @@ public class Usuario extends Fragment implements View.OnClickListener{
         bar.setMax(2400);
         bar.setProgress(1000);
 
-        // call al webservice
         JSONObject jsonObject = new JSONObject();
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("userId", "58f7d855cd7b6c00045c2603");
-        client.get("https://expo-uvg.herokuapp.com/api/points/get/all", params, new JsonHttpResponseHandler() {
+        client.get("https://expo-uvg.herokuapp.com/api/points/get", params, new TextHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
-                // Handle resulting parsed JSON response here
-                JSONObject myR = new JSONObject();
-                myR = response;
-                try {
-                    String ptsR = myR.getString("points");
-                    puntos.setText(ptsR);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                puntos.setText(responseString);
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                puntos.setText(res.toString());
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                puntos.setText(responseString + " Puntos");
             }
         });
 
@@ -124,39 +113,4 @@ public class Usuario extends Fragment implements View.OnClickListener{
             imvFoto.setImageURI(imageUri);
         }
     }
-    /**
-
-    // visibilidad del menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_leaderboard, menu);
-        return true;
-    }
-
-    // eventos en el menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemID = item.getItemId();
-        switch (itemID) {
-            // cambiar a la activity del usuario
-            case R.id.btnRetos:
-                Intent intRetos = new Intent(Usuario.this, RetosFragment.class);
-                startActivity(intRetos);
-                break;
-            // cambiar a la activity del usuario
-            case R.id.btnCard:
-                Intent intUser = new Intent(Usuario.this, Usuario.class);
-                startActivity(intUser);
-                break;
-            // cambiar a la activity del usuario
-            case R.id.btnLeaderBoard:
-                Intent intLeader = new Intent(Usuario.this, LeaderboardFragment.class);
-                startActivity(intLeader);
-                break;
-        }
-
-        return true;
-    }
-    */
 }

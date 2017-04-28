@@ -87,7 +87,7 @@
 
 
                 <TextView
-                    android:text=""
+                    android:text="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -96,7 +96,7 @@
                     android:id="@+id/textPos1" />
 
                 <TextView
-                    android:text=""
+                    android:text="Mario Lopez"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -105,7 +105,7 @@
                     android:id="@+id/textUser1" />
 
                 <TextView
-                    android:text=""
+                    android:text="300"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -133,7 +133,7 @@
 
 
                 <TextView
-                    android:text=""
+                    android:text="2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -142,7 +142,7 @@
                     android:id="@+id/textPos2" />
 
                 <TextView
-                    android:text=""
+                    android:text="Laura Castillo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -151,7 +151,7 @@
                     android:id="@+id/textUser2" />
 
                 <TextView
-                    android:text=""
+                    android:text="230"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -179,7 +179,7 @@
 
 
                 <TextView
-                    android:text=""
+                    android:text="3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -188,7 +188,7 @@
                     android:id="@+id/textPos3" />
 
                 <TextView
-                    android:text=""
+                    android:text="Ana Fuentes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
@@ -197,7 +197,7 @@
                     android:id="@+id/textUser3" />
 
                 <TextView
-                    android:text=""
+                    android:text="100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dip"
