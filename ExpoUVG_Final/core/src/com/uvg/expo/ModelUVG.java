@@ -608,6 +608,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         modelBatch.render(flagArray);
 
+
         if (!Estoy.equals(EstoyVer)){
             allFalse();
             EstoyVer = Estoy;
@@ -1063,7 +1064,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         flagArray.add(modelInstanceF);
 
         flagPosition.set(0,0,0f);
-
 
 
     }
