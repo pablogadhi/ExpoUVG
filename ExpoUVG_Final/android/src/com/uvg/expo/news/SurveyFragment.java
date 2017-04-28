@@ -1,17 +1,24 @@
+//package com.example.rodrigo.survey;
 package com.uvg.expo.news;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.androidadvance.androidsurvey.SurveyActivity;
-import com.uvg.expo.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,24 +32,51 @@ public class SurveyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_survey,container,false);
+        return inflater.inflate(R.layout.activity_main,container,false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Button button_survey_example_1 = (Button) getView().findViewById(R.id.button_survey_example_1);
+        RelativeLayout myLayout = (RelativeLayout) getView().findViewById(R.id.d);
+        JSONObject j;
+        JSONArray ja=null;
+        try {
+            j = new JSONObject(loadSurveyJson("encuestas.json"));
+            ja = j.getJSONArray("Encuestas");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        int id_count = 0;
+        int tmp = 0;
 
-        button_survey_example_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i_survey = new Intent(getActivity(), SurveyActivity.class);
-                //you have to pass as an extra the json string.
-                i_survey.putExtra("json_survey", loadSurveyJson("ejemplo.json"));
-                startActivityForResult(i_survey, SURVEY_REQUEST);
+        for (int i = 0; i<ja.length(); i++) {
+            try {
+                tmp = ja.getJSONObject(i).getInt("EncuestaId");
+                id_count = id_count + 1;
+                Button btn = new Button(getActivity());
+                btn.setId(i+1);
+                btn.setText(ja.getJSONObject(i).getString("Nombre"));
+                btn.setMaxHeight(120);
+                btn.setHeight(80);
+                btn.setBackgroundColor(0xFFFFFFFF);
+                ViewGroup.LayoutParams s= new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                btn.setLayoutParams(s);
+                final int index = i;
+                btn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent i_survey = new Intent(getActivity(), SurveyActivity.class);
+                        //you have to pass as an extra the json string.
+                        i_survey.putExtra("json_survey", loadSurveyJson("ejemplo.json"));
+                        startActivityForResult(i_survey, SURVEY_REQUEST);
+                        Log.i("TAG", "The index is" + index);
+                    }
+                });
+                myLayout.addView(btn);
             }
-        });
-
+            catch (JSONException e) {
+            }
+        }
+        getView().findViewById(R.id.cargar).setVisibility(View.GONE);
         super.onActivityCreated(savedInstanceState);
     }
 
