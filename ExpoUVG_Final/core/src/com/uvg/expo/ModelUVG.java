@@ -62,6 +62,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
     public String Adonde;
     public String Estoy;
+    private String EstoyVer;
     public boolean isIrActual;
     float dir;
 
@@ -117,6 +118,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
     @Override
     public void create() {
+
+        EstoyVer = Estoy;
 
         flagPosition = new Vector3(0f,0f,-50f);
 
@@ -265,7 +268,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         //F-E
         ModelBuilder modelBuilderEF = new ModelBuilder();
-        modelGroundFE = modelBuilderEF.createBox(15f, 1f, 120f,
+        modelGroundFE = modelBuilderEF.createBox(15f, 1f, 115f,
                 new Material(ColorAttribute.createDiffuse(Color.GREEN)),
                 VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
         instanceFE = new ModelInstance(modelGroundFE);
@@ -303,7 +306,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         //EB2
         ModelBuilder modelBuilderEB2 = new ModelBuilder();
-        modelGroundEB2 = modelBuilderEB2.createBox(15f, 0.1f, 160f,
+        modelGroundEB2 = modelBuilderEB2.createBox(15f, 0.1f, 165f,
                 new Material(ColorAttribute.createDiffuse(Color.GREEN)),
                 VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
         instanceEB2 = new ModelInstance(modelGroundEB2);
@@ -330,55 +333,61 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         lastTray = "  ";
 
-        for (int i = 0; i + 2 <= len; i++) {
-            String tray = "  ";
-            if (i + 2 == len)
-                tray = trayectoria.substring(i);
-            else
-                tray = trayectoria.substring(i, i + 2);
+        if (len >= 2){
 
-            if (tray.equals("AF") || tray.equals("FA")) {
-                trayAF = true;
-                lastTray = tray;
-            } else if (tray.equals("FG") || tray.equals("GF")) {
-                trayFG = true;
-                lastTray = tray;
-            } else if (tray.equals("II") || tray.equals("II")) {
-                trayAI = true;
-                lastTray = tray;
-            } else if (tray.equals("AK") || tray.equals("KA")) {
-                trayAK = true;
-                lastTray = tray;
-            } else if (tray.equals("KH") || tray.equals("HK")) {
-                trayKH = true;
-                lastTray = tray;
-            } else if (tray.equals("KG") || tray.equals("GK")) {
-                trayKH = true;
-                lastTray = tray;
-            } else if (tray.equals("HI") || tray.equals("IH")) {
-                trayHI = true;
-                lastTray = tray;
-            } else if (tray.equals("IJ") || tray.equals("JI")) {
-                trayIJ = true;
-                if (lastTray.equals("KJ"))
-                    trayIJ = false;
-                lastTray = tray;
-            } else if (tray.equals("FC") || tray.equals("CF")) {
-                trayFC = true;
-                lastTray = tray;
-            } else if (tray.equals("EB") || tray.equals("BE")
-                    || tray.equals("CE") || tray.equals("EC")) {
-                trayEB = true;
-                lastTray = tray;
-            } else if (tray.equals("FE") || tray.equals("EF")) {
-                trayFE = true;
-                lastTray = tray;
-            } else if (tray.equals("KJ") || tray.equals("JK")) {
-                trayKH = true;
-                trayHI = true;
-                trayIJ = true;
-                lastTray = "KJ";
+            for (int i = 0; i + 2 <= len; i++) {
+                String tray = "  ";
+
+                if (i + 2 == len)
+                    tray = trayectoria.substring(i);
+                else
+                    tray = trayectoria.substring(i, i + 2);
+
+                if (tray.equals("AF") || tray.equals("FA")) {
+                    trayAF = true;
+                    lastTray = tray;
+                } else if (tray.equals("FG") || tray.equals("GF")) {
+                    trayFG = true;
+                    lastTray = tray;
+                } else if (tray.equals("II") || tray.equals("II")) {
+                    trayAI = true;
+                    lastTray = tray;
+                } else if (tray.equals("AK") || tray.equals("KA")) {
+                    trayAK = true;
+                    lastTray = tray;
+                } else if (tray.equals("KH") || tray.equals("HK")) {
+                    trayKH = true;
+                    lastTray = tray;
+                } else if (tray.equals("KG") || tray.equals("GK")) {
+                    trayKH = true;
+                    lastTray = tray;
+                } else if (tray.equals("HI") || tray.equals("IH")) {
+                    trayHI = true;
+                    lastTray = tray;
+                } else if (tray.equals("IJ") || tray.equals("JI")) {
+                    trayIJ = true;
+                    if (lastTray.equals("KJ"))
+                        trayIJ = false;
+                    lastTray = tray;
+                } else if (tray.equals("FC") || tray.equals("CF")) {
+                    trayFC = true;
+                    lastTray = tray;
+                } else if (tray.equals("EB") || tray.equals("BE")
+                        || tray.equals("CE") || tray.equals("EC")) {
+                    trayEB = true;
+                    lastTray = tray;
+                } else if (tray.equals("FE") || tray.equals("EF")) {
+                    trayFE = true;
+                    lastTray = tray;
+                } else if (tray.equals("KJ") || tray.equals("JK")) {
+                    trayKH = true;
+                    trayHI = true;
+                    trayIJ = true;
+                    lastTray = "KJ";
+                }
             }
+        } else {
+            lastTray = trayCompleta;
         }
 
         renMap = true;
@@ -461,6 +470,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         } else if (s.equals("JK")) {
             flagPosition.set(-160f, 0f, -195f - 27.5f);
+        } else {
+            flagPosition.set(0f, 0f, -50f);
         }
         modelInstanceF.transform.translate(flagPosition);
 
@@ -580,6 +591,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
     @Override
     public void render() {
+
         if (loading && assetManager.update()){
             doneLoading();
         }
@@ -595,6 +607,11 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelBatch.render(skyboxArray);
 
         modelBatch.render(flagArray);
+
+        if (!Estoy.equals(EstoyVer)){
+            allFalse();
+            EstoyVer = Estoy;
+        }
 
         if (renMap){
             mapearTray();
@@ -1045,7 +1062,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         flagArray.clear();
         flagArray.add(modelInstanceF);
 
-        flagPosition.set(0,0,0);
+        flagPosition.set(0,0,0f);
+
 
 
     }

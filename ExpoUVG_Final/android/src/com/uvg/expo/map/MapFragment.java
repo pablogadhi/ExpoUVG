@@ -245,6 +245,7 @@ public class MapFragment extends Fragment {
                 }
 
                 else {
+                    modelUVG.mapear(busqueda);
                     modelUVG.allFalse();
                 }
 
