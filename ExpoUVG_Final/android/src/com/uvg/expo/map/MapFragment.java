@@ -187,6 +187,15 @@ public class MapFragment extends Fragment {
                             } catch (Exception e) {
 
                                 switch (busqueda.substring(0, 12)) {
+                                    case "BEAGLES     ":
+                                        busqueda = "A";
+                                        break;
+                                    case "GO GREEN    ":
+                                        busqueda = "A";
+                                        break;
+                                    case "INTERCAMBIOS":
+                                        busqueda = "J";
+                                        break;
                                     case "LA CUEVA    ":
                                         busqueda = "J";
                                         break;
@@ -218,6 +227,9 @@ public class MapFragment extends Fragment {
                                         busqueda = "F";
                                         break;
                                     case "Secre       ":
+                                        busqueda = "F";
+                                        break;
+                                    case "RED         ":
                                         busqueda = "F";
                                         break;
                                 }

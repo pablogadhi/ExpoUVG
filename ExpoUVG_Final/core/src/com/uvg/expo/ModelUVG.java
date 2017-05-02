@@ -63,6 +63,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public String Adonde;
     public String Estoy;
     private String EstoyVer;
+    private String EstoyVer2;
+    private String EstoyVer3;
     public boolean isIrActual;
     float dir;
 
@@ -120,6 +122,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public void create() {
 
         EstoyVer = Estoy;
+        EstoyVer2 = "";
+        EstoyVer3 = "";
 
         flagPosition = new Vector3(0f,0f,-50f);
 
