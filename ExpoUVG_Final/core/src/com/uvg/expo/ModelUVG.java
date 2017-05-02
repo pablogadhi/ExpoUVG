@@ -651,15 +651,41 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
             reLocateWay(deltaX, deltaY);
 
-            modelInstance1.transform.translate(deltaX, 0f, deltaY);
-            modelInstance2.transform.translate(deltaX, 0f, deltaY);
-            modelInstance3.transform.translate(deltaX, 0f, deltaY);
-            modelInstance4.transform.translate(deltaX, 0f, deltaY);
-            modelInstance5.transform.translate(deltaX, 0f, deltaY);
-            modelInstance6.transform.translate(deltaX, 0f, deltaY);
-            modelInstance7.transform.translate(deltaX, 0f, deltaY);
-            modelInstance8.transform.translate(deltaX, 0f, deltaY);
-            modelInstance9.transform.translate(deltaX, 0f, deltaY);
+            if(modelInstance1.transform.getTranslation(vectorCero).x > -500f && modelInstance1.transform.getTranslation(vectorCero).x < 500f
+                    && modelInstance1.transform.getTranslation(vectorCero).z > -400f && modelInstance1.transform.getTranslation(vectorCero).z < 400f){
+                modelInstance1.transform.translate(deltaX, 0f, deltaY);
+                modelInstance2.transform.translate(deltaX, 0f, deltaY);
+                modelInstance3.transform.translate(deltaX, 0f, deltaY);
+                modelInstance4.transform.translate(deltaX, 0f, deltaY);
+                modelInstance5.transform.translate(deltaX, 0f, deltaY);
+                modelInstance6.transform.translate(deltaX, 0f, deltaY);
+                modelInstance7.transform.translate(deltaX, 0f, deltaY);
+                modelInstance8.transform.translate(deltaX, 0f, deltaY);
+                modelInstance9.transform.translate(deltaX, 0f, deltaY);
+            }
+
+            Vector3 posActual = modelInstance1.transform.getTranslation(vectorCero);
+
+            if(modelInstance1.transform.getTranslation(vectorCero).x <= -500f){
+                float dif = 500f + posActual.x -5f;
+                moveALL(posActual.x - dif,posActual.y,posActual.z);
+            }
+            if(modelInstance1.transform.getTranslation(vectorCero).x >= 500f){
+                float dif = -500f + posActual.x +5f;
+                moveALL(posActual.x - dif,posActual.y,posActual.z);
+            }
+            if(modelInstance1.transform.getTranslation(vectorCero).z <= -400f){
+                float dif = 400f + posActual.z -5f;
+                moveALL(posActual.x,posActual.y,posActual.z - dif);
+            }
+            if(modelInstance1.transform.getTranslation(vectorCero).z >= 400f){
+                float dif = -400f + posActual.z +5f;
+                moveALL(posActual.x,posActual.y,posActual.z - dif);
+            }
+
+            System.out.println(modelInstance1.transform.getTranslation(vectorCero));
+
+
         }
         return true;
     }

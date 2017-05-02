@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:layout_width="match_parent"
+    android:layout_width="380dp"
     android:layout_height="wrap_content">
 
 
@@ -31,15 +31,15 @@
     <ImageView
         android:src="@drawable/defaultuser"
         android:id="@+id/imvFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnfoto"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="31dp"
         app:layout_constraintTop_toBottomOf="@+id/imvFoto"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -66,14 +66,13 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="27dp"
         android:indeterminate="false"
         android:max="100"
         android:progress="75"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:layout_editor_absoluteY="313dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:text="Logros Alcanzados"
@@ -86,7 +85,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="31dp"
         app:layout_constraintTop_toBottomOf="@+id/btnfoto"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -106,7 +105,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="casual"
         android:text="1000 Puntos"
         android:textColor="@color/abc_input_method_navigation_guard"
