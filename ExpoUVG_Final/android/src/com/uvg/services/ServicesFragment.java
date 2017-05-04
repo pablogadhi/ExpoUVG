@@ -62,7 +62,7 @@ public class ServicesFragment extends Fragment {
 
             AsyncHttpClient client = new AsyncHttpClient();
             RequestParams params = new RequestParams();
-            params.put("userId", "58f7d855cd7b6c00045c2603");
+            params.put("userId", "14");
             client.post("https://expo-uvg.herokuapp.com/api/points/add", params, new TextHttpResponseHandler() {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {

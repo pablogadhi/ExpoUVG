@@ -75,6 +75,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
         r1i1 = (ImageView) getView().findViewById(R.id.reto1Img1);
         r1i1.setVisibility(View.INVISIBLE);
+
         r1i2 = (ImageView) getView().findViewById(R.id.reto1Img2);
         r1i3 = (ImageView) getView().findViewById(R.id.reto1Img3);
         r2i1 = (ImageView) getView().findViewById(R.id.reto2Img1);

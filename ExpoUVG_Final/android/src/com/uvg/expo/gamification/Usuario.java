@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,16 +66,32 @@ public class Usuario extends Fragment implements View.OnClickListener{
 
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.put("userId", "58f7d855cd7b6c00045c2603");
-        client.get("https://expo-uvg.herokuapp.com/api/points/get", params, new TextHttpResponseHandler() {
+
+        params.put("userId", "5");
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GamePointApi/All", params, new  JsonHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 puntos.setText(responseString);
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                puntos.setText(responseString + " Puntos");
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                JSONArray jsonarray = response;
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject jsonobject = null;
+                    try {
+                        Log.d("JsonArray", jsonarray.toString());
+                        jsonobject = jsonarray.getJSONObject(i);
+                        String ptsU = jsonobject.getString("usrPoints");
+                        String name = jsonobject.getString("usr");
+                        Log.d("name: ", name);
+                        Log.d("puntos: ", ptsU);
+                        nombre.setText( ptsU + " Puntos");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
             }
         });
 
