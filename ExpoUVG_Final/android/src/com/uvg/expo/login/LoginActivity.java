@@ -50,6 +50,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
 import com.uvg.expo.map.RenderCreation;
 
@@ -109,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-
+        Global.prueba.charAt(0);
         //--------------------Firebase---------------//
         //se realiza una instacia con firebase
         FirebaseApp.initializeApp(this);

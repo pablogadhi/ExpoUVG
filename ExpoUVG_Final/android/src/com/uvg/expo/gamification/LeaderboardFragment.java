@@ -2,6 +2,7 @@ package com.uvg.expo.gamification;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -93,6 +94,78 @@ public class LeaderboardFragment extends Fragment{
         img4 = (ImageView) getView().findViewById(R.id.estrella4);
         img4.setVisibility(View.INVISIBLE);
 
+        JSONObject jsonObject = new JSONObject();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("userId", "5");
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GamePointApi/All", params, new  JsonHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.d("ERROR", "ERROR");
+            }
+
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                JSONArray jsonArray = response;
+                Log.d("JsonArray", jsonArray.toString());
+                JSONArray sortedJsonArray = new JSONArray();
+
+                List<JSONObject> jsonValues = new ArrayList<JSONObject>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
+                        jsonValues.add(jsonArray.getJSONObject(i));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Collections.sort( jsonValues, new Comparator<JSONObject>() {
+                    //You can change "Name" with "ID" if you want to sort by ID
+                    private static final String KEY_NAME = "usrPoints";
+
+                    @Override
+                    public int compare(JSONObject a, JSONObject b) {
+                        String valA = new String();
+                        String valB = new String();
+
+                        try {
+                            valA = (String) a.get(KEY_NAME);
+                            valB = (String) b.get(KEY_NAME);
+                        }
+                        catch (JSONException e) {
+                            //do something
+                        }
+
+                        return valA.compareTo(valB);
+                        //if you want to change the sort order, simply use the following:
+                        //return -valA.compareTo(valB);
+                    }
+                });
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    sortedJsonArray.put(jsonValues.get(i));
+                }
+                Log.d("ordenado", sortedJsonArray.toString());
+                int cont = 1;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonobject = null;
+                    try {
+                        jsonobject = jsonArray.getJSONObject(i);
+                        String ptsU = jsonobject.getString("usrPoints");
+                        String name = jsonobject.getString("usr");
+                       // "pos"+String.valueOf(cont).setText(String.valueOf(cont));
+                       // "name"+String.valueOf(cont).setText(name);
+                        //"pts"+String.valueOf(cont).setText(ptsU);
+                        cont++;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
 
 
 /**
