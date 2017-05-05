@@ -5,16 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
@@ -90,17 +98,36 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
     public void handleResult(Result result) {
         Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT).show();
         scanner.resumeCameraPreview(this);
-        JSONObject json = new JSONObject();
-        // estructura del json
-        // {usuario: "name", id: "23", reto: "result.getText(), "puntos", +200"}
-        try {
-            //se debe de obtener del webservices con los usuarios
-            //json.put("usuario", user );
-            //json.put("id", 23)
-            //json.put("puntos", 100);
-            json.put("reto", result.getText());
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        int contC = 0;
+        if (result.getText().equals("visito la cueva")) {
+            contC++;
+            if (contC == 1) {
+                JSONObject jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
+
+                try {
+                    jsonParams.put("points", "300");
+                    jsonParams.put("GameId", Global.getCueva());
+                    jsonParams.put("GameUserId", Global.getUserId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            }
+                        });
+            }
         }
+
     }
 }

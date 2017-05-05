@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null){
                     //cuando el usuario vuelva a ingresar, ya no sera necesario que se registre,
                     //la aplicacion determina automaticamente si esta conectado
-                    goMainScreen();
+                    //goMainScreen();
                 }
             }
         };

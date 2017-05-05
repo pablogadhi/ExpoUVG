@@ -6,16 +6,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.uvg.expo.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class RetosFragment extends Fragment implements View.OnClickListener {
 
@@ -77,45 +87,165 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         r1i1.setVisibility(View.INVISIBLE);
 
         r1i2 = (ImageView) getView().findViewById(R.id.reto1Img2);
+        r1i2.setVisibility(View.INVISIBLE);
         r1i3 = (ImageView) getView().findViewById(R.id.reto1Img3);
+        r1i3.setVisibility(View.INVISIBLE);
         r2i1 = (ImageView) getView().findViewById(R.id.reto2Img1);
+        r2i1.setVisibility(View.INVISIBLE);
         r2i2 = (ImageView) getView().findViewById(R.id.reto2Img2);
+        r2i2.setVisibility(View.INVISIBLE);
         r2i3 = (ImageView) getView().findViewById(R.id.reto2Img3);
+        r2i3.setVisibility(View.INVISIBLE);
         r3i1 = (ImageView) getView().findViewById(R.id.reto3Img1);
+        r3i1.setVisibility(View.INVISIBLE);
         r3i2 = (ImageView) getView().findViewById(R.id.reto3Img2);
+        r3i2.setVisibility(View.INVISIBLE);
         r3i3 = (ImageView) getView().findViewById(R.id.reto3Img3);
+        r3i3.setVisibility(View.INVISIBLE);
         r4i1 = (ImageView) getView().findViewById(R.id.reto4Img1);
+        r4i1.setVisibility(View.INVISIBLE);
         r4i2 = (ImageView) getView().findViewById(R.id.reto4Img2);
+        r4i2.setVisibility(View.INVISIBLE);
         r4i3 = (ImageView) getView().findViewById(R.id.reto4Img3);
+        r4i3.setVisibility(View.INVISIBLE);
         r5i1 = (ImageView) getView().findViewById(R.id.reto5Img1);
+        r5i1.setVisibility(View.INVISIBLE);
         r5i2 = (ImageView) getView().findViewById(R.id.reto5Img2);
+        r5i2.setVisibility(View.INVISIBLE);
         r5i3 = (ImageView) getView().findViewById(R.id.reto5Img3);
+        r5i3.setVisibility(View.INVISIBLE);
         r6i1 = (ImageView) getView().findViewById(R.id.reto6Img1);
+        r6i1.setVisibility(View.INVISIBLE);
         r6i2 = (ImageView) getView().findViewById(R.id.reto6Img2);
+        r6i2.setVisibility(View.INVISIBLE);
         r6i3 = (ImageView) getView().findViewById(R.id.reto6Img3);
+        r6i3.setVisibility(View.INVISIBLE);
         r7i1 = (ImageView) getView().findViewById(R.id.reto7Img1);
+        r7i1.setVisibility(View.INVISIBLE);
         r7i2 = (ImageView) getView().findViewById(R.id.reto7Img2);
+        r7i2.setVisibility(View.INVISIBLE);
         r7i3 = (ImageView) getView().findViewById(R.id.reto7Img3);
+        r7i3.setVisibility(View.INVISIBLE);
         r8i1 = (ImageView) getView().findViewById(R.id.reto8Img1);
+        r8i1.setVisibility(View.INVISIBLE);
         r8i2 = (ImageView) getView().findViewById(R.id.reto8Img2);
+        r8i2.setVisibility(View.INVISIBLE);
         r8i3 = (ImageView) getView().findViewById(R.id.reto8Img3);
+        r8i3.setVisibility(View.INVISIBLE);
         r9i1 = (ImageView) getView().findViewById(R.id.reto9Img1);
+        r9i1.setVisibility(View.INVISIBLE);
         r9i2 = (ImageView) getView().findViewById(R.id.reto9Img2);
+        r9i2.setVisibility(View.INVISIBLE);
         r9i3 = (ImageView) getView().findViewById(R.id.reto9Img3);
+        r9i3.setVisibility(View.INVISIBLE);
         r10i1 = (ImageView) getView().findViewById(R.id.reto10Img1);
+        r10i1.setVisibility(View.INVISIBLE);
         r10i2 = (ImageView) getView().findViewById(R.id.reto10Img2);
+        r10i2.setVisibility(View.INVISIBLE);
         r10i3 = (ImageView) getView().findViewById(R.id.reto10Img3);
+        r10i3.setVisibility(View.INVISIBLE);
         r11i1 = (ImageView) getView().findViewById(R.id.reto11Img1);
+        r11i1.setVisibility(View.INVISIBLE);
         r11i2 = (ImageView) getView().findViewById(R.id.reto11Img2);
+        r11i2.setVisibility(View.INVISIBLE);
         r11i3 = (ImageView) getView().findViewById(R.id.reto11Img3);
-
+        r11i3.setVisibility(View.INVISIBLE);
+/*
         prueba = 1;
 
         prueba1 = new JSONObject();
         prueba2 = new JSONObject();
         prueba3 = new JSONObject();
+*/
+/*
+        JSONObject jsonObject = new JSONObject();
 
-        startTask();
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("id", "15");
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GameAchievements/", params, new  JsonHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                //puntos.setText(responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                JSONArray jsonarray = response;
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject jsonobject = new JSONObject();
+                    try {
+                        //Log.d("JsonArray", jsonarray.toString());
+                        jsonobject = jsonarray.getJSONObject(i);
+                        String gameId = jsonobject.getString("gameId");
+                        String points = jsonobject.getString("points");
+
+                        Log.d("funca", jsonobject.toString());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }}
+        });*/
+
+        JSONObject jsonObject = new JSONObject();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("id", "15");
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GameAchievements/{id}", params, new  JsonHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.d("ERROR", "ERROR");
+            }
+
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                JSONArray jsonArray = response;
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonobject = null;
+                    try {
+                        jsonobject = jsonArray.getJSONObject(i);
+                        String gameId = jsonobject.getString("gameId");
+                        String points = jsonobject.getString("points");
+                        //Log.d("game", gameId);
+
+                        switch (gameId){
+                            case "15":
+                                //primera fila de estrellas
+
+                                if (points == "10"){
+                                r1i1.setVisibility(View.VISIBLE);
+                                r1i2.setVisibility(View.INVISIBLE);
+                                r1i3.setVisibility(View.INVISIBLE);
+                            }
+                            else if (points == "2"){
+                                r1i1.setVisibility(View.VISIBLE);
+                                r1i2.setVisibility(View.VISIBLE);
+                                r1i3.setVisibility(View.INVISIBLE);
+                            }
+                            else if (points == "3"){
+                                r1i1.setVisibility(View.VISIBLE);
+                                r1i2.setVisibility(View.VISIBLE);
+                                r1i3.setVisibility(View.VISIBLE);
+                            }
+
+                        }
+
+                        } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //Log.d("waddup", jsonobject.toString());
+                }
+                //Log.d("matemnempls", jsonArray.toString());
+            }
+        });
+
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -126,7 +256,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
 
     Runnable updateTimerThread = new Runnable() {
         public void run() {
-
+/*
             int call1 = 1;
             int call2 = 1;
             int call3 = 1;
@@ -155,9 +285,13 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            */
 
+
+
+/*
 //primera fila de estrellas
-            if (call1 == 1){
+            if ( == 1){
                 r1i1.setVisibility(View.VISIBLE);
                 r1i2.setVisibility(View.INVISIBLE);
                 r1i3.setVisibility(View.INVISIBLE);
@@ -241,7 +375,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
             //Repetimos la busqueda de JSONs
             customHandler.postDelayed(this, 1000);
 
-
+*/
         }
     };
 
