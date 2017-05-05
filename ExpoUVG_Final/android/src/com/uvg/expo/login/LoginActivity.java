@@ -87,7 +87,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView registrarse;
     Button btnreg;
     EditText emails,pass;
-
+    
+    //---------------GooglePlus, WebService---------------//
+    String names;
+    String mail;
+    
     // ------------facebook------------------//
 
     //El boton para ingresar
@@ -336,6 +340,7 @@ public class LoginActivity extends AppCompatActivity {
                         //si se completa el usuario puede seguir a la siguiente pestaña
                         else{
                             Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                            addUserWebService(mail,names);
                             goMainScreen();
                         }
                     }
@@ -446,19 +451,18 @@ public class LoginActivity extends AppCompatActivity {
                 String gender = null;
                 List<Gender> genders = profiles.getGenders();
                 List<Name> name = profiles.getNames();
-                String names = "";
                 if(name != null && name.size() > 0) {
                     for(Name personName: name) {
                         names = personName.getDisplayName();
                     }}
                 String age = profiles.getAgeRange();
                 List<EmailAddress> email = profiles.getEmailAddresses();
-                String emails = email.get(0).toString();
+                mail = email.get(0).toString();
 
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
-                addUserWebService(emails,names);
+                
                 addUser(names, names, age, gender, emails);
 
 
