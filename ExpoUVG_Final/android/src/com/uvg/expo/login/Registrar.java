@@ -138,7 +138,6 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
 
                                         });
                                 startActivity(new Intent(Registrar.this,RenderCreation.class));
-                                finish();
 
                             }
                         }
