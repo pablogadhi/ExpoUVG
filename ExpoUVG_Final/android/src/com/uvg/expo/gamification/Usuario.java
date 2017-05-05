@@ -67,32 +67,31 @@ public class Usuario extends Fragment implements View.OnClickListener{
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        params.put("userId", "5");
-        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GamePointApi/All", params, new  JsonHttpResponseHandler() {
+        params.put("id", "13");
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GameUserPoints/{id}", params, new  JsonHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 puntos.setText(responseString);
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                JSONArray jsonarray = response;
-                for (int i = 0; i < jsonarray.length(); i++) {
-                    JSONObject jsonobject = null;
-                    try {
-                        Log.d("JsonArray", jsonarray.toString());
-                        jsonobject = jsonarray.getJSONObject(i);
-                        String ptsU = jsonobject.getString("usrPoints");
-                        String name = jsonobject.getString("usr");
-                        Log.d("name: ", name);
-                        Log.d("puntos: ", ptsU);
-                        nombre.setText( ptsU + " Puntos");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONObject jsonarray = response;
+                //for (int i = 0; i < jsonarray.length(); i++) {
+                JSONObject jsonobject = null;
+                try {
+                    //Log.d("JsonArray", jsonarray.toString());
+                    //jsonobject = jsonarray.getJSONObject(i);
+                    String ptsU = jsonarray.getString("points");
+                    String name = jsonarray.getString("username");
+                    nombre.setText(name);
+                    puntos.setText( ptsU + " Puntos");
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
             }
+            //}
         });
 
         cant = 500;

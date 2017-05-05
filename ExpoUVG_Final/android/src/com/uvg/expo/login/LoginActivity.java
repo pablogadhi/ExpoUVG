@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +51,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.uvg.expo.Global;
 import com.uvg.expo.R;
 import com.uvg.expo.map.RenderCreation;
@@ -58,9 +62,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
+
+import static com.loopj.android.http.AsyncHttpClient.HEADER_CONTENT_TYPE;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -110,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        Global.prueba.charAt(0);
         //--------------------Firebase---------------//
         //se realiza una instacia con firebase
         FirebaseApp.initializeApp(this);
@@ -360,6 +369,66 @@ public class LoginActivity extends AppCompatActivity {
                             String id = profile.getId();
                             String link = profile.getLinkUri().toString();
 
+
+                            AsyncHttpClient client = new AsyncHttpClient();
+                            RequestParams params = new RequestParams();
+
+                            JSONObject jsonObject = new JSONObject();
+                            //jsonObject.put("UserName")
+                            try {
+                                jsonObject.putOpt("UserName", nombre);
+                                jsonObject.put("Email", Email);
+                                jsonObject.put("Password", "");
+                            }catch (Exception e) {
+
+
+                            }
+                            params.put("gameUserApi", jsonObject.toString());
+                            //params.put("gameUserApi", "{\"UserName\": \"Holis2\",\"Email\": \"noting2\",\"Password\": \"string\"}");
+                            //client.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                         //   StringEntity entity = new StringEntity(jsonObject.toString());
+                           // System.out.println(jsonObject.toString());
+                          //  System.out.println(",,,,,,,,,,,,,,,,");
+                        //    System.out.println(entity)
+                           // client.post(getApplicationContext(), url, entity, "application/json", new JsonHttpResponseHandler() {
+                              client.post("https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi", params, new  JsonHttpResponseHandler(){
+                                        @Override
+                                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                            // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                                            // Handle resulting parsed JSON response here
+                                            JSONObject respuesta = response;
+                                            Log.d("Json",respuesta.toString());
+                                            try {
+                                                System.out.println("!!!!!!!!!!!!!!!!!!");
+                                                String id = respuesta.getString("ID");
+                                                Log.d("id", id);
+                                                String name = respuesta.getString("username");
+                                                Log.d("name", name);
+
+                                            } catch (JSONException e) {
+                                                System.out.println("......................");
+                                                //onFailure(statusCode, headers, e, (JSONObject)null);
+                                                e.printStackTrace();
+                                            }
+
+
+                                        }
+
+
+                                       // @Override
+                                       // public void onFailure(int statusCode, Header[] headers,
+                                         //                     byte[] binaryData, Throwable error) {
+                                           // Toast.makeText(getApplicationContext(), "Failed to load file: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                                       // }
+                                        //public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                                            //AsyncHttpClient.log.w(LOG_TAG, "onFailure(int, Header[], Throwable, JSONObject) was not overriden, but callback was received", throwable);
+                                        /*public void onFailure(int statusCode, Header[] headers, String res, JSONObject errorResponse) {
+                                            // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                                            System.out.println("******************************");
+                                            System.out.println(statusCode +"\n"+ res);
+                                            System.out.println("******************************");
+                                        }*/
+                                    });
                             addUser(nombre,apellido,edad,Genero,Email);
 
 
@@ -401,6 +470,35 @@ public class LoginActivity extends AppCompatActivity {
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
+                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                AsyncHttpClient client = new AsyncHttpClient();
+                RequestParams params1 = new RequestParams();
+                JSONObject jsonObject = new JSONObject();
+                //jsonObject.put("UserName")
+                try {
+                    jsonObject.putOpt("UserName", name);
+                    jsonObject.put("Email", emails);
+                    jsonObject.put("Password", "");
+                }catch (Exception e) {
+
+                }
+                params1.put("gameUserApi", jsonObject.toString());
+                client.post(url, params1, new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                                // Handle resulting parsed JSON response here
+                                JSONObject respuesta = response;
+                                Log.d("Json",respuesta.toString());
+
+
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                            }
+                        });
 
                 addUser(names, names, age, gender, emails);
 
