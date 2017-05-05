@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SNOW™</string>
+    <string name="hint_txt_1">Quieres escribirlo?</string>
+    <string name="hint_txt_0">Qué estas pensando?</string>
+</resources>
