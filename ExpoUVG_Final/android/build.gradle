@@ -179,6 +179,6 @@ dependencies {
 
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile project(path: ':volley-master')
 }
 apply plugin: 'com.google.gms.google-services'
