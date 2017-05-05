@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ import static com.uvg.expo.gamification.JSONParser.json;
 
 public class LeaderboardFragment extends Fragment{
 
+    private int contador;
+    private String ptsU, name;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +49,9 @@ public class LeaderboardFragment extends Fragment{
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
 
-        //TableLayout tbl = (TableLayout) getView().findViewById(R.id.baseLeaderboard);
+        contador = 1;
+
+        final LinearLayout lbl = (LinearLayout) getView().findViewById(R.id.Tabla);
 
         JSONObject jsonObject = new JSONObject();
 
@@ -64,64 +69,37 @@ public class LeaderboardFragment extends Fragment{
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 JSONArray jsonArray = response;
-                Log.d("JsonArray", jsonArray.toString());
-                JSONArray sortedJsonArray = new JSONArray();
-
-                List<JSONObject> jsonValues = new ArrayList<JSONObject>();
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    try {
-                        jsonValues.add(jsonArray.getJSONObject(i));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Collections.sort( jsonValues, new Comparator<JSONObject>() {
-                    //You can change "Name" with "ID" if you want to sort by ID
-                    private static final String KEY_NAME = "usrPoints";
-
-                    @Override
-                    public int compare(JSONObject a, JSONObject b) {
-                        String valA = new String();
-                        String valB = new String();
-
-                        try {
-                            valA = (String) a.get(KEY_NAME);
-                            valB = (String) b.get(KEY_NAME);
-                        }
-                        catch (JSONException e) {
-                            //do something
-                        }
-
-                        return valA.compareTo(valB);
-                        //if you want to change the sort order, simply use the following:
-                        //return -valA.compareTo(valB);
-                    }
-                });
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    sortedJsonArray.put(jsonValues.get(i));
-                }
-                Log.d("ordenado", sortedJsonArray.toString());
 
                 ArrayList<Integer> posiciones = new ArrayList<Integer>();
                 for(int i = 0; i < jsonArray.length(); i++){
                     posiciones.add(i);
                 }
 
+
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonobject = null;
                     try {
                         jsonobject = jsonArray.getJSONObject(i);
-                        String ptsU = jsonobject.getString("points");
-                        String name = jsonobject.getString("username");
+                        ptsU = jsonobject.getString("points");
+                        name = jsonobject.getString("username");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     for (final Integer poosiciones: posiciones){
+                        TextView posicion = new TextView(getView().getContext());
+                        posicion.setText("1");
+                        lbl.addView(posicion);
 
+                        TextView usuario = new TextView(getView().getContext());
+                        posicion.setText(name);
+                        lbl.addView(usuario);
+
+                        TextView punteo = new TextView(getView().getContext());
+                        posicion.setText(ptsU);
+                        lbl.addView(punteo);
                     }
-
-
+                    contador = contador + 1;
                 }
             }
         });

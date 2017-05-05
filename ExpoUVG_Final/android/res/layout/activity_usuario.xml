@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:text="Juanito Pérez"
+        android:text=""
         android:id="@+id/txtNombre"
         android:fontFamily="casual"
         android:textSize="24sp"
@@ -107,7 +107,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="31dp"
         android:fontFamily="casual"
-        android:text="1000 Puntos"
+        android:text=""
         android:textColor="@color/abc_input_method_navigation_guard"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"

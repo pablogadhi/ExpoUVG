@@ -1,6 +1,7 @@
 package com.uvg.expo.gamification;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,13 +20,17 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -61,6 +66,105 @@ public class Usuario extends Fragment implements View.OnClickListener{
 
         bar.setMax(2400);
         bar.setProgress(1000);
+
+        Global.setUserId("50");
+        Log.d("id", Global.getUserId());
+
+        //EL WENO
+/*
+        JSONObject jsonParams = new JSONObject();
+        AsyncHttpClient client2 = new AsyncHttpClient();
+        Context context = getView().getContext();
+
+        try {
+            jsonParams.put("UserName", "Kappa");
+            jsonParams.put("Email", "help@help.net");
+            jsonParams.put("Password", "");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonParams.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+        client2.post(context, restApiUrl, entity, "application/json",
+                new  JsonHttpResponseHandler(){
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+            // Handle resulting parsed JSON response here
+            JSONObject respuesta = response;
+            Log.d("Json",respuesta.toString());
+            try {
+                String id = respuesta.getString("ID");
+                Log.d("id", id);
+                String name = respuesta.getString("username");
+                Log.d("name", name);
+
+            } catch (JSONException e) {
+                //onFailure(statusCode, headers, e, (JSONObject)null);
+                e.printStackTrace();
+            }
+
+
+        }
+
+    });
+*/
+/*
+        RequestParams params2 = new RequestParams();
+
+        JSONObject jsonObject2 = new JSONObject();
+        //jsonObject.put("UserName")
+        try {
+            jsonObject2.put("UserName", "pedro");
+            jsonObject2.put("Email", "help@help.net");
+            jsonObject2.put("Password", "");
+        }catch (Exception e) {
+
+
+        }
+        params2.put("gameUserApi", jsonObject2.toString());
+        //params.put("gameUserApi", "{\"UserName\": \"Holis2\",\"Email\": \"noting2\",\"Password\": \"string\"}");
+        //client.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+        // client.post(getApplicationContext(), url, entity, "application/json", new JsonHttpResponseHandler() {
+        client2.post("https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi", params2, new  JsonHttpResponseHandler(){
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                // Handle resulting parsed JSON response here
+                JSONObject respuesta = response;
+                Log.d("Json",respuesta.toString());
+                try {
+                    String id = respuesta.getString("ID");
+                    Log.d("id", id);
+                    String name = respuesta.getString("username");
+                    Log.d("name", name);
+
+                } catch (JSONException e) {
+                    //onFailure(statusCode, headers, e, (JSONObject)null);
+                    e.printStackTrace();
+                }
+
+
+            }
+
+        });
+
+*/
+
+
+
+
 
         JSONObject jsonObject = new JSONObject();
 

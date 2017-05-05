@@ -78,6 +78,13 @@
                     android:id="@+id/estrella" />
             </TableRow>
 
+            <LinearLayout
+                android:id="@+id/Tabla"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
         </TableLayout>
     </ScrollView>
 
