@@ -28,9 +28,9 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 public class TweetsFragment extends Fragment {
@@ -42,6 +42,9 @@ public class TweetsFragment extends Fragment {
     private FloatingActionButton foab;
     private String URL_FEED = "http://ec2-54-213-143-106.us-west-2.compute.amazonaws.com/tweets";
     private static final String URL_IMG = "http://ec2-54-213-143-106.us-west-2.compute.amazonaws.com/images/";
+
+    Map<String, String> params = new HashMap();
+    JSONObject parameters = new JSONObject(params);
 
     @Nullable
     @Override
@@ -57,6 +60,9 @@ public class TweetsFragment extends Fragment {
         listAdapter = new FeedListAdapter(getActivity(), feedItems);
         listView.setAdapter(listAdapter);
 
+        params.put("first_param", "1");
+        params.put("second_param", "2");
+
         foab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,9 +76,7 @@ public class TweetsFragment extends Fragment {
     }
 
     private void refresh(){
-        JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
-                URL_FEED, new JSONObject(), new Response.Listener<JSONObject>() {
-
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, URL_FEED, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 VolleyLog.d(TAG, "Response: " + response.toString());
@@ -81,14 +85,14 @@ public class TweetsFragment extends Fragment {
                 }
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
 
-        AppController.getInstance().addToRequestQueue(jsonReq);
+        AppController.getInstance().addToRequestQueue(jsonRequest);
     }
 
     private void parseJsonFeed(JSONObject response) {

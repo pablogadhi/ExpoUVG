@@ -1,1 +1,1 @@
-include 'android', 'core', 'placeholderview', ':volley-master'
+include 'android', 'core', 'placeholderview'

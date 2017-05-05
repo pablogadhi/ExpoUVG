@@ -24,7 +24,7 @@ public class FeedListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<FeedItem> feedItems;
-    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    ImageLoader imageLoader;
 
     public FeedListAdapter(Activity activity, List<FeedItem> feedItems) {
         super();
@@ -74,8 +74,8 @@ public class FeedListAdapter extends BaseAdapter {
 
         name.setText("#UVGTweets");
 
-            CharSequence timeAgo = item.getTime();
-            timestamp.setText(timeAgo);
+        CharSequence timeAgo = item.getTime();
+        timestamp.setText(timeAgo);
 
         if (!TextUtils.isEmpty("#UVGRAM")) {
             statusMsg.setText("#UVGRAM");
