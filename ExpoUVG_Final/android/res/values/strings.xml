@@ -2,7 +2,7 @@
 <resources>
 	<string name="facebook.app.id2">701624643354096</string>
     <!-- Version Principal y Mapa -->
-    <string name="app_name">UVG Experience</string>
+    <string name="app_name">Experiencia del Valle</string>
     <string name="result_text_default">Por favor enfoque el código QR</string>
     <string name="shared_prefs">preferencias</string>
     <string name="title_activity_main">MainActivity</string>

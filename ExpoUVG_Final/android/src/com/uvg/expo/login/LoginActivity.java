@@ -454,35 +454,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
-                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
-                AsyncHttpClient client = new AsyncHttpClient();
-                RequestParams params1 = new RequestParams();
-                JSONObject jsonObject = new JSONObject();
-                //jsonObject.put("UserName")
-                try {
-                    jsonObject.putOpt("UserName", name);
-                    jsonObject.put("Email", emails);
-                    jsonObject.put("Password", "");
-                }catch (Exception e) {
 
-                }
-                params1.put("gameUserApi", jsonObject.toString());
-                client.post(url, params1, new JsonHttpResponseHandler() {
-                            @Override
-                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
-                                // Handle resulting parsed JSON response here
-                                JSONObject respuesta = response;
-                                Log.d("Json",respuesta.toString());
-
-
-                            }
-
-                            @Override
-                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                            }
-                        });
 
                 addUser(names, names, age, gender, emails);
 
