@@ -71,6 +71,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
     private boolean renMap;
     private String trayectoria;
+    private Vector3 posActualMap;
 
     private boolean trayAF;
     private boolean trayFG;
@@ -109,10 +110,13 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     private ModelInstance instanceAI1;
     private Model modelGroundAI2;
     private ModelInstance instanceAI2;
+    private Model modelGroundPOST;
+    private ModelInstance instancePOST;
 
     private AssetManager assetManager;
     private boolean loading;
-    private boolean flagRender;
+    private boolean moveback;
+    private boolean moveback2;
     private String lastTray;
     private Vector3 flagPosition;
 
@@ -125,9 +129,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         EstoyVer2 = "";
         EstoyVer3 = "";
 
-        flagPosition = new Vector3(0f,0f,-50f);
+        flagPosition = new Vector3(0f,0f,-55f);
 
-        flagRender = false;
+        moveback = true;
+        moveback2 = true;
 
         trayectoria = "";
 
@@ -317,6 +322,17 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         instanceEB2.transform.translate(180f, 0f , 125f);
         instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
 
+        posActualMap = new Vector3(0f,0f,0f);
+
+        //POST
+        ModelBuilder modelBuilderPOST = new ModelBuilder();
+        modelGroundPOST = modelBuilderPOST.createBox(1f, 0.1f, 1f,
+                new Material(ColorAttribute.createDiffuse(Color.GREEN)),
+                VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
+        instancePOST = new ModelInstance(modelGroundPOST);
+        instancePOST.transform.translate(0f, -1f , 0f);
+
+
     }
 
     /**
@@ -399,7 +415,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         reset();
 
         modelInstanceF.transform.translate(-flagPosition.x,-flagPosition.y,-flagPosition.z);
-        flagRender = true;
         String s = lastTray;
         if (s.equals("AF")) {
             flagPosition.set(-40.7f, 0, -159.3f);
@@ -475,7 +490,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         } else if (s.equals("JK")) {
             flagPosition.set(-160f, 0f, -195f - 27.5f);
         } else {
-            flagPosition.set(0f, 0f, -50f);
+            flagPosition.set(0f, 0f, -55f);
         }
         modelInstanceF.transform.translate(flagPosition);
 
@@ -612,6 +627,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         modelBatch.render(flagArray);
 
+        modelBatch.render(instancePOST);
 
         if (!Estoy.equals(EstoyVer)){
             allFalse();
@@ -649,7 +665,43 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public boolean pan(float x, float y, float deltaX, float deltaY) {
         if (!isIrActual) {
 
-            reLocateWay(deltaX, deltaY);
+            float deltaXMap = deltaX;
+            float deltaYMap = deltaY;
+
+            if (instancePOST.transform.getTranslation(vectorCero).x < -500f || instancePOST.transform.getTranslation(vectorCero).x > 500f ) {
+                deltaXMap = 0;
+                if (instancePOST.transform.getTranslation(vectorCero).x < -500f && moveback)
+                    deltaXMap = -instancePOST.transform.getTranslation(vectorCero).x - 499.01f;
+                else if (moveback)
+                    deltaXMap = -instancePOST.transform.getTranslation(vectorCero).x + 499.01f;
+            }
+            if (instancePOST.transform.getTranslation(vectorCero).x < -500f && instancePOST.transform.getTranslation(vectorCero).x < 0f && deltaX > 0){
+                deltaXMap = deltaX;
+                moveback = false;
+            }
+            if (instancePOST.transform.getTranslation(vectorCero).x > 500f && instancePOST.transform.getTranslation(vectorCero).x > 0f && deltaX  < 0){
+                deltaXMap = deltaX;
+                moveback = false;
+            }
+
+            if (instancePOST.transform.getTranslation(vectorCero).z < -400f || instancePOST.transform.getTranslation(vectorCero).z > 400f ) {
+                deltaYMap = 0;
+                if (instancePOST.transform.getTranslation(vectorCero).z < -400f && moveback2)
+                    deltaYMap = -instancePOST.transform.getTranslation(vectorCero).z - 399.01f;
+                else if (moveback2)
+                    deltaYMap = -instancePOST.transform.getTranslation(vectorCero).z + 399.01f;
+            }
+            if (instancePOST.transform.getTranslation(vectorCero).z < -400f && instancePOST.transform.getTranslation(vectorCero).z < 0f && deltaX > 0){
+                deltaYMap = deltaY;
+                moveback2 = false;
+            }
+            if (instancePOST.transform.getTranslation(vectorCero).z > 400f && instancePOST.transform.getTranslation(vectorCero).z > 0f && deltaX  < 0){
+                deltaYMap = deltaY;
+                moveback2 = false;
+            }
+
+            reLocateWay(deltaXMap,deltaYMap);
+
 
             if(modelInstance1.transform.getTranslation(vectorCero).x > -500f && modelInstance1.transform.getTranslation(vectorCero).x < 500f
                     && modelInstance1.transform.getTranslation(vectorCero).z > -400f && modelInstance1.transform.getTranslation(vectorCero).z < 400f){
@@ -662,6 +714,8 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
                 modelInstance7.transform.translate(deltaX, 0f, deltaY);
                 modelInstance8.transform.translate(deltaX, 0f, deltaY);
                 modelInstance9.transform.translate(deltaX, 0f, deltaY);
+                //reLocateWay(deltaX,deltaY);
+
             }
 
             Vector3 posActual = modelInstance1.transform.getTranslation(vectorCero);
@@ -670,6 +724,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
                 float dif = 500f + posActual.x -5f;
                 moveALL(posActual.x - dif,posActual.y,posActual.z);
             }
+
             if(modelInstance1.transform.getTranslation(vectorCero).x >= 500f){
                 float dif = -500f + posActual.x +5f;
                 moveALL(posActual.x - dif,posActual.y,posActual.z);
@@ -684,11 +739,14 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
             }
 
             System.out.println(modelInstance1.transform.getTranslation(vectorCero));
+            System.out.println(deltaY);
+            System.out.println(instancePOST.transform.getTranslation(vectorCero).z);
 
 
         }
         return true;
     }
+
 
     /**
      * Vuelve a las instancias de los caminos a sus posiciones originales.
@@ -761,6 +819,10 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         instanceEB2 = new ModelInstance(modelGroundEB2);
         instanceEB2.transform.translate(180f, 0f , 125f);
         instanceEB2.transform.rotate(0f, 45f, 0f, 45f);
+
+        //POST
+        instancePOST = new ModelInstance(modelGroundPOST);
+        instanceEB2.transform.translate(0f, -1f , 0f);
     }
 
     /**
@@ -839,6 +901,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 
         //FLAG
         modelInstanceF.transform.translate(deltaX,0f,deltaY);
+
+        //POST
+        instancePOST.transform.translate(deltaX,0f,deltaY);
 
     }
 
