@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +16,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.uvg.expo.R;
+
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class Registrar extends AppCompatActivity implements View.OnClickListener{
 
@@ -83,8 +91,40 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                             }else{
                                 Toast.makeText(Registrar.this, "Se ha registrado!",
                                         Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Registrar.this,Perfil.class));
-                                finish();
+                                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                                AsyncHttpClient client = new AsyncHttpClient();
+                                RequestParams params = new RequestParams();
+
+                                JSONObject jsonObject = new JSONObject();
+                                //jsonObject.put("UserName")
+                                try {
+                                    jsonObject.putOpt("UserName", nomcom.getText().toString());
+                                    jsonObject.put("Email", email.getText().toString());
+                                    jsonObject.put("Password", "");
+                                }catch (Exception e) {
+
+                                }
+                                params.put("gameUserApi", jsonObject);
+                                client.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                                        client.post(url, params, new JsonHttpResponseHandler() {
+                                            @Override
+                                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                                                // Handle resulting parsed JSON response here
+                                                JSONObject respuesta = response;
+                                                Log.d("Json",respuesta.toString());
+                                                startActivity(new Intent(Registrar.this,Perfil.class));
+                                                finish();
+
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                                            }
+                                        });
+
                             }
                         }
                     });
