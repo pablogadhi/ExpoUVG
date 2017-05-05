@@ -14,36 +14,30 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.uvg.expo.Networking.FacebookFragment;
+import com.uvg.expo.Networking.NetworkingFragment;
+import com.uvg.expo.Networking.tab1;
 import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
 import com.uvg.expo.map.MapFragment;
 import com.uvg.expo.map.RenderCreation;
-import com.uvg.expo.news.NewsFeedFragment;
 import com.uvg.expo.news.SurveyFragment;
-import com.uvg.services.ServicesFragment;
+import com.uvg.expo.snow.activities.NewsTweetFragment;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import app.Config;
 import utils.NotificationUtils;
-
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DrawerHandler {
@@ -74,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragmentContainer, new NewsFeedFragment());
+        transaction.add(R.id.fragmentContainer, new RetosFragment());
         transaction.commit();
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -161,8 +155,14 @@ public class MainActivity extends AppCompatActivity
             SurveyFragment surveyFragment = new SurveyFragment();
             loadfragment = surveyFragment;
         } else if (id == R.id.nav_feed){
-            NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
-            loadfragment = newsFeedFragment;
+            Intent intent = new Intent(this, NewsTweetFragment.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_compartir){
+            FacebookFragment surveyFragment = new FacebookFragment();
+            loadfragment = surveyFragment;
+        } else if (id == R.id.nav_rating){
+            tab1 tab1fragment = new tab1();
+            loadfragment = tab1fragment;
         }
 
 

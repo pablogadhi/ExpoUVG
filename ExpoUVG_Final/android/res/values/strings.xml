@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="facebook.app.id2">701624643354096</string>
     <!-- Version Principal y Mapa -->
-    <string name="app_name">ExpoUVG</string>
+    <string name="app_name">UVG Experience</string>
     <string name="result_text_default">Por favor enfoque el código QR</string>
     <string name="shared_prefs">preferencias</string>
     <string name="title_activity_main">MainActivity</string>
@@ -28,6 +29,21 @@
     <string name="facebook_app_id">417316568639624</string>
     <string name="clientID">924354749341-3rnn0genvrkovfh7ngg6arot17898fss.apps.googleusercontent.com</string>
     <string name="clientSecret">m6NzufaqwuCy6ZxS-rHgM1T1</string>
+
+     <string name="hint_txt_1">Quieres escribirlo?</string>
+    <string name="hint_txt_0">Qué estas pensando?</string>
+
+    <string-array name="titulos">
+        <item> Ciencias de la Computacion y Tecnologias de la informacion</item>
+        <item> Ingenieria Quimica </item>
+        <item> Ingenieria Civil</item>
+    </string-array>
+
+    <string-array name="descrip">
+        <item> super proyectos </item>
+        <item> super labs </item>
+        <item> civil </item>
+    </string-array>
 
 
 </resources>
