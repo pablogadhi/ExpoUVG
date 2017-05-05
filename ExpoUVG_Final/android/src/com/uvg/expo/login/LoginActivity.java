@@ -446,7 +446,11 @@ public class LoginActivity extends AppCompatActivity {
                 String gender = null;
                 List<Gender> genders = profiles.getGenders();
                 List<Name> name = profiles.getNames();
-                String names = name.get(0).toString();
+                String names = "";
+                if(name != null && name.size() > 0) {
+                    for(Name personName: name) {
+                        names = personName.getDisplayName();
+                    }}
                 String age = profiles.getAgeRange();
                 List<EmailAddress> email = profiles.getEmailAddresses();
                 String emails = email.get(0).toString();
@@ -454,35 +458,48 @@ public class LoginActivity extends AppCompatActivity {
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
-                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
-                AsyncHttpClient client = new AsyncHttpClient();
-                RequestParams params1 = new RequestParams();
-                JSONObject jsonObject = new JSONObject();
-                //jsonObject.put("UserName")
-                try {
-                    jsonObject.putOpt("UserName", name);
-                    jsonObject.put("Email", emails);
-                    jsonObject.put("Password", "");
-                }catch (Exception e) {
+                JSONObject jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
 
+                try {
+                    jsonParams.put("UserName", names);
+                    jsonParams.put("Email",emails );
+                    jsonParams.put("Password", "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                params1.put("gameUserApi", jsonObject.toString());
-                client.post(url, params1, new JsonHttpResponseHandler() {
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new  JsonHttpResponseHandler(){
+
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                 // Root JSON in response is an dictionary i.e { "data : [ ... ] }
                                 // Handle resulting parsed JSON response here
                                 JSONObject respuesta = response;
                                 Log.d("Json",respuesta.toString());
+                                try {
+                                    String id = respuesta.getString("ID");
+                                    Log.d("id", id);
+                                    String name = respuesta.getString("username");
+                                    Log.d("name", name);
+
+                                } catch (JSONException e) {
+                                    //onFailure(statusCode, headers, e, (JSONObject)null);
+                                    e.printStackTrace();
+                                }
 
 
                             }
 
-                            @Override
-                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                            }
                         });
+
 
                 addUser(names, names, age, gender, emails);
 
