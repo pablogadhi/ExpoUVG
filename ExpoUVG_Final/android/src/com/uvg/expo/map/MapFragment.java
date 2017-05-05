@@ -88,6 +88,7 @@ public class MapFragment extends Fragment {
         qrfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                modelUVG.setEstoyVer("");
                 Intent intent = new Intent(getActivity(), QRReader.class);
                 startActivity(intent);
             }
@@ -308,7 +309,7 @@ public class MapFragment extends Fragment {
         if (modelUVG.getLoading()){
             bar.setVisibility(View.INVISIBLE);
         }
-        setMostrar(preferences.getString("Lugar","Empty"));
+        setMostrar(preferences.getString("Lugar","A"));
         modelUVG.setEstoy(mostrar);
         if(preferences.getBoolean("Cambio", false) == true){
             changeUiVisivility(false);

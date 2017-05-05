@@ -63,8 +63,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public String Adonde;
     public String Estoy;
     private String EstoyVer;
-    private String EstoyVer2;
-    private String EstoyVer3;
     public boolean isIrActual;
     float dir;
 
@@ -126,8 +124,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
     public void create() {
 
         EstoyVer = Estoy;
-        EstoyVer2 = "";
-        EstoyVer3 = "";
 
         flagPosition = new Vector3(0f,0f,-55f);
 
@@ -1191,20 +1187,7 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         trayAI = false;
     }
 
-    /**
-     * Pone todos los booleans de las trayectorias en verdadero.
-     */
-    public void allTrue(){
-        trayAF = true;
-        trayFG = true;
-        trayAK = true;
-        trayKH = true;
-        trayHI = true;
-        trayIJ = true;
-        trayFC = true;
-        trayEB = true;
-        trayFE = true;
-        trayAI = true;
+    public void setEstoyVer(String ver){
+        EstoyVer = ver;
     }
-
 }

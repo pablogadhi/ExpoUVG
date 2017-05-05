@@ -1,12 +1,14 @@
 package com.uvg.expo;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 /**
  * Created by ychav on 3/05/2017.
  */
 
-public class Global extends Application  {
+public class Global  {
 
     public static String userName = "";
     public static String userId = "";
