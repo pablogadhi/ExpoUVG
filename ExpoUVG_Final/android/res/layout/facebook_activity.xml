@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.uvg.expo.Networking.FacebookActivity">
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/expvalle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView5"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/hashtag"
+        android:id="@+id/imExpo"
+        android:onClick="onNumeral"
+        android:background="@android:color/white"
+        android:layout_below="@+id/txHashtag"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:text="Comparte con tus amigos y deja que conozcan tu próxima Alma Mater."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txAqui"
+
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:typeface="normal"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/btLike"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:background="@drawable/com_facebook_button_icon_blue"
+        android:id="@+id/btLike"
+        android:textColor="@android:color/white"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imExpo"
+        android:layout_alignEnd="@+id/imExpo" />
+
+    <Button
+        android:text="Aquí"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btLink"
+        style="@style/com_facebook_auth_dialog"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/imExpo"
+        android:layout_alignStart="@+id/imExpo" />
+
+    <TextView
+        android:id="@+id/txCompartir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView5"
+        android:layout_marginTop="11dp"
+        android:fontFamily="sans-serif-condensed"
+        android:lineSpacingExtra="8sp"
+        android:paddingTop="@dimen/com_facebook_auth_dialog_corner_radius"
+        android:text="Comparte fotos en Facebook con el #ExpoUVG y completa los retos de la aplicación!"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:typeface="normal" />
+
+    <Button
+        android:text="Compartir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btShare"
+        style="@style/com_facebook_auth_dialog"
+        android:background="@drawable/com_facebook_button_background"
+        android:textSize="16sp"
+        android:layout_below="@+id/txCompartir"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="9dp" />
+
+    <TextView
+        android:id="@+id/txHashtag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btShare"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Descubre lo que los demás están compartiendo, aquí con el hashtag:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:typeface="normal" />
+
+
+</RelativeLayout>

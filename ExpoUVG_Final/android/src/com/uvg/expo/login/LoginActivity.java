@@ -2,6 +2,7 @@ package com.uvg.expo.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -55,6 +56,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.SyncHttpClient;
 import com.uvg.expo.Global;
 import com.uvg.expo.R;
 import com.uvg.expo.map.RenderCreation;
@@ -133,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null){
                     //cuando el usuario vuelva a ingresar, ya no sera necesario que se registre,
                     //la aplicacion determina automaticamente si esta conectado
-                    goMainScreen();
+                    //goMainScreen();
                 }
             }
         };
@@ -249,7 +251,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
                     // Si logra guardar la informacion en firebase, se abre la otra pestaña donde se envuentra la informacion de su perfil
                 }else{
-                    Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
                     goMainScreen();
 
                 }
@@ -298,11 +300,17 @@ public class LoginActivity extends AppCompatActivity {
                         // no podra ingresar y aparecera un error
                         if(!task.isSuccessful())
                         {
-                             Toast.makeText(LoginActivity.this,"Este usuario no se encuentra registrado",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Este usuario no se encuentra registrado",Toast.LENGTH_SHORT).show();
                         }
                         else{
                             //si logra ingresar, el usuario podra segui a la siguiente pestaña
-                            Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                            String WTF = preferences.getString("ID", "id");
+
+                            Global.setUserId(WTF);
+
                             goMainScreen();
                         }
                     }
@@ -335,7 +343,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         //si se completa el usuario puede seguir a la siguiente pestaña
                         else{
-                            Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                            String WTF = preferences.getString("ID", "id");
+
+                            Global.setUserId(WTF);
+
                             goMainScreen();
                         }
                     }
@@ -446,7 +460,11 @@ public class LoginActivity extends AppCompatActivity {
                 String gender = null;
                 List<Gender> genders = profiles.getGenders();
                 List<Name> name = profiles.getNames();
-                String names = name.get(0).toString();
+                String names = "";
+                if(name != null && name.size() > 0) {
+                    for(Name personName: name) {
+                        names = personName.getDisplayName();
+                    }}
                 String age = profiles.getAgeRange();
                 List<EmailAddress> email = profiles.getEmailAddresses();
                 String emails = email.get(0).toString();
@@ -454,35 +472,49 @@ public class LoginActivity extends AppCompatActivity {
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
-                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
-                AsyncHttpClient client = new AsyncHttpClient();
-                RequestParams params1 = new RequestParams();
-                JSONObject jsonObject = new JSONObject();
-                //jsonObject.put("UserName")
-                try {
-                    jsonObject.putOpt("UserName", name);
-                    jsonObject.put("Email", emails);
-                    jsonObject.put("Password", "");
-                }catch (Exception e) {
 
+                JSONObject jsonParams = new JSONObject();
+                SyncHttpClient client2 = new SyncHttpClient();
+
+                try {
+                    jsonParams.put("UserName", names);
+                    jsonParams.put("Email",emails );
+                    jsonParams.put("Password", "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                params1.put("gameUserApi", jsonObject.toString());
-                client.post(url, params1, new JsonHttpResponseHandler() {
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new  JsonHttpResponseHandler(){
+
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                 // Root JSON in response is an dictionary i.e { "data : [ ... ] }
                                 // Handle resulting parsed JSON response here
                                 JSONObject respuesta = response;
                                 Log.d("Json",respuesta.toString());
+                                try {
+                                    String id = respuesta.getString("ID");
+                                    Log.d("id", id);
+                                    String name = respuesta.getString("username");
+                                    Log.d("name", name);
+
+                                } catch (JSONException e) {
+                                    //onFailure(statusCode, headers, e, (JSONObject)null);
+                                    e.printStackTrace();
+                                }
 
 
                             }
 
-                            @Override
-                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                            }
                         });
+
 
                 addUser(names, names, age, gender, emails);
 

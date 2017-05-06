@@ -6,26 +6,37 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class RetosFragment extends Fragment implements View.OnClickListener {
 
     JSONObject object, prueba1, prueba2, prueba3;
     Handler customHandler = new Handler();
-    ImageView r1i1,r1i2, r1i3, r2i1,r2i2, r2i3, r3i1,r3i2, r3i3, r4i1,r4i2, r4i3, r5i1,r5i2, r5i3;
-    ImageView r6i1, r6i2, r6i3, r7i1, r7i2, r7i3, r8i1, r8i2, r8i3, r9i1, r9i2, r9i3, r10i1, r10i2, r10i3, r11i1, r11i2, r11i3;
+    ImageView  r2i1,r2i2, r2i3, r3i1,r3i2, r3i3, r4i1,r4i2, r4i3, r5i1,r5i2, r5i3;
+    ImageView r6i1, r6i2, r6i3, r7i1, r7i2, r7i3, r8i1, r8i2, r8i3, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2, r11i3;
     int prueba;
     View view;
-    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11;
+    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn11;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstantState){
@@ -39,9 +50,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         object = new JSONObject();
         Handler customHandler = new Handler();
 
-
-        btn1 = (Button) getView().findViewById(R.id.button1);
-        btn1.setOnClickListener(this);
 
         btn2 = (Button) getView().findViewById(R.id.button2);
         btn2.setOnClickListener(this);
@@ -67,17 +75,9 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         btn9 = (Button) getView().findViewById(R.id.button9);
         btn9.setOnClickListener(this);
 
-        btn10 = (Button) getView().findViewById(R.id.button10);
-        btn10.setOnClickListener(this);
-
         btn11 = (Button) getView().findViewById(R.id.button11);
         btn11.setOnClickListener(this);
 
-        r1i1 = (ImageView) getView().findViewById(R.id.reto1Img1);
-        r1i1.setVisibility(View.INVISIBLE);
-
-        r1i2 = (ImageView) getView().findViewById(R.id.reto1Img2);
-        r1i3 = (ImageView) getView().findViewById(R.id.reto1Img3);
         r2i1 = (ImageView) getView().findViewById(R.id.reto2Img1);
         r2i2 = (ImageView) getView().findViewById(R.id.reto2Img2);
         r2i3 = (ImageView) getView().findViewById(R.id.reto2Img3);
@@ -102,205 +102,163 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         r9i1 = (ImageView) getView().findViewById(R.id.reto9Img1);
         r9i2 = (ImageView) getView().findViewById(R.id.reto9Img2);
         r9i3 = (ImageView) getView().findViewById(R.id.reto9Img3);
-        r10i1 = (ImageView) getView().findViewById(R.id.reto10Img1);
-        r10i2 = (ImageView) getView().findViewById(R.id.reto10Img2);
-        r10i3 = (ImageView) getView().findViewById(R.id.reto10Img3);
         r11i1 = (ImageView) getView().findViewById(R.id.reto11Img1);
         r11i2 = (ImageView) getView().findViewById(R.id.reto11Img2);
         r11i3 = (ImageView) getView().findViewById(R.id.reto11Img3);
 
-        prueba = 1;
 
-        prueba1 = new JSONObject();
-        prueba2 = new JSONObject();
-        prueba3 = new JSONObject();
+        JSONObject jsonObject = new JSONObject();
 
-        startTask();
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("id", Global.getUserId());
+        client.get("https://experiencia-uvg.azurewebsites.net:443/api/GameAchievements/{id}", params, new  JsonHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.d("ERROR", "ERROR");
+            }
+
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                JSONArray jsonArray = response;
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonobject = null;
+                    try {
+                        jsonobject = jsonArray.getJSONObject(i);
+                        Log.d("JSONACHIVE", jsonobject.toString());
+                        String gameId = jsonobject.getString("gameId");
+                        Log.d("gameId", gameId);
+                        String points = jsonobject.getString("points");
+                        Log.d("points", points);
+                        switch (gameId){
+                            case "16":
+                                if (points.equals("1000")){
+                                    r2i1.setImageResource(R.drawable.star_verde);
+                                    r2i2.setImageResource(R.drawable.star_verde);
+                                    r2i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "17":
+                                if (points.equals("100")){
+                                    r3i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("200")){
+                                    r3i1.setImageResource(R.drawable.star_verde);
+                                    r3i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("300")){
+                                    r3i1.setImageResource(R.drawable.star_verde);
+                                    r3i2.setImageResource(R.drawable.star_verde);
+                                    r3i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "18":
+                                if (points.equals("200")){
+                                    r4i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("400")){
+                                    r4i1.setImageResource(R.drawable.star_verde);
+                                    r4i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("600")){
+                                    r4i1.setImageResource(R.drawable.star_verde);
+                                    r4i2.setImageResource(R.drawable.star_verde);
+                                    r4i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "19":
+                                if (points.equals("100")){
+                                    r5i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("300")){
+                                    r5i1.setImageResource(R.drawable.star_verde);
+                                    r5i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("500")){
+                                    r5i1.setImageResource(R.drawable.star_verde);
+                                    r5i2.setImageResource(R.drawable.star_verde);
+                                    r5i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "20":
+                                if (points.equals("100")){
+                                    r6i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("200")){
+                                    r6i1.setImageResource(R.drawable.star_verde);
+                                    r6i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("300")){
+                                    r6i1.setImageResource(R.drawable.star_verde);
+                                    r6i2.setImageResource(R.drawable.star_verde);
+                                    r6i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "21":
+                                if (points.equals("100")){
+                                    r7i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("200")){
+                                    r7i1.setImageResource(R.drawable.star_verde);
+                                    r7i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("300")){
+                                    r7i1.setImageResource(R.drawable.star_verde);
+                                    r7i2.setImageResource(R.drawable.star_verde);
+                                    r7i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "22":
+                                if (points.equals("200")){
+                                    r8i1.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("400")){
+                                    r8i1.setImageResource(R.drawable.star_verde);
+                                    r8i2.setImageResource(R.drawable.star_verde);
+                                }
+                                else if (points.equals("600")){
+                                    r8i1.setImageResource(R.drawable.star_verde);
+                                    r8i2.setImageResource(R.drawable.star_verde);
+                                    r8i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "23":
+                                if (points.equals("1000")){
+                                    r9i1.setImageResource(R.drawable.star_verde);
+                                    r9i2.setImageResource(R.drawable.star_verde);
+                                    r9i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                            case "25":
+                                if (points.equals("1000")){
+                                    r11i1.setImageResource(R.drawable.star_verde);
+                                    r11i2.setImageResource(R.drawable.star_verde);
+                                    r11i3.setImageResource(R.drawable.star_verde);
+                                }
+                                break;
+                        }
+
+                        } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //Log.d("waddup", jsonobject.toString());
+                }
+                //Log.d("matemnempls", jsonArray.toString());
+            }
+        });
+
 
         super.onActivityCreated(savedInstanceState);
     }
 
-    public void startTask(){
-        updateTimerThread.run();
-    }
 
-    Runnable updateTimerThread = new Runnable() {
-        public void run() {
-
-            int call1 = 1;
-            int call2 = 1;
-            int call3 = 1;
-
-
-            if(prueba == 1){
-                prueba = 2;
-            }
-            else if(prueba == 2){
-                prueba = 3;
-            }
-            else if (prueba == 3){
-                prueba = 1;
-            }
-
-//put int in JSON
-            try {
-                prueba1.put("a", prueba);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-//get int from JSON
-            try {
-                call1 = prueba1.getInt("a");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-//primera fila de estrellas
-            if (call1 == 1){
-                r1i1.setVisibility(View.VISIBLE);
-                r1i2.setVisibility(View.INVISIBLE);
-                r1i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 2){
-                r1i1.setVisibility(View.VISIBLE);
-                r1i2.setVisibility(View.VISIBLE);
-                r1i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 3){
-                r1i1.setVisibility(View.VISIBLE);
-                r1i2.setVisibility(View.VISIBLE);
-                r1i3.setVisibility(View.VISIBLE);
-            }
-
-            //segunda fila de estrellas
-            if (call1 == 1){
-                r2i1.setVisibility(View.VISIBLE);
-                r2i2.setVisibility(View.INVISIBLE);
-                r2i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 2){
-                r2i1.setVisibility(View.VISIBLE);
-                r2i2.setVisibility(View.VISIBLE);
-                r2i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 3){
-                r2i1.setVisibility(View.VISIBLE);
-                r2i2.setVisibility(View.VISIBLE);
-                r2i3.setVisibility(View.VISIBLE);
-            }
-
-            //Tercera fila de estrellas
-            if (call1 == 1){
-                r3i1.setVisibility(View.VISIBLE);
-                r3i2.setVisibility(View.INVISIBLE);
-                r3i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 2){
-                r3i1.setVisibility(View.VISIBLE);
-                r3i2.setVisibility(View.VISIBLE);
-                r3i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 3){
-                r3i1.setVisibility(View.VISIBLE);
-                r3i2.setVisibility(View.VISIBLE);
-                r3i3.setVisibility(View.VISIBLE);
-            }
-            //cuarta fila de estrellas
-            if (call1 == 1){
-                r4i1.setVisibility(View.VISIBLE);
-                r4i2.setVisibility(View.INVISIBLE);
-                r4i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 2){
-                r4i1.setVisibility(View.VISIBLE);
-                r4i2.setVisibility(View.VISIBLE);
-                r4i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 3){
-                r4i1.setVisibility(View.VISIBLE);
-                r4i2.setVisibility(View.VISIBLE);
-                r4i3.setVisibility(View.VISIBLE);
-            }
-            //quinta fila de estrellas
-            if (call1 == 1){
-                r5i1.setVisibility(View.VISIBLE);
-                r5i2.setVisibility(View.INVISIBLE);
-                r5i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 2){
-                r5i1.setVisibility(View.VISIBLE);
-                r5i2.setVisibility(View.VISIBLE);
-                r5i3.setVisibility(View.INVISIBLE);
-            }
-            else if (call1 == 3){
-                r5i1.setVisibility(View.VISIBLE);
-                r5i2.setVisibility(View.VISIBLE);
-                r5i3.setVisibility(View.VISIBLE);
-            }
-            //Repetimos la busqueda de JSONs
-            customHandler.postDelayed(this, 1000);
-
-
-        }
-    };
-
-    /**
-    // visibilidad del menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_leaderboard, menu);
-        return true;
-    }
-
-    // eventos en el menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemID = item.getItemId();
-        switch (itemID) {
-            // cambiar a la activity del usuario
-            case R.id.btnRetos:
-                Intent intRetos = new Intent(RetosFragment.this, RetosFragment.class);
-                startActivity(intRetos);
-                break;
-            // cambiar a la activity del usuario
-            case R.id.btnCard:
-                Intent intUser = new Intent(RetosFragment.this, Usuario.class);
-                startActivity(intUser);
-            break;
-            // cambiar a la activity del usuario
-            case R.id.btnLeaderBoard:
-                Intent intLeader = new Intent(RetosFragment.this, LeaderboardFragment.class);
-                startActivity(intLeader);
-                break;
-        }
-
-        return true;
-    }
-     */
     @Override
     // botones de retos
     public void onClick(View v) {
         switch (v.getId()) {
-            // muestra el reto
-
-           case R.id.button1:
-
-                AlertDialog.Builder  Reto1 = new AlertDialog.Builder(getActivity());
-                Reto1.setView(R.layout.reto);
-                Reto1.setMessage(R.string.Reto1);
-                Reto1.setTitle("Expo UVG");
-                Reto1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Intent intQr = new Intent(thisd, RetosFragment.class);
-                        //startActivity(intQr);
-                    }
-                });
-                Reto1.show();
-
-                break;
 
 // muestra el reto
             case R.id.button2:
@@ -317,6 +275,7 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 Reto2.show();
+
 
                 break;
             // muestra el reto
@@ -436,23 +395,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 Reto9.show();
-
-                break;
-            // muestra el reto
-            case R.id.button10:
-                AlertDialog.Builder  Reto10 = new AlertDialog.Builder(getActivity());
-                Reto10.setView(R.layout.reto);
-                Reto10.setMessage(R.string.Reto10);
-                Reto10.setTitle("Expo UVG");
-                // al presionar validar te envia al lector de qr
-                Reto10.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
-                        //startActivity(intQr);
-                    }
-                });
-                Reto10.show();
 
                 break;
 

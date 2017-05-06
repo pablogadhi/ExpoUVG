@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="facebook.app.id2">701624643354096</string>
     <!-- Version Principal y Mapa -->
-    <string name="app_name">ExpoUVG</string>
+    <string name="app_name">Experiencia del Valle</string>
     <string name="result_text_default">Por favor enfoque el código QR</string>
     <string name="shared_prefs">preferencias</string>
     <string name="title_activity_main">MainActivity</string>
@@ -11,23 +12,36 @@
 
     <!-- Gamification -->
     <string name="ver_reto">Ver Reto</string>
-    <string name="Reto1">Leyó (1,5,10) noticias</string>
-    <string name="Reto2">Visitó la cueva</string>
+    <string name="Reto2">Visitó la cueva(1000 Pts!)</string>
     <string name="Reto3">Contestó (1, 2, 3) encuestas</string>
-    <string name="Reto4">Estuvo en (2, 3, 4) lugares diferentes</string>
-    <string name="Reto5">Realizar (1, 2, 3) publicaciones con # en alguna red social</string>
-    <string name="Reto6">Recomendó a (1,2,3) amigos el evento </string>
+    <string name="Reto4">Estuvo en (2, 4, 6) lugares diferentes</string>
+    <string name="Reto5">Realizar (1, 3, 5) publicaciones con #ExpoUVG en alguna red social</string>
+    <string name="Reto6">Recomendó (1, 2, 3) a la universidad </string>
     <string name="Reto7">Calificó (1, 2, 3) stands</string>
-    <string name="Reto8">Buscó (2,3,4) lugares en el mapa</string>
-    <string name="Reto9">Conoció a Douglas</string>
-    <string name="Reto10">Realizó (2,3,4) actividades de busqueda de objetos diferentes</string>
-    <string name="Reto11">Busque el libro Don Quijote de la Mancha en la biblioteca </string>
+    <string name="Reto8">Buscó (2, 4, 6) lugares en el mapa</string>
+    <string name="Reto9">Conoció a Douglas (1000 Pts!)</string>
+    <string name="Reto11">Busque el libro Don Quijote de la Mancha en la biblioteca (1000 Pts!)</string>
     <string name="title_activity_expo__menu">Expo_Menu</string>
     <string name="title_activity_main_menu">MainMenu</string>
 
     <string name="facebook_app_id">417316568639624</string>
     <string name="clientID">924354749341-3rnn0genvrkovfh7ngg6arot17898fss.apps.googleusercontent.com</string>
     <string name="clientSecret">m6NzufaqwuCy6ZxS-rHgM1T1</string>
+
+     <string name="hint_txt_1">Quieres escribirlo?</string>
+    <string name="hint_txt_0">Qué estas pensando?</string>
+
+    <string-array name="titulos">
+        <item> Ciencias de la Computacion y Tecnologias de la informacion</item>
+        <item> Ingenieria Quimica </item>
+        <item> Ingenieria Civil</item>
+    </string-array>
+
+    <string-array name="descrip">
+        <item> super proyectos </item>
+        <item> super labs </item>
+        <item> civil </item>
+    </string-array>
 
 
 </resources>

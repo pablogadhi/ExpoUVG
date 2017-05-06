@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="android.support.multidex.MultiDexApplication"
+        android:name=".snow.adapters.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
@@ -45,7 +45,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="ExpoUVG"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait">
         </activity>
@@ -64,6 +64,15 @@
         <activity android:name=".login.Perfil" />
         <activity android:name=".login.Registrar"></activity>
         <activity android:name=".gamification.QR"/>
+
+        <activity android:name=".snow.activities.MainTabbedActivity"/>
+
+        <activity android:name=".Networking.FacebookActivity"/>
+        <provider android:authorities="com.facebook.app.FacebookContentProvider417316568639624"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
+        <activity android:name=".Networking.rBar"/>
 
         <!-- Firebase Notifications -->
         <service android:name="service.MyFirebaseMessagingService">

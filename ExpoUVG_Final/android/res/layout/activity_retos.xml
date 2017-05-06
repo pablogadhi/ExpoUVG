@@ -38,69 +38,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/tableRow1">
-
-                <ImageView
-                    android:id="@+id/reto1Img1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
-                    android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
-                    tools:ignore="ContentDescription"
-                    >
-                </ImageView>
-
-                <ImageView
-                    android:id="@+id/reto1Img2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
-                    android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
-                    tools:ignore="ContentDescription"
-                    >
-                </ImageView>
-
-
-                <ImageView
-                    android:id="@+id/reto1Img3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
-                    android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
-                    tools:ignore="ContentDescription"
-                    >
-                </ImageView>
-
-                <Button
-                    android:id="@+id/button1"
-                    android:text="@string/ver_reto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="152dip"
-                    android:layout_marginTop="10dip"
-                    style="@android:style/Widget.DeviceDefault.Button"
-                    android:minHeight="55dp"
-                    android:backgroundTint="#010166"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/background_light"
-                    android:minWidth="88dp" />
-
-            </TableRow>
-            <TableRow>
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="31dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow1">
+                android:id="@+id/tableRow2">
 
                 <ImageView
                     android:id="@+id/reto2Img1"
@@ -111,7 +49,7 @@
                     android:layout_marginTop="10dip"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tableRow1"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -123,7 +61,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -136,7 +74,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -173,7 +111,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -185,7 +123,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -198,7 +136,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -235,7 +173,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -247,7 +185,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -260,7 +198,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -297,7 +235,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -309,7 +247,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -322,7 +260,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -359,7 +297,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -371,7 +309,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -384,7 +322,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -421,7 +359,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -433,7 +371,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -446,7 +384,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -484,7 +422,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -496,7 +434,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -509,7 +447,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -547,7 +485,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -559,7 +497,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -572,7 +510,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -610,7 +548,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -622,7 +560,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -635,7 +573,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -673,7 +611,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -685,7 +623,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>
@@ -698,7 +636,7 @@
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="10dip"
-                    android:src="@drawable/star_verde"
+                    android:src="@android:drawable/star_big_off"
                     tools:ignore="ContentDescription"
                     >
                 </ImageView>

@@ -1,6 +1,7 @@
 package com.uvg.expo.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,11 +20,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
+import com.uvg.expo.map.RenderCreation;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class Registrar extends AppCompatActivity implements View.OnClickListener{
 
@@ -91,39 +98,53 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                             }else{
                                 Toast.makeText(Registrar.this, "Se ha registrado!",
                                         Toast.LENGTH_SHORT).show();
-                                String url = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
-                                AsyncHttpClient client = new AsyncHttpClient();
-                                RequestParams params = new RequestParams();
+                                JSONObject jsonParams = new JSONObject();
+                                AsyncHttpClient client2 = new AsyncHttpClient();
 
-                                JSONObject jsonObject = new JSONObject();
-                                //jsonObject.put("UserName")
                                 try {
-                                    jsonObject.putOpt("UserName", nomcom.getText().toString());
-                                    jsonObject.put("Email", email.getText().toString());
-                                    jsonObject.put("Password", "");
-                                }catch (Exception e) {
-
+                                    jsonParams.put("UserName", nomcom.getText().toString());
+                                    jsonParams.put("Email", email.getText().toString());
+                                    jsonParams.put("Password", "");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                                params.put("gameUserApi", jsonObject);
-                                client.addHeader("Content-Type", "application/x-www-form-urlencoded");
-                                        client.post(url, params, new JsonHttpResponseHandler() {
+                                StringEntity entity = null;
+                                try {
+                                    entity = new StringEntity(jsonParams.toString());
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                                        new  JsonHttpResponseHandler(){
+
                                             @Override
                                             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                                 // Root JSON in response is an dictionary i.e { "data : [ ... ] }
                                                 // Handle resulting parsed JSON response here
                                                 JSONObject respuesta = response;
                                                 Log.d("Json",respuesta.toString());
-                                                startActivity(new Intent(Registrar.this,Perfil.class));
-                                                finish();
+                                                try {
+                                                    String id = respuesta.getString("ID");
+                                                    Global.setUserId(id);
+
+                                                    SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                                                    preferences.edit().putString("ID", id).apply();
+
+                                                    String name = respuesta.getString("username");
+                                                    Global.setUserName(name);
+                                                    startActivity(new Intent(Registrar.this,RenderCreation.class));
+
+                                                } catch (JSONException e) {
+                                                    //onFailure(statusCode, headers, e, (JSONObject)null);
+                                                    e.printStackTrace();
+                                                }
 
 
                                             }
 
-                                            @Override
-                                            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                                                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
-                                            }
                                         });
+                               
 
                             }
                         }

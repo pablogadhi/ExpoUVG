@@ -14,27 +14,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.vision.face.Face;
+import com.uvg.expo.Networking.FacebookActivity;
+import com.uvg.expo.Networking.tab1;
 import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
 import com.uvg.expo.gamification.Usuario;
 import com.uvg.expo.map.MapFragment;
 import com.uvg.expo.map.RenderCreation;
-import com.uvg.expo.news.NewsFeedFragment;
 import com.uvg.expo.news.SurveyFragment;
-import com.uvg.services.ServicesFragment;
+import com.uvg.expo.snow.activities.MainTabbedActivity;
+import com.uvg.expo.snow.activities.NewsTweetFragment;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -42,8 +40,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import app.Config;
 import utils.NotificationUtils;
 
+// tracking modules
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
-import java.util.List;
+import com.uvg.expo.snow.adapters.AppController;
+import com.uvg.expo.snow.fragments.TweetsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DrawerHandler {
@@ -54,9 +56,12 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private boolean regresar;
     private Fragment loadfragment;
+    private FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TrackHelper.track().screen("/").title("La app de aquellos").with(getTracker());
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -72,9 +77,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragmentContainer, new NewsFeedFragment());
+        transaction.add(R.id.fragmentContainer, new NewsTweetFragment());
         transaction.commit();
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -98,7 +103,10 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
+    }
 
+    private Tracker getTracker(){
+        return ((AppController) getApplication()).getTracker();
     }
 
     @Override
@@ -143,29 +151,47 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
         loadfragment = new Fragment();
+        // VARIABLE PARA MONITOREAR USO DE APLICACION
+        String flag = null; 
 
         if (id == R.id.uvgmap) {
             MapFragment mapFragment = new MapFragment();
             loadfragment = mapFragment;
+            flag = "Map"; 
         } else if (id == R.id.leaderboard) {
             LeaderboardFragment leaderboardFragment = new LeaderboardFragment();
             loadfragment = leaderboardFragment;
+            flag = "LeaderBoard"; 
         } else if (id == R.id.nav_retos){
             RetosFragment retosFragment = new RetosFragment();
             loadfragment = retosFragment;
+            flag = "Retos"; 
         } else if (id == R.id.nav_survey){
             SurveyFragment surveyFragment = new SurveyFragment();
             loadfragment = surveyFragment;
+            flag = "Survey"; 
         } else if (id == R.id.nav_feed){
-            NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
-            loadfragment = newsFeedFragment;
+            NewsTweetFragment tweetsFragment = new NewsTweetFragment();
+            loadfragment = tweetsFragment;
+            flag = "News";
+        } else if (id == R.id.nav_compartir){
+            Intent intent = new Intent(this, FacebookActivity.class);
+            startActivity(intent);
+            flag = "Facebook";
+        } else if (id == R.id.nav_rating){
+            tab1 tab1fragment = new tab1();
+            loadfragment = tab1fragment;
+            flag = "Rating"; 
         }
 
-
+        //ENVIO DE DATOS PARA MONITOREO DE USO DE APP
+        if (!flag.equals(null)) {
+            TrackHelper.track().screen("/").title(flag).with(getTracker());
+        }
         transaction.replace(R.id.fragmentContainer, loadfragment);
         transaction.commit();
 
@@ -196,6 +222,10 @@ public class MainActivity extends AppCompatActivity
 
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
+
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragmentContainer, new NewsTweetFragment());
+        transaction.commit();
     }
 
     @Override

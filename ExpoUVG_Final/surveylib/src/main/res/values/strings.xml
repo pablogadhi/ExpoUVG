@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EncuestasUVG</string>
+    <string name="xcontinue">Continuar</string>
+    <string name="start">Empezar</string>
+    <string name="close">Cerrar</string>
+    <string name="finish">Terminar</string>
+</resources>
