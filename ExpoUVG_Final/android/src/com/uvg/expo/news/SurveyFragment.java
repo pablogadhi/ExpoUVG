@@ -25,12 +25,36 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import static android.app.Activity.RESULT_OK;
 
 public class SurveyFragment extends Fragment {
     boolean NoTermino=true;
     String jsons="";
+
+    public class QueryTaskEncuestas extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            Log.d("*********** ","EMPECEMOS A CARGAR ENCUESTAS");
+            String resultado="";
+            try {
+                URL url = NetworkUtils.buildUrl(0,params[0]);
+                resultado = NetworkUtils.getResponseFromHttpUrl(url);
+                Log.d("",resultado);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return resultado;
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            NoTermino=false;
+        }
+    }
 
     public class QueryTaskBotones extends AsyncTask<Void, Void, String>{
 
@@ -82,11 +106,22 @@ public class SurveyFragment extends Fragment {
                     rlp= new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     btn.setLayoutParams(llp);
                     final int index = i;
+                    final String id = String.valueOf(tmp);
                     btn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             Intent i_survey = new Intent(getActivity(), SurveyActivity.class);
                             //you have to pass as an extra the json string.
-                            i_survey.putExtra("json_survey", loadSurveyJson("ejemplo.json"));
+                            try {
+                                jsons = new QueryTaskEncuestas().execute(id).get();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
+                            //while (NoTermino){
+                            Log.d("ESTO TIENE QUE SERVIR: ",jsons);
+                            //}
+                            i_survey.putExtra("json_survey", jsons);
                             startActivityForResult(i_survey, SURVEY_REQUEST);
                             Log.i("TAG", "The index is" + index);
                         }
