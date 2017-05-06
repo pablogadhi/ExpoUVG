@@ -128,6 +128,7 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                                                     Global.setUserId(id);
                                                     String name = respuesta.getString("username");
                                                     Global.setUserName(name);
+                                                    startActivity(new Intent(Registrar.this,RenderCreation.class));
 
                                                 } catch (JSONException e) {
                                                     //onFailure(statusCode, headers, e, (JSONObject)null);
@@ -138,7 +139,7 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                                             }
 
                                         });
-                                startActivity(new Intent(Registrar.this,RenderCreation.class));
+                               
 
                             }
                         }
