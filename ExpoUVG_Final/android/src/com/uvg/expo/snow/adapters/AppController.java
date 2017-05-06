@@ -32,7 +32,7 @@ public class AppController extends android.support.multidex.MultiDexApplication{
     private static AppController mInstance;
 
     public TrackerConfig onCreateTrackerConfig() {
-        return new TrackerConfig("http://ec2-34-209-62-118.us-west-2.compute.amazonaws.com/piwik", 1, "first-attempt");
+        return new TrackerConfig("http://ec2-34-209-62-118.us-west-2.compute.amazonaws.com/piwik", 2, "Experiencia UVG");
     }
 
     public synchronized Tracker getTracker() {

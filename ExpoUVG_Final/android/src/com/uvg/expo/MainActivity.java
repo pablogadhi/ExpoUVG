@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_compartir){
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
-            flag = "Facebook"
+            flag = "Facebook";
         } else if (id == R.id.nav_rating){
             tab1 tab1fragment = new tab1();
             loadfragment = tab1fragment;
