@@ -21,6 +21,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.uvg.expo.Global;
 import com.uvg.expo.R;
+import com.uvg.expo.map.RenderCreation;
 
 import org.json.JSONException;
 import org.json.JSONObject;

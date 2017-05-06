@@ -36,7 +36,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static com.uvg.expo.gamification.JSONParser.json;
 
 public class LeaderboardFragment extends Fragment{
 

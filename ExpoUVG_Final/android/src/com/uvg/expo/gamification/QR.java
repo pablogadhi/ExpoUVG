@@ -99,9 +99,13 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
         Toast.makeText(getApplicationContext(), result.getText(), Toast.LENGTH_SHORT).show();
         scanner.resumeCameraPreview(this);
 
-        int contC = 0;
+        int contC = Global.getContC();
+        int contD = Global.getContD();
+        int contL = Global.getContL();
+
         if (result.getText().equals("visito la cueva")) {
-            contC++;
+            Global.setContC(Global.getContC()+1);
+            Log.d("CantidadCueva", String.valueOf(Global.getContC()));
             if (contC == 1) {
                 JSONObject jsonParams = new JSONObject();
                 AsyncHttpClient client2 = new AsyncHttpClient();
@@ -109,6 +113,66 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
                 try {
                     jsonParams.put("points", "300");
                     jsonParams.put("GameId", Global.getCueva());
+                    jsonParams.put("GameUserId", Global.getUserId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            }
+                        });
+            }
+        }
+
+        if (result.getText().equals("conocio a Douglas")) {
+            Global.setContD(Global.getContD()+1);
+            Log.d("CantidadDouglas", String.valueOf(Global.getContD()));
+            if (contD == 1) {
+                JSONObject jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
+
+                try {
+                    jsonParams.put("points", "300");
+                    jsonParams.put("GameId", Global.getDouglas());
+                    jsonParams.put("GameUserId", Global.getUserId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            }
+                        });
+            }
+        }
+
+        if (result.getText().equals("encontro el libro Don Quijote de la Mancha")) {
+            Global.setContL(Global.getContL()+1);
+            Log.d("CantidadLibros", String.valueOf(Global.getContL()));
+            if (contL == 1) {
+                JSONObject jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
+
+                try {
+                    jsonParams.put("points", "300");
+                    jsonParams.put("GameId", Global.getLibro());
                     jsonParams.put("GameUserId", Global.getUserId());
                 } catch (JSONException e) {
                     e.printStackTrace();

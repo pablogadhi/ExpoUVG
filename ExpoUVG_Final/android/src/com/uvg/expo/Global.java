@@ -12,7 +12,6 @@ public class Global  {
 
     public static String userName = "";
     public static String userId = "";
-    public static String noticias = "15";
     public static String cueva = "16";
     public static String encuestas = "17";
     public static String lugares = "18";
@@ -23,6 +22,9 @@ public class Global  {
     public static String douglas = "23";
     public static String busqueda = "24";
     public static String libro = "25";
+    public static int contC = 0;
+    public static int contD = 0;
+    public static int contL = 0;
 
     public static void setUserName(String uN){userName = uN;}
 
@@ -33,8 +35,6 @@ public class Global  {
     }
 
     public static String getUserId(){ return userId;}
-
-    public static String getNoticias() {return noticias;}
 
     public static String getCueva() {return  cueva;}
 
@@ -56,5 +56,16 @@ public class Global  {
 
     public static String getLibro() {return libro;}
 
+    public static int getContC() {return contC;}
+
+    public static void setContC(int nc){contC= nc;}
+
+    public static int getContD() {return contD;}
+
+    public static void setContD(int nD){contD= nD;}
+
+    public static int getContL() {return contL;}
+
+    public static void setContL(int nL){contL= nL;}
 }
 

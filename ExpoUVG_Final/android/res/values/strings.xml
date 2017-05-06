@@ -12,12 +12,11 @@
 
     <!-- Gamification -->
     <string name="ver_reto">Ver Reto</string>
-    <string name="Reto1">Leyó (1,5,10) noticias</string>
     <string name="Reto2">Visitó la cueva</string>
     <string name="Reto3">Contestó (1, 2, 3) encuestas</string>
-    <string name="Reto4">Estuvo en (2, 3, 4) lugares diferentes</string>
+    <string name="Reto4">Estuvo en (2, 4, 6) lugares diferentes</string>
     <string name="Reto5">Realizar (1, 2, 3) publicaciones con # en alguna red social</string>
-    <string name="Reto6">Recomendó a (1,2,3) amigos el evento </string>
+    <string name="Reto6">Recomendó (1,2,3) a la universidad </string>
     <string name="Reto7">Calificó (1, 2, 3) stands</string>
     <string name="Reto8">Buscó (2,3,4) lugares en el mapa</string>
     <string name="Reto9">Conoció a Douglas</string>
