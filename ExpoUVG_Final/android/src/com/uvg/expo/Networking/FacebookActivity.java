@@ -5,12 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -25,33 +21,29 @@ import com.facebook.share.widget.ShareDialog;
 import com.uvg.expo.R;
 
 
-public class FacebookFragment extends Fragment {
+public class FacebookActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.facebook_activity, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.facebook_activity);
 
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
 
-        AppEventsLogger.activateApp(getActivity().getApplication());
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        AppEventsLogger.activateApp(getApplication());
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         final Bitmap image;
-        image = BitmapFactory.decodeResource(getActivity().getApplicationContext().getResources(), R.mipmap.ic_launcher);
+        image = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.mipmap.ic_launcher);
 
         Button btShare, btLink, btLike;
 
-        btShare = (Button) getView().findViewById(R.id.btShare);
-        btLink = (Button) getView().findViewById(R.id.btLink);
-        btLike = (Button) getView().findViewById(R.id.btLike);
+        btShare = (Button) findViewById(R.id.btShare);
+        btLink = (Button) findViewById(R.id.btLink);
+        btLike = (Button) findViewById(R.id.btLike);
 
         btShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,17 +87,14 @@ public class FacebookFragment extends Fragment {
                 }
             }
         });
-
-
-        super.onActivityCreated(savedInstanceState);
     }
     @Override
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
     public void onNumeral(View v) {
-            ImageButton entry = (ImageButton) getView().findViewById(R.id.imExpo);
+            ImageButton entry = (ImageButton) findViewById(R.id.imExpo);
             entry.setOnClickListener(new View.OnClickListener() {
 
                 @Override

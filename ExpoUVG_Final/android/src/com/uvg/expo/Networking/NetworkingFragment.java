@@ -43,7 +43,7 @@ public class NetworkingFragment extends android.support.v4.app.Fragment {
                     ft.commit();
 
                 }else if (position==1){
-                    Intent intent = new Intent(getActivity(), FacebookFragment.class);
+                    Intent intent = new Intent(getActivity(), FacebookActivity.class);
                     startActivity(intent);
 
                 }

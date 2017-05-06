@@ -68,7 +68,7 @@
         <activity android:name=".snow.activities.NewsTweetFragment">
         </activity>
 
-        <activity android:name=".Networking.FacebookFragment"/>
+        <activity android:name=".Networking.FacebookActivity"/>
         <provider android:authorities="com.facebook.app.FacebookContentProvider417316568639624"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true" />

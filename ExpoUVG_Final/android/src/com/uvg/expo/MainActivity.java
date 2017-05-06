@@ -14,8 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.uvg.expo.Networking.FacebookFragment;
-import com.uvg.expo.Networking.NetworkingFragment;
+import com.google.android.gms.vision.face.Face;
+import com.uvg.expo.Networking.FacebookActivity;
 import com.uvg.expo.Networking.tab1;
 import com.uvg.expo.gamification.LeaderboardFragment;
 import com.uvg.expo.gamification.RetosFragment;
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, NewsTweetFragment.class);
             startActivity(intent);
         } else if (id == R.id.nav_compartir){
-            FacebookFragment surveyFragment = new FacebookFragment();
-            loadfragment = surveyFragment;
+            Intent intent = new Intent(this, FacebookActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_rating){
             tab1 tab1fragment = new tab1();
             loadfragment = tab1fragment;
