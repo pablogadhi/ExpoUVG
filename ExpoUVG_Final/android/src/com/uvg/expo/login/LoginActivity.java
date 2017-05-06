@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null){
                     //cuando el usuario vuelva a ingresar, ya no sera necesario que se registre,
                     //la aplicacion determina automaticamente si esta conectado
-                    //goMainScreen();
+                    goMainScreen();
                 }
             }
         };
@@ -414,8 +414,10 @@ public class LoginActivity extends AppCompatActivity {
                                             try {
                                                 String id = respuesta.getString("ID");
                                                 Log.d("id", id);
+                                                Global.setUserId(id);
                                                 String name = respuesta.getString("username");
                                                 Log.d("name", name);
+                                                Global.setUserName(name);
 
                                             } catch (JSONException e) {
                                                 //onFailure(statusCode, headers, e, (JSONObject)null);

@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private boolean regresar;
     private Fragment loadfragment;
-    private FragmentManager manager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //TrackHelper.track().screen("/").title("La app de aquellos").with(getTracker());
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        manager = getSupportFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.fragmentContainer, new NewsTweetFragment());
         transaction.commit();
@@ -151,7 +149,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        manager = getSupportFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
         loadfragment = new Fragment();
@@ -182,10 +180,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
             flag = "Facebook";
+            /*
         } else if (id == R.id.nav_rating){
             tab1 tab1fragment = new tab1();
             loadfragment = tab1fragment;
-            flag = "Rating"; 
+            flag = "Rating"; */
         }
 
         //ENVIO DE DATOS PARA MONITOREO DE USO DE APP
@@ -223,9 +222,6 @@ public class MainActivity extends AppCompatActivity
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
 
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragmentContainer, new NewsTweetFragment());
-        transaction.commit();
     }
 
     @Override

@@ -16,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.androidadvance.androidsurvey.SurveyActivity;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
 
 import org.json.JSONArray;
@@ -24,10 +27,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.entity.mime.Header;
+
 import static android.app.Activity.RESULT_OK;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class SurveyFragment extends Fragment {
     boolean NoTermino=true;
@@ -123,14 +131,13 @@ public class SurveyFragment extends Fragment {
                             }
                             StringEntity entity = null;
                             try {
-                                StringEntity = new StringEntity(jsonParams.toString());
+                                StringEntity stringEntity = new StringEntity(jsonParams.toString());
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                             }
                             String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
                             client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
                                     new JsonHttpResponseHandler() {
-                                        @Override
                                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                         }
                                     });

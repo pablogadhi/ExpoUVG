@@ -14,10 +14,11 @@
             android:id="@+id/leaderboard"
             android:icon="@drawable/bulletin_board"
             android:title="LeaderBoard" />
+        <!--
         <item
             android:id="@+id/nav_rating"
             android:icon="@android:drawable/star_big_off"
-            android:title="Rate Stands" />
+            android:title="Rate Stands" />-->
 
     </group>
 
