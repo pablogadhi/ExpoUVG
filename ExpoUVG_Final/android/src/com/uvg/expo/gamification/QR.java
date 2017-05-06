@@ -111,7 +111,7 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
                 AsyncHttpClient client2 = new AsyncHttpClient();
 
                 try {
-                    jsonParams.put("points", "300");
+                    jsonParams.put("points", "1000");
                     jsonParams.put("GameId", Global.getCueva());
                     jsonParams.put("GameUserId", Global.getUserId());
                 } catch (JSONException e) {
@@ -141,7 +141,7 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
                 AsyncHttpClient client2 = new AsyncHttpClient();
 
                 try {
-                    jsonParams.put("points", "300");
+                    jsonParams.put("points", "1000");
                     jsonParams.put("GameId", Global.getDouglas());
                     jsonParams.put("GameUserId", Global.getUserId());
                 } catch (JSONException e) {
@@ -171,7 +171,7 @@ public class QR extends AppCompatActivity implements ZXingScannerView.ResultHand
                 AsyncHttpClient client2 = new AsyncHttpClient();
 
                 try {
-                    jsonParams.put("points", "300");
+                    jsonParams.put("points", "1000");
                     jsonParams.put("GameId", Global.getLibro());
                     jsonParams.put("GameUserId", Global.getUserId());
                 } catch (JSONException e) {

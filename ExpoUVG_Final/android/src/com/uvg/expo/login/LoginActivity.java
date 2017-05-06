@@ -2,6 +2,7 @@ package com.uvg.expo.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -250,7 +251,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_LONG).show();
                     // Si logra guardar la informacion en firebase, se abre la otra pestaña donde se envuentra la informacion de su perfil
                 }else{
-                    Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
                     goMainScreen();
 
                 }
@@ -303,7 +304,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else{
                             //si logra ingresar, el usuario podra segui a la siguiente pestaña
-                            Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                            String WTF = preferences.getString("ID", "id");
+
+                            Global.setUserId(WTF);
+
                             goMainScreen();
                         }
                     }
@@ -336,7 +343,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         //si se completa el usuario puede seguir a la siguiente pestaña
                         else{
-                            Toast.makeText(LoginActivity.this,"Se ha registrado correctacmente",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Se ha registrado correctamente",Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                            String WTF = preferences.getString("ID", "id");
+
+                            Global.setUserId(WTF);
+
                             goMainScreen();
                         }
                     }
