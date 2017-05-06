@@ -39,6 +39,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import app.Config;
 import utils.NotificationUtils;
 
+// tracking modules
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
+import com.uvg.expo.snow.adapters.AppController;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DrawerHandler {
 
@@ -51,6 +57,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        TrackHelper.track().screen("/").title("La app de aquellos").with(getTracker());
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -92,7 +100,10 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         };
+    }
 
+    private Tracker getTracker(){
+        return ((AppController) getApplication()).getTracker();
     }
 
     @Override
