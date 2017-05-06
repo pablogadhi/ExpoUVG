@@ -10,6 +10,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.google.gms:google-services:3.0.0'
+
     }
 }
 
@@ -25,7 +26,15 @@ allprojects {
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
+
+        globalMinSdkVersion = 10
+        globalTargetSdkVersion = 25
+        globalCompileSdkVersion = 25
+        globalBuildToolsVersion = '25.0.2'
+        supportLibVersion = '25.3.1'
+        timberVersion = '4.5.1'
     }
+
 
     repositories {
         mavenLocal()

@@ -14,6 +14,11 @@ import com.uvg.expo.snow.volley.LruBitmapCache;
 import android.app.Application;
 import android.text.TextUtils;
 
+import org.piwik.sdk.Piwik;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.TrackerConfig;
+import org.piwik.sdk.extra.DownloadTracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 
 public class AppController extends android.support.multidex.MultiDexApplication{
@@ -23,13 +28,25 @@ public class AppController extends android.support.multidex.MultiDexApplication{
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     LruBitmapCache mLruBitmapCache;
-
+    private Tracker mPiwikTracker;
     private static AppController mInstance;
+
+    public TrackerConfig onCreateTrackerConfig() {
+        return new TrackerConfig("http://ec2-34-209-62-118.us-west-2.compute.amazonaws.com/piwik", 2, "Experiencia UVG");
+    }
+
+    public synchronized Tracker getTracker() {
+        if (mPiwikTracker == null) mPiwikTracker = Piwik.getInstance(this).newTracker(onCreateTrackerConfig());
+        return mPiwikTracker;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+
+        // track app installation
+        TrackHelper.track().download().identifier(new DownloadTracker.Extra.ApkChecksum(this)).with(getTracker());
     }
 
     public static synchronized AppController getInstance() {

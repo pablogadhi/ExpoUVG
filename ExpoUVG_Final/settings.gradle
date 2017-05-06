@@ -1,1 +1,1 @@
-include 'android', 'core', 'placeholderview', ':surveylib'
+include 'android', 'core', 'placeholderview', ':piwik-sdk', ':surveylib'
