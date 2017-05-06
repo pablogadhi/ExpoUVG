@@ -109,6 +109,33 @@ public class SurveyFragment extends Fragment {
                     final String id = String.valueOf(tmp);
                     btn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
+                            //****************************INICIO CODIGO JASMIN*****************************
+                            //*****************************************************************************
+                            JSONObject jsonParams = new JSONObject();
+                            AsyncHttpClient client2 = new AsyncHttpClient();
+
+                            try {
+                                jsonParams.put("points", "100");
+                                jsonParams.put("GameId", Global.getEncuestas());
+                                jsonParams.put("GameUserId", Global.getUserId());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            StringEntity entity = null;
+                            try {
+                                StringEntity = new StringEntity(jsonParams.toString());
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                            String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                            client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                                    new JsonHttpResponseHandler() {
+                                        @Override
+                                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                        }
+                                    });
+                            //*****************************************************************************
+                            //********************FIN DE CODIGO JASMIN*************************************
                             Intent i_survey = new Intent(getActivity(), SurveyActivity.class);
                             //you have to pass as an extra the json string.
                             try {
