@@ -4,25 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Json;
-import com.google.android.gms.vision.text.Text;
-import com.google.gson.JsonArray;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.R;
 
 import org.json.JSONArray;
@@ -30,9 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -104,15 +91,18 @@ public class LeaderboardFragment extends Fragment{
         TableRow row = new TableRow(getView().getContext());
 
         TextView posicion = new TextView(getView().getContext());
-        posicion.setText(pos + " ");
+        posicion.setText("       "+pos + "                ");
         row.addView(posicion);
 
         TextView usuario = new TextView(getView().getContext());
         usuario.setText(nombre);
         row.addView(usuario);
 
+
         TextView punteo = new TextView(getView().getContext());
-        punteo.setText(pts);
+
+        punteo.setText("                              "+pts);
+
         row.addView(punteo);
 
         lbl.addView(row);

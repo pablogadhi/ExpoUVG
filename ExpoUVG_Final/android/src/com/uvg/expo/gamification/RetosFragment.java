@@ -134,8 +134,11 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                     JSONObject jsonobject = null;
                     try {
                         jsonobject = jsonArray.getJSONObject(i);
+                        Log.d("JSONACHIVE", jsonobject.toString());
                         String gameId = jsonobject.getString("gameId");
+                        Log.d("gameId", gameId);
                         String points = jsonobject.getString("points");
+                        Log.d("points", points);
                         switch (gameId){
                             case "16":
                                 if (points.equals("100")){
