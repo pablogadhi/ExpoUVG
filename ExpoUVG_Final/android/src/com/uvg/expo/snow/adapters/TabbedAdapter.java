@@ -20,8 +20,8 @@ public class TabbedAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: return "Subir";
-            case 1: return "Tweets";
+            case 0: return "Tweets";
+            //case 1: return "Tweets";
         }
         return super.getPageTitle(position);
     }
@@ -30,15 +30,15 @@ public class TabbedAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position) {
-            case 0: return new SendFragment();
-            case 1: return new TweetsFragment();
-            default: return null;
+            case 0: return new TweetsFragment();
+            //case 1: return new TweetsFragment();
+            default: return new TweetsFragment();
         }
 
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 1;
     }
 }

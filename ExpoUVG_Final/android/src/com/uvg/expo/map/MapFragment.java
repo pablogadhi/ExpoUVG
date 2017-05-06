@@ -53,7 +53,6 @@ public class MapFragment extends Fragment {
 
     TextView info;
     TextView clima;
-    TextView cortina;
 
 
     @Override
@@ -65,7 +64,7 @@ public class MapFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
 
         preferences = getActivity().getSharedPreferences(getString(R.string.shared_prefs), getActivity().MODE_PRIVATE);
-        preferences.edit().putString("Lugar", "Empty").apply();
+        preferences.edit().putString("Lugar", "A").apply();
         preferences.edit().putBoolean("Cambio", false).apply();
 
         cardView = (CardView) getView().findViewById(R.id.cardView);
@@ -113,7 +112,6 @@ public class MapFragment extends Fragment {
         //Textview para debuggear
 
         bar = (ProgressBar) getView().findViewById(R.id.prgLoad);
-        cortina = (TextView) getView().findViewById(R.id.Cortina);
 
         Thread t = new Thread() {
 
@@ -129,7 +127,6 @@ public class MapFragment extends Fragment {
                                     // update TextView here!
                                     if (!modelUVG.getLoading()){
                                         bar.setVisibility(View.INVISIBLE);
-                                        cortina.setVisibility(View.INVISIBLE);
                                         cardView.setVisibility(View.VISIBLE);
                                         searchView.setVisibility(View.VISIBLE);
                                         qrfab.setVisibility(View.VISIBLE);
@@ -341,7 +338,6 @@ public class MapFragment extends Fragment {
     public void onResume() {
         if (modelUVG.getLoading()){
             bar.setVisibility(View.INVISIBLE);
-            cortina.setVisibility(View.INVISIBLE);
         }
         setMostrar(preferences.getString("Lugar","A"));
         modelUVG.setEstoy(mostrar);

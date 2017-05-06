@@ -55,6 +55,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.SyncHttpClient;
 import com.uvg.expo.Global;
 import com.uvg.expo.R;
 import com.uvg.expo.map.RenderCreation;
@@ -460,7 +461,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 JSONObject jsonParams = new JSONObject();
-                AsyncHttpClient client2 = new AsyncHttpClient();
+                SyncHttpClient client2 = new SyncHttpClient();
 
                 try {
                     jsonParams.put("UserName", names);

@@ -23,6 +23,7 @@ import com.uvg.expo.gamification.Usuario;
 import com.uvg.expo.map.MapFragment;
 import com.uvg.expo.map.RenderCreation;
 import com.uvg.expo.news.SurveyFragment;
+import com.uvg.expo.snow.activities.MainTabbedActivity;
 import com.uvg.expo.snow.activities.NewsTweetFragment;
 
 import android.content.BroadcastReceiver;
@@ -44,6 +45,7 @@ import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
 import com.uvg.expo.snow.adapters.AppController;
+import com.uvg.expo.snow.fragments.TweetsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DrawerHandler {
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private boolean regresar;
     private Fragment loadfragment;
+    private FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +77,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragmentContainer, new RetosFragment());
+        transaction.add(R.id.fragmentContainer, new NewsTweetFragment());
         transaction.commit();
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -148,7 +151,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
         loadfragment = new Fragment();
@@ -172,8 +175,8 @@ public class MainActivity extends AppCompatActivity
             loadfragment = surveyFragment;
             flag = "Survey"; 
         } else if (id == R.id.nav_feed){
-            Intent intent = new Intent(this, NewsTweetFragment.class);
-            startActivity(intent);
+            NewsTweetFragment tweetsFragment = new NewsTweetFragment();
+            loadfragment = tweetsFragment;
             flag = "News";
         } else if (id == R.id.nav_compartir){
             Intent intent = new Intent(this, FacebookActivity.class);
@@ -219,6 +222,10 @@ public class MainActivity extends AppCompatActivity
 
         // clear the notification area when the app is opened
         NotificationUtils.clearNotifications(getApplicationContext());
+
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragmentContainer, new NewsTweetFragment());
+        transaction.commit();
     }
 
     @Override

@@ -65,8 +65,7 @@
         <activity android:name=".login.Registrar"></activity>
         <activity android:name=".gamification.QR"/>
 
-        <activity android:name=".snow.activities.NewsTweetFragment">
-        </activity>
+        <activity android:name=".snow.activities.MainTabbedActivity"/>
 
         <activity android:name=".Networking.FacebookActivity"/>
         <provider android:authorities="com.facebook.app.FacebookContentProvider417316568639624"

@@ -46,13 +46,9 @@ public class TweetsFragment extends Fragment {
     Map<String, String> params = new HashMap();
     JSONObject parameters = new JSONObject(params);
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(
-                R.layout.view_tweets, container, false);
-
-        listView = (ListView) rootView.findViewById(R.id.list_aa);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        listView = (ListView) getView().findViewById(R.id.list_aa);
         foab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
 
         feedItems = new ArrayList<FeedItem>();
@@ -71,6 +67,14 @@ public class TweetsFragment extends Fragment {
         });
 
         refresh();
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(
+                R.layout.view_tweets, container, false);
 
         return rootView;
     }

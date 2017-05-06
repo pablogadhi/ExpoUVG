@@ -51,7 +51,7 @@ import okhttp3.Response;
 public class MainTabbedActivity extends AppCompatActivity {
 
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL = 2;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class MainTabbedActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PagerAdapter pagerAdapter = new TabbedAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        //TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        //tabLayout.setupWithViewPager(viewPager);
 
         // Solicitamos los permisos al usuario
         if (ContextCompat.checkSelfPermission(this,

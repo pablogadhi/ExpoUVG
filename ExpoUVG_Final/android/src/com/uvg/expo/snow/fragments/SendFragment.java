@@ -87,9 +87,9 @@ public class SendFragment extends Fragment {
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE);
         if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            //final ProgressDialog loading = ProgressDialog.show(getActivity(),"Subiendo...","Espere...");
+            final ProgressDialog loading = ProgressDialog.show(getActivity(),"Subiendo...","Espere...");
             tweetText = editText.getText().toString();
-            SendTweet sendTweet = new SendTweet();
+            SendTweet sendTweet = new SendTweet(loading);
             sendTweet.execute();
         }
     }
@@ -111,11 +111,11 @@ public class SendFragment extends Fragment {
     private class SendTweet extends AsyncTask<String, Integer, Integer> {
 
         OkHttpClient client = new OkHttpClient();
-        //ProgressDialog diag;
+        ProgressDialog diag;
 
-        public SendTweet() {
+        public SendTweet(ProgressDialog diag) {
             super();
-            //this.diag = diag;
+            this.diag = diag;
         }
 
         @Override
@@ -146,7 +146,7 @@ public class SendFragment extends Fragment {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-            //diag.dismiss();
+            diag.dismiss();
         }
 
 
@@ -168,8 +168,6 @@ public class SendFragment extends Fragment {
             }
         }
     }
-
-
 
 
 

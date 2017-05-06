@@ -18,7 +18,18 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.uvg.expo.Global;
 import com.uvg.expo.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+
+import cz.msebera.android.httpclient.entity.StringEntity;
+import cz.msebera.android.httpclient.entity.mime.Header;
 
 
 public class FacebookActivity extends AppCompatActivity {
@@ -58,6 +69,30 @@ public class FacebookActivity extends AppCompatActivity {
                             .setShareHashtag(new ShareHashtag.Builder().setHashtag("#ExpoUVG").build());
 
                     shareDialog.show(content);
+
+                    JSONObject jsonParams = new JSONObject();
+                    AsyncHttpClient client2 = new AsyncHttpClient();
+
+                    try {
+                        jsonParams.put("points", "100");
+                        jsonParams.put("GameId", Global.getPublicaciones());
+                        jsonParams.put("GameUserId", Global.getUserId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    StringEntity entity = null;
+                    try {
+                        entity = new StringEntity(jsonParams.toString());
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                    client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                            new JsonHttpResponseHandler() {
+                                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                                }
+                            });
                 }
             }
         });
@@ -71,6 +106,30 @@ public class FacebookActivity extends AppCompatActivity {
                             .setContentDescription("Conoce los servicios que tenemos para ti.")
                             .setContentUrl(Uri.parse("http://www.uvg.edu.gt/")).build();
                     shareDialog.show(linkContent);
+
+                    JSONObject jsonParams = new JSONObject();
+                    AsyncHttpClient client2 = new AsyncHttpClient();
+
+                    try {
+                        jsonParams.put("points", "100");
+                        jsonParams.put("GameId", Global.getRecomendar());
+                        jsonParams.put("GameUserId", Global.getUserId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    StringEntity entity = null;
+                    try {
+                        entity = new StringEntity(jsonParams.toString());
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                    client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                            new JsonHttpResponseHandler() {
+                                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                }
+                            });
+
                 }
             }
         });
@@ -84,6 +143,29 @@ public class FacebookActivity extends AppCompatActivity {
                             .setContentDescription("Sigue de cerca las actividades de la universidad.")
                             .setContentUrl(Uri.parse("https://www.facebook.com/universidaddelvallegt/")).build();
                     shareDialog.show(linkContent);
+
+                    JSONObject jsonParams = new JSONObject();
+                    AsyncHttpClient client2 = new AsyncHttpClient();
+
+                    try {
+                        jsonParams.put("points", "100");
+                        jsonParams.put("GameId", Global.getRecomendar());
+                        jsonParams.put("GameUserId", Global.getUserId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    StringEntity entity = null;
+                    try {
+                        entity = new StringEntity(jsonParams.toString());
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                    client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                            new JsonHttpResponseHandler() {
+                                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                }
+                            });
                 }
             }
         });

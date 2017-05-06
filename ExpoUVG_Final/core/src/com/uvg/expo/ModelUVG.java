@@ -195,8 +195,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
 		instances.add(modelInstance7);
         */
 
-        gestureDetector = new GestureDetector(this);
-        Gdx.input.setInputProcessor(gestureDetector);
 
         //A-F
         ModelBuilder modelBuilderAF = new ModelBuilder();
@@ -602,6 +600,9 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
         modelInstanceF.transform.translate(flagPosition);
 
         loading = false;
+
+        gestureDetector = new GestureDetector(this);
+        Gdx.input.setInputProcessor(gestureDetector);
     }
 
     @Override
@@ -733,10 +734,6 @@ public class ModelUVG extends ApplicationAdapter implements GestureDetector.Gest
                 float dif = -400f + posActual.z +5f;
                 moveALL(posActual.x,posActual.y,posActual.z - dif);
             }
-
-            System.out.println(modelInstance1.transform.getTranslation(vectorCero));
-            System.out.println(deltaY);
-            System.out.println(instancePOST.transform.getTranslation(vectorCero).z);
 
 
         }
