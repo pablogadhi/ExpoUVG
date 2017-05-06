@@ -64,7 +64,7 @@ public class Usuario extends Fragment implements View.OnClickListener{
         nombre = (TextView) getView().findViewById(R.id.txtNombre);
         super.onActivityCreated(savedInstanceState);
 
-        bar.setMax(2400);
+        bar.setMax(6000);
         bar.setProgress(1000);
         Log.d("UserIdOal", Global.getUserId());
 
@@ -103,7 +103,7 @@ public class Usuario extends Fragment implements View.OnClickListener{
         });
 
         cant = 500;
-        bar.setMax(2400);
+        bar.setMax(6000);
         bar.setProgress(cant);
     }
 

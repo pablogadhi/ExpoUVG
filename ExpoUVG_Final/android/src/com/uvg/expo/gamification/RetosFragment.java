@@ -33,10 +33,10 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
     JSONObject object, prueba1, prueba2, prueba3;
     Handler customHandler = new Handler();
     ImageView  r2i1,r2i2, r2i3, r3i1,r3i2, r3i3, r4i1,r4i2, r4i3, r5i1,r5i2, r5i3;
-    ImageView r6i1, r6i2, r6i3, r7i1, r7i2, r7i3, r8i1, r8i2, r8i3, r9i1, r9i2, r9i3, r10i1, r10i2, r10i3, r11i1, r11i2, r11i3;
+    ImageView r6i1, r6i2, r6i3, r7i1, r7i2, r7i3, r8i1, r8i2, r8i3, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2, r11i3;
     int prueba;
     View view;
-    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11;
+    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn11;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstantState){
@@ -75,9 +75,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         btn9 = (Button) getView().findViewById(R.id.button9);
         btn9.setOnClickListener(this);
 
-        btn10 = (Button) getView().findViewById(R.id.button10);
-        btn10.setOnClickListener(this);
-
         btn11 = (Button) getView().findViewById(R.id.button11);
         btn11.setOnClickListener(this);
 
@@ -105,9 +102,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
         r9i1 = (ImageView) getView().findViewById(R.id.reto9Img1);
         r9i2 = (ImageView) getView().findViewById(R.id.reto9Img2);
         r9i3 = (ImageView) getView().findViewById(R.id.reto9Img3);
-        r10i1 = (ImageView) getView().findViewById(R.id.reto10Img1);
-        r10i2 = (ImageView) getView().findViewById(R.id.reto10Img2);
-        r10i3 = (ImageView) getView().findViewById(R.id.reto10Img3);
         r11i1 = (ImageView) getView().findViewById(R.id.reto11Img1);
         r11i2 = (ImageView) getView().findViewById(R.id.reto11Img2);
         r11i3 = (ImageView) getView().findViewById(R.id.reto11Img3);
@@ -141,13 +135,9 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                         Log.d("points", points);
                         switch (gameId){
                             case "16":
-                                if (points.equals("100")){
+                                if (points.equals("1000")){
                                     r2i1.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("300")){
                                     r2i2.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("600")){
                                     r2i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
@@ -155,21 +145,27 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                                 if (points.equals("100")){
                                     r3i1.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("300")){
+                                else if (points.equals("200")){
+                                    r3i1.setImageResource(R.drawable.star_verde);
                                     r3i2.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("600")){
+                                else if (points.equals("300")){
+                                    r3i1.setImageResource(R.drawable.star_verde);
+                                    r3i2.setImageResource(R.drawable.star_verde);
                                     r3i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
                             case "18":
-                                if (points.equals("100")){
+                                if (points.equals("200")){
                                     r4i1.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("300")){
+                                else if (points.equals("400")){
+                                    r4i1.setImageResource(R.drawable.star_verde);
                                     r4i2.setImageResource(R.drawable.star_verde);
                                 }
                                 else if (points.equals("600")){
+                                    r4i1.setImageResource(R.drawable.star_verde);
+                                    r4i2.setImageResource(R.drawable.star_verde);
                                     r4i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
@@ -178,9 +174,12 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                                     r5i1.setImageResource(R.drawable.star_verde);
                                 }
                                 else if (points.equals("300")){
+                                    r5i1.setImageResource(R.drawable.star_verde);
                                     r5i2.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("600")){
+                                else if (points.equals("500")){
+                                    r5i1.setImageResource(R.drawable.star_verde);
+                                    r5i2.setImageResource(R.drawable.star_verde);
                                     r5i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
@@ -188,10 +187,13 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                                 if (points.equals("100")){
                                     r6i1.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("300")){
+                                else if (points.equals("200")){
+                                    r6i1.setImageResource(R.drawable.star_verde);
                                     r6i2.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("600")){
+                                else if (points.equals("300")){
+                                    r6i1.setImageResource(R.drawable.star_verde);
+                                    r6i2.setImageResource(R.drawable.star_verde);
                                     r6i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
@@ -199,54 +201,41 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                                 if (points.equals("100")){
                                     r7i1.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("300")){
+                                else if (points.equals("200")){
+                                    r7i1.setImageResource(R.drawable.star_verde);
                                     r7i2.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("600")){
+                                else if (points.equals("300")){
+                                    r7i1.setImageResource(R.drawable.star_verde);
+                                    r7i2.setImageResource(R.drawable.star_verde);
                                     r7i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
                             case "22":
-                                if (points.equals("100")){
+                                if (points.equals("200")){
                                     r8i1.setImageResource(R.drawable.star_verde);
                                 }
-                                else if (points.equals("300")){
+                                else if (points.equals("400")){
+                                    r8i1.setImageResource(R.drawable.star_verde);
                                     r8i2.setImageResource(R.drawable.star_verde);
                                 }
                                 else if (points.equals("600")){
+                                    r8i1.setImageResource(R.drawable.star_verde);
+                                    r8i2.setImageResource(R.drawable.star_verde);
                                     r8i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
                             case "23":
-                                if (points.equals("100")){
+                                if (points.equals("1000")){
                                     r9i1.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("300")){
                                     r9i2.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("600")){
                                     r9i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
-                            case "24":
-                                if (points.equals("100")){
-                                    r10i1.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("300")){
-                                    r10i2.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("600")){
-                                    r10i3.setImageResource(R.drawable.star_verde);
-                                }
-                                break;
                             case "25":
-                                if (points.equals("100")){
+                                if (points.equals("1000")){
                                     r11i1.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("300")){
                                     r11i2.setImageResource(R.drawable.star_verde);
-                                }
-                                else if (points.equals("600")){
                                     r11i3.setImageResource(R.drawable.star_verde);
                                 }
                                 break;
@@ -406,23 +395,6 @@ public class RetosFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 Reto9.show();
-
-                break;
-            // muestra el reto
-            case R.id.button10:
-                AlertDialog.Builder  Reto10 = new AlertDialog.Builder(getActivity());
-                Reto10.setView(R.layout.reto);
-                Reto10.setMessage(R.string.Reto10);
-                Reto10.setTitle("Expo UVG");
-                // al presionar validar te envia al lector de qr
-                Reto10.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Intent intQr = new Intent(RetosFragment.this, RetosFragment.class);
-                        //startActivity(intQr);
-                    }
-                });
-                Reto10.show();
 
                 break;
 

@@ -1,6 +1,7 @@
 package com.uvg.expo.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -126,6 +127,10 @@ public class Registrar extends AppCompatActivity implements View.OnClickListener
                                                 try {
                                                     String id = respuesta.getString("ID");
                                                     Global.setUserId(id);
+
+                                                    SharedPreferences preferences = getSharedPreferences(getString(R.string.shared_prefs), MODE_PRIVATE);
+                                                    preferences.edit().putString("ID", id).apply();
+
                                                     String name = respuesta.getString("username");
                                                     Global.setUserName(name);
                                                     startActivity(new Intent(Registrar.this,RenderCreation.class));
