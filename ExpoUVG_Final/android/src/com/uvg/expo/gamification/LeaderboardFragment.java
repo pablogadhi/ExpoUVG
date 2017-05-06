@@ -107,10 +107,11 @@ public class LeaderboardFragment extends Fragment{
 
         row.addView(punteo);
 
+        /**
         ImageView imagen = new ImageView(getView().getContext());
         if (Integer.parseInt(pts) >= 5600){
             imagen.setImageResource(R.drawable.star_verde);
-        }
+        }*/
 
         lbl.addView(row);
     }
