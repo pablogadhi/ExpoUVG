@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TrackHelper.track().screen("/").title("La app de aquellos").with(getTracker());
+        //TrackHelper.track().screen("/").title("La app de aquellos").with(getTracker());
 
         super.onCreate(savedInstanceState);
 
@@ -152,31 +152,43 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = manager.beginTransaction();
 
         loadfragment = new Fragment();
+        // VARIABLE PARA MONITOREAR USO DE APLICACION
+        String flag = null; 
 
         if (id == R.id.uvgmap) {
             MapFragment mapFragment = new MapFragment();
             loadfragment = mapFragment;
+            flag = "Map"; 
         } else if (id == R.id.leaderboard) {
             LeaderboardFragment leaderboardFragment = new LeaderboardFragment();
             loadfragment = leaderboardFragment;
+            flag = "LeaderBoard"; 
         } else if (id == R.id.nav_retos){
             RetosFragment retosFragment = new RetosFragment();
             loadfragment = retosFragment;
+            flag = "Retos"; 
         } else if (id == R.id.nav_survey){
             SurveyFragment surveyFragment = new SurveyFragment();
             loadfragment = surveyFragment;
+            flag = "Survey"; 
         } else if (id == R.id.nav_feed){
             Intent intent = new Intent(this, NewsTweetFragment.class);
             startActivity(intent);
+            flag = "News";
         } else if (id == R.id.nav_compartir){
             Intent intent = new Intent(this, FacebookActivity.class);
             startActivity(intent);
+            flag = "Facebook"
         } else if (id == R.id.nav_rating){
             tab1 tab1fragment = new tab1();
             loadfragment = tab1fragment;
+            flag = "Rating"; 
         }
 
-
+        //ENVIO DE DATOS PARA MONITOREO DE USO DE APP
+        if (!flag.equals(null)) {
+            TrackHelper.track().screen("/").title(flag).with(getTracker());
+        }
         transaction.replace(R.id.fragmentContainer, loadfragment);
         transaction.commit();
 
