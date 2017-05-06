@@ -58,7 +58,6 @@ public class MapFragment extends Fragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-
         preferences = getActivity().getSharedPreferences(getString(R.string.shared_prefs), getActivity().MODE_PRIVATE);
         preferences.edit().putString("Lugar", "Empty").apply();
         preferences.edit().putBoolean("Cambio", false).apply();
@@ -125,6 +124,7 @@ public class MapFragment extends Fragment {
                                     if (!modelUVG.getLoading()){
                                         bar.setVisibility(View.INVISIBLE);
                                         cortina.setVisibility(View.INVISIBLE);
+                                        surface.setVisibility(View.VISIBLE);
                                         cardView.setVisibility(View.VISIBLE);
                                         searchView.setVisibility(View.VISIBLE);
                                         qrfab.setVisibility(View.VISIBLE);
