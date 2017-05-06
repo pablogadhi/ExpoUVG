@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Request;
@@ -18,7 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.uvg.expo.R;
 import com.uvg.expo.snow.adapters.AppController;
 import com.uvg.expo.snow.adapters.FeedItem;
@@ -46,8 +44,6 @@ public class TweetsFragment extends Fragment {
     private static final String URL_IMG = "http://ec2-54-213-143-106.us-west-2.compute.amazonaws.com/images/";
 
     Map<String, String> params = new HashMap();
-
-
     JSONObject parameters = new JSONObject(params);
 
     @Nullable
@@ -56,9 +52,6 @@ public class TweetsFragment extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.view_tweets, container, false);
 
-        params.put("first_param", "1");
-        params.put("second_param", "2");
-
         listView = (ListView) rootView.findViewById(R.id.list_aa);
         foab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
 
@@ -66,6 +59,9 @@ public class TweetsFragment extends Fragment {
 
         listAdapter = new FeedListAdapter(getActivity(), feedItems);
         listView.setAdapter(listAdapter);
+
+        params.put("first_param", "1");
+        params.put("second_param", "2");
 
         foab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,9 +76,7 @@ public class TweetsFragment extends Fragment {
     }
 
     private void refresh(){
-        JsonObjectRequest jsonReq = new JsonObjectRequest(Request.Method.GET,
-                URL_FEED, parameters, new Response.Listener<JSONObject>() {
-
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, URL_FEED, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 VolleyLog.d(TAG, "Response: " + response.toString());
@@ -91,14 +85,14 @@ public class TweetsFragment extends Fragment {
                 }
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
 
-        AppController.getInstance().addToRequestQueue(jsonReq);
+        AppController.getInstance().addToRequestQueue(jsonRequest);
     }
 
     private void parseJsonFeed(JSONObject response) {
@@ -121,17 +115,6 @@ public class TweetsFragment extends Fragment {
             listAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    private class ResponseListener implements Response.Listener<JSONObject>{
-
-        @Override
-        public void onResponse(JSONObject response) {
-            VolleyLog.d(TAG, "Response: " + response.toString());
-            if (response != null) {
-                parseJsonFeed(response);
-            }
         }
     }
 }

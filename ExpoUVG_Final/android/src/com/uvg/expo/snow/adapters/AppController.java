@@ -10,12 +10,13 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.uvg.expo.snow.volley.LruBitmapCache;
 
+
 import android.app.Application;
 import android.text.TextUtils;
 
 
 
-public class AppController extends Application {
+public class AppController extends android.support.multidex.MultiDexApplication{
 
     public static final String TAG = AppController.class.getSimpleName();
 

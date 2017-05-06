@@ -298,7 +298,7 @@ public class LoginActivity extends AppCompatActivity {
                         // no podra ingresar y aparecera un error
                         if(!task.isSuccessful())
                         {
-                             Toast.makeText(LoginActivity.this,"Este usuario no se encuentra registrado",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Este usuario no se encuentra registrado",Toast.LENGTH_SHORT).show();
                         }
                         else{
                             //si logra ingresar, el usuario podra segui a la siguiente pestaña
@@ -458,7 +458,50 @@ public class LoginActivity extends AppCompatActivity {
                 if (genders != null && genders.size() > 0) {
                     gender = genders.get(0).getValue();
                 }
-                addUserWebService(emails,names);
+
+                JSONObject jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
+
+                try {
+                    jsonParams.put("UserName", names);
+                    jsonParams.put("Email",emails );
+                    jsonParams.put("Password", "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
+                client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
+                        new  JsonHttpResponseHandler(){
+
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                // Root JSON in response is an dictionary i.e { "data : [ ... ] }
+                                // Handle resulting parsed JSON response here
+                                JSONObject respuesta = response;
+                                Log.d("Json",respuesta.toString());
+                                try {
+                                    String id = respuesta.getString("ID");
+                                    Log.d("id", id);
+                                    String name = respuesta.getString("username");
+                                    Log.d("name", name);
+
+                                } catch (JSONException e) {
+                                    //onFailure(statusCode, headers, e, (JSONObject)null);
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+
+                        });
+
+
                 addUser(names, names, age, gender, emails);
 
 
@@ -474,51 +517,6 @@ public class LoginActivity extends AppCompatActivity {
         String id = databaseUsuarios.push().getKey();
         User usuario = new User(id, nombre, apellido, Edad, Genero, Email);
         databaseUsuarios.child(id).setValue(usuario);
-
-    }
-    
-    private void addUserWebService(String email,String user){
-        JSONObject jsonParams = new JSONObject();
-        AsyncHttpClient client2 = new AsyncHttpClient();
-
-        try {
-            jsonParams.put("UserName", user);
-            jsonParams.put("Email", email );
-            jsonParams.put("Password", "");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        StringEntity entity = null;
-        try {
-            entity = new StringEntity(jsonParams.toString());
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/GameUsersApi";
-        client2.post(getApplicationContext(), restApiUrl, entity, "application/json",
-                new  JsonHttpResponseHandler(){
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        // Root JSON in response is an dictionary i.e { "data : [ ... ] }
-                        // Handle resulting parsed JSON response here
-                        JSONObject respuesta = response;
-                        Log.d("Json",respuesta.toString());
-                        try {
-                            String id = respuesta.getString("ID");
-                            Log.d("id", id);
-                            String name = respuesta.getString("username");
-                            Log.d("name", name);
-
-                        } catch (JSONException e) {
-                            //onFailure(statusCode, headers, e, (JSONObject)null);
-                            e.printStackTrace();
-                        }
-
-
-                    }
-
-                });
 
     }
 

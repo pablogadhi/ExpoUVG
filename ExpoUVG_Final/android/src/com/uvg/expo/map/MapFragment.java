@@ -18,18 +18,22 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.uvg.expo.DrawerHandler;
+import com.uvg.expo.Global;
 import com.uvg.expo.ModelUVG;
 import com.uvg.expo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 
 public class MapFragment extends Fragment {
@@ -45,6 +49,7 @@ public class MapFragment extends Fragment {
     private SharedPreferences preferences;
     private String defaultLoc = "F";
     private  boolean cargar;
+    private JSONObject jsonParams;
 
     TextView info;
     TextView clima;
@@ -268,6 +273,31 @@ public class MapFragment extends Fragment {
                 //Para ocultar el teclado al realizar la busqueda:
                 InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 manager.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
+                jsonParams = new JSONObject();
+                AsyncHttpClient client2 = new AsyncHttpClient();
+
+                try {
+                    jsonParams.put("points", "100");
+                    jsonParams.put("GameId", Global.getLugares());
+                    jsonParams.put("GameUserId", Global.getUserId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                StringEntity entity = null;
+                try {
+                    entity = new StringEntity(jsonParams.toString());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+                client2.post(getActivity().getApplicationContext(), restApiUrl, entity, "application/json",
+                        new JsonHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            }
+                        });
+
                 return true;
             }
 
@@ -320,6 +350,31 @@ public class MapFragment extends Fragment {
             cambiarPosicion();
             ((DrawerHandler) getActivity()).cambiarEstadoDrawer(false);
             preferences.edit().putBoolean("Cambio", false).apply();
+
+            JSONObject jsonParams = new JSONObject();
+            AsyncHttpClient client2 = new AsyncHttpClient();
+
+            try {
+                jsonParams.put("points", "100");
+                jsonParams.put("GameId", Global.getMapa());
+                jsonParams.put("GameUserId", Global.getUserId());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            StringEntity entity = null;
+            try {
+                entity = new StringEntity(jsonParams.toString());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            String restApiUrl = "https://experiencia-uvg.azurewebsites.net:443/api/addGamePoint";
+            client2.post(getActivity().getApplicationContext(), restApiUrl, entity, "application/json",
+                    new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        }
+                    });
+
         }
         super.onResume();
     }
