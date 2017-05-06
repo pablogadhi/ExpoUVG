@@ -48,37 +48,37 @@ import okhttp3.Response;
  *	Descripcion: Activity principal
  */
 
-public class NewsTweetFragment extends AppCompatActivity {
+public class NewsTweetFragment extends Fragment {
 
 
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL = 2;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_tabbed);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.main_tabbed, container, false);
+    }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter pagerAdapter = new TabbedAdapter(getSupportFragmentManager());
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
+        PagerAdapter pagerAdapter = new TabbedAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         // Solicitamos los permisos al usuario
-        if (ContextCompat.checkSelfPermission(this,
+        if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_EXTERNAL);
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL);
         }
 
+        super.onActivityCreated(savedInstanceState);
     }
-
-
-
-
-
 
 
 }

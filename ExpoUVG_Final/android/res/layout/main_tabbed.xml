@@ -22,12 +22,12 @@
 
             <android.support.design.widget.TabItem
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Enviar" />
 
             <android.support.design.widget.TabItem
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:text="Tweets" />
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
