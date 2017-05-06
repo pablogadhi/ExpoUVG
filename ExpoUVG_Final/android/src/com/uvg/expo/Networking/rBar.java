@@ -54,6 +54,42 @@ public class rBar extends AppCompatActivity {
             case 3:
                 standimage.setImageResource(R.drawable.stand3);
                 break;
+            case 4:
+                standimage.setImageResource(R.drawable.stand4);
+                break;
+            case 5:
+                standimage.setImageResource(R.drawable.stand5);
+                break;
+            case 6:
+                standimage.setImageResource(R.drawable.stand6);
+                break;
+            case 7:
+                standimage.setImageResource(R.drawable.stand7);
+                break;
+            case 8:
+                standimage.setImageResource(R.drawable.stand8);
+                break;
+            case 9:
+                standimage.setImageResource(R.drawable.stand9);
+                break;
+            case 10:
+                standimage.setImageResource(R.drawable.stand10);
+                break;
+            case 11:
+                standimage.setImageResource(R.drawable.stand11);
+                break;
+            case 12:
+                standimage.setImageResource(R.drawable.stand12);
+                break;
+            case 13:
+                standimage.setImageResource(R.drawable.stand13);
+                break;
+            case 14:
+                standimage.setImageResource(R.drawable.stand14);
+                break;
+            case 15:
+                standimage.setImageResource(R.drawable.stand15);
+                break;
         }
 
 
