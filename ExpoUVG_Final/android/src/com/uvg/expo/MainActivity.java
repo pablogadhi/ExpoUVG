@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity
             SurveyFragment surveyFragment = new SurveyFragment();
             loadfragment = surveyFragment;
         } else if (id == R.id.nav_feed){
-            NewsTweetFragment newsTweetFragment = new NewsTweetFragment();
-            loadfragment = newsTweetFragment;
+            Intent intent = new Intent(this, NewsTweetFragment.class);
+            startActivity(intent);
         } else if (id == R.id.nav_compartir){
             FacebookFragment surveyFragment = new FacebookFragment();
             loadfragment = surveyFragment;
